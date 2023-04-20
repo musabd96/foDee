@@ -37,19 +37,6 @@
             <div class="fas fa-bars" id="menu-btn"></div>
         </div>
         
-        <div class="login-registration">
-            <div class="wrapper">
-                <span class="fas fa-times"></span>
-                <div class="form-box login">
-                    <form action="#">
-                        <span class="fas fa-user"></span>
-                        
-                    </form>
-                </div>
-            </div>
-        </div>
-
-
         <div class="cart-item-container">
             <div class="cart-item">
                 <span class="fas fa-times"></span>
@@ -75,14 +62,95 @@
                     <div class="price">$15.99</div>
                 </div>
             </div>
-
+            
             <a href="#" class="btn">checkout now</a>
         </div>
-
-        
     </header>
-
     
+    <!--=============== LOGIN/REGISTER SECTION ===============-->
+    
+    <section class="login-register hidden">
+        <div class="wrapper">
+            <div class="form__box login">
+                <form action="#">
+                    <h2>Login</h2>
+                    <div class="input__box">
+                        <span class="icon">
+                            <i class="ri-account-circle-line"></i>
+                        </span>
+                        
+                        <input type="username" required>
+                        <label >Username</label>
+                    </div>
 
+                    <div class="input__box">
+                        <span class="icon">
+                            <i class="ri-lock-line"></i>
+                        </span>
+                        
+                        <input type="password" required>
+                        <label >Password</label>
+                    </div>
+                    <div class="remember__forget">
+                        <label>
+                            <input type="checkbox"> Remember me
+                        </label>
+                        <a href="#">Forget Password?</a>
+                    </div>
+                    <button type="submit" class="btn">Login</button>
+                    <div class="login__register">
+                        <p>
+                            Don't have an account?      
+                            <a class="register__link">Register</a>
+                        </p>
+                    </div>
+                </form>
+            </div>
+
+            <div class="form__box register">
+                <form action="#">
+                    <h2>Registration</h2>
+                    <div class="input__box">
+                        <span class="icon">
+                            <i class="ri-account-circle-line"></i>
+                        </span>
+                        
+                        <input type="username" required>
+                        <label >Username</label>
+                    </div>
+                    <div class="input__box">
+                        <span class="icon">
+                            <i class="ri-mail-line"></i>
+                        </span>
+                        
+                        <input type="email" required>
+                        <label >Email</label>
+                    </div>
+
+                    <div class="input__box">
+                        <span class="icon">
+                            <i class="ri-lock-line"></i>
+                        </span>
+                        
+                        <input type="password" required>
+                        <label >Password</label>
+                    </div>
+                    <div class="remember__forget">
+                        <label>
+                            <input type="checkbox"> I agree to the terms & conditions
+                        </label>
+                    </div>
+                    <button type="submit" class="btn">Register</button>
+                    <div class="login__register">
+                        <p>
+                            Already have an account?      
+                            <a class="login__link">Login</a>
+                        </p>
+                    </div>
+                </form>
+            </div>
+
+        </div>
+    </section>
 </body>
 </html>
