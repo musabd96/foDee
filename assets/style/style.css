@@ -416,4 +416,8 @@ body {
         padding: .5rem;
         font-size: 2rem;
     }
+
+    .logo img{
+        margin-left: -10rem;
+    }
 }
