@@ -132,7 +132,6 @@ section{
     display: flex;
     justify-content: center;
     align-items: center;
-    min-height: 80vh;
     z-index: 1;
 }
 
@@ -143,30 +142,34 @@ section{
 .wrapper{
     top: 25rem;
     font-size: 1.5rem;
-    position: absolute;
+    position: fixed;
     width: 500px;
     height: 550px;
-    background: transparent;
+    background: #D9D9D9;
     border: 2px solid rgba(255, 255, 255, .5);
     border-radius: 20px;
     backdrop-filter: blur(20px);
-    box-shadow: 0 0 30px rgba(255, 255, 255, .5);
+    box-shadow: 0 0 30px rgba(22, 20, 20, 0.933);
     display: flex;
     justify-content: center;
     align-items: center;
     overflow: hidden;
     transition: height .2s ease;
+    font-weight: 500;
+    
 }
 
 
 
 .wrapper.active{
     height: 650px;
+    right: 32rem;top: 20rem;
 }
 
 .wrapper .form__box{
     width: 100%;
     padding: 40px;
+    
 
 }
 
@@ -177,7 +180,7 @@ section{
 
 .wrapper.active .form__box.login{
     transition: none;
-    transform: translateX(-500px);
+    transform: translateX(500px);
 }
 
 .wrapper .form__box.register{
@@ -193,7 +196,7 @@ section{
 
 .form__box h2{
     font-size: 5rem;
-    color: #D9D9D9;
+    color: var(--black);
     text-align: center;
 }
 
@@ -211,7 +214,7 @@ section{
     left: 4px;
     transform: translateX(1%);
     font-size: 1.5em;
-    color: #D9D9D9;
+    color: var(--black);
     font-weight: 500;
     pointer-events: none;
     transition: .5s;
@@ -223,7 +226,7 @@ section{
 }
 
 .input__box input{
-    color: #fff;
+    color: var(--black);
     font-size: 2rem;
     font-weight: 600;
     padding: 2rem 35px 0 5px;
@@ -238,13 +241,13 @@ section{
     position: absolute;
     right: 6px;
     font-size: 2rem;
-    color: #D9D9D9;
+    color: var(--black);
     line-height: 57px;
 }
 
 .remember__forget{
-    font-size: 1.7rem;
-    color: #fff;
+    font-size: 2rem;
+    color: var(--black);
     font-weight: 500;
     margin: -15px 0 15px;
     display: flex;
@@ -252,12 +255,12 @@ section{
 }
 
 .remember__forget label input{
-    accent-color: #D9D9D9;
+    accent-color: var(--black);
     margin-right: 3px;
 }
 
 .remember__forget a{
-    color: #fff;
+    color: var(--black);
     text-decoration: none;
 }
 
@@ -265,10 +268,6 @@ section{
     text-decoration: underline;
 }
 
-.btn{
-    margin-bottom: 2rem;
-    font-size: 2rem;
-}
 
 .btn:hover{
     background: #3B8419;
@@ -276,17 +275,29 @@ section{
 
 .login__register{
     cursor: pointer;
-    font-size: 1.7rem;
-    color: #fff;
+    font-size: 2rem;
+    color: var(--black);
     font-weight: 500;
     margin: -15px 0 15px;
     text-align: center;
 
 }
 
+.login .btn{
+    width: 100%;
+    margin-bottom: 4rem;
+    text-align: center;
+    font-size: 2rem;
+}
 
+.register .btn{
+    width: 100%;
+    margin-bottom: 4rem;
+    text-align: center;
+    font-size: 2rem;
+}
 .login__register p a{
-    color: #fff;
+    color: var(--black);
     text-decoration: none;
     font-weight: 600;
 }
@@ -355,23 +366,55 @@ section{
 
 /* =============== HOME SECTION =============== */
 
-.home{
-    min-height: 100vh;
+.home {
     display: flex;
+    justify-content: center;
     align-items: center;
-    justify-content: space-between;
+    padding: 80px 0;
+    height: 100vh;
+}
 
+.content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    max-width: 1200px;
+    width: 100%;
+}
+
+.text-container {
+    flex: 1;
+    text-align: left;
+    margin-left: 5rem;
+}
+
+.text-container .btn{
+    font-size: 2rem;
+}
+
+.image-container {
+    flex: 1;
+    text-align: right;
+    margin-right: 5rem;
+}
+
+.image {
+    border-radius: 50%;
+    width: 400px;
+    height: 400px;
+    object-fit: cover;
+    object-position: center;
+    margin-top: 32px;
 }
 
 .home .text-container{
-    max-width: 60rem;
-    float: left;
+      max-width: 60rem;
 }
 
 .home .content h3{
     font-size: 3rem;
     color: var(--main-color);
-    margin-top: 20rem;
+    margin-top: 10rem;
     margin-bottom: 2rem;
 }
 .home .content h4{
@@ -385,49 +428,6 @@ section{
     color: var(--main-color);
     margin-bottom: 2rem;
 }
-
-.image{
-    width: 60rem;
-    margin-top: 5rem;
-    margin-left: 40rem;
-    border-radius: 100%;
-    transform: rotate(0deg);
-}
-
-
-
-
-
-
-
-/* .social_media{
-    justify-self: center;
-    display: flex;
-    column-gap: 2.25rem;
-    padding-left: 2rem;
-
-}
-
-.socail_media-link{
-    font-size: 1.75rem;
-    transition: color .3s;
-    color: #fff;
-}
-
-.socail_media-link:hover{
-    color: #3B8419;
-} */
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -484,10 +484,20 @@ section{
         margin-left: -10rem;
     }
 
-    .image{
-        width: 40rem;
-        margin-left: 4rem;
-        border-radius: 100%;
-        transform: rotate(0deg);
+    
+    .content {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .text-container {
+        margin-top: 8rem;
+        margin-left: 0;
+        margin-bottom: 2rem;
+    }
+
+    .image-container {
+        margin-right: 0;
+        margin-top: 2rem;
     }
 }
