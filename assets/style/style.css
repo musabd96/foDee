@@ -77,7 +77,6 @@ body {
     align-items: center;
     justify-content: space-between;
     padding: 1.5rem 7%;
-    border-bottom: var(--border);
     position: fixed;
     top: 0;
     left: 0;
@@ -115,6 +114,13 @@ body {
     display: none;
 }
 
+#close-btn{
+    color: var(--main-color);
+    font-size: 3rem;
+    top: 11rem;
+    right: 2rem;
+    display: none;
+}
 
 
 /* =============== LOGIN =============== */
@@ -377,13 +383,15 @@ body {
     }
 
     .header{
-        padding: 1.5rem 2rem;
+        padding: 1.5rem rem;
     }
 }
 
 
 @media (max-width:991px){
-    #menu-btn{
+   
+    #menu-btn,
+    .close-btn{
         display: inline-block;
     }
 
@@ -395,14 +403,16 @@ body {
         width: 30rem;
         height: calc(100vh - 9.5rem);
     }
-
+  
     .active{
         right: 0;
     }
+
     .navbar a{
         color: var(--black);
         display: block;
         margin: 1.5rem;
+        margin-top: 3rem;
         padding: .5rem;
         font-size: 2rem;
     }

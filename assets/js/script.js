@@ -8,10 +8,10 @@ userBtn.addEventListener('click', function() {
   loginRegisterSection.classList.toggle('hidden');
   if (loginRegisterSection.classList.contains('hidden')) {
     // remove the color style
-    userBtn.style.color = ''; 
+    userBtn.style.color = '';
   } else {
     // set the color style
-    userBtn.style.color = '#3B8419'; 
+    userBtn.style.color = '#3B8419';
   }
 });
 
@@ -38,16 +38,46 @@ function goBack() {
 /* =============== CART BAR =============== */
 
 const cartItemContainer = document.querySelector('.cart-item-container');
-
+const cartBtn = document.getElementById('cart-btn');
 document.querySelector('#cart-btn').onclick = () =>{
     cartItemContainer.classList.toggle('active');
+
+    if (cartItemContainer.classList.contains('active')) {
+        // set the color style
+        cartBtn.style.color = '#3B8419';
+    } else {
+        // remove the color style
+        cartBtn.style.color = '';
+    }
 }
+
+
 
 
 /* =============== MENU BAR =============== */
 
 const navBar = document.querySelector('.navbar');
+const menuBtn = document.querySelector('.fa-bars');
+const closeBtn = document.querySelector('.fa-times');
+
 
 document.querySelector('#menu-btn').onclick = () =>{
-    navBar.classList.toggle('active');
+
+    
+    menuBtn.style.display = 'none';
+    closeBtn.style.display = 'inline-block';
+    closeBtn.style.color = 'red';
+    navBar.classList.add('active');
+
+    
+    
+    
+    
 }
+
+closeBtn.addEventListener('click', () =>{
+    navBar.classList.remove('active');
+    closeBtn.style.display = 'none';
+    menuBtn.style.display = 'inline-block';
+    menuBtn.style.color = '';
+})
