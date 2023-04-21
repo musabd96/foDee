@@ -37,17 +37,17 @@ function goBack() {
 
 /* =============== CART BAR =============== */
 
-const cartItemContainer = document.querySelector('.cart-item-container');
+const cartPopup = document.querySelector('.cart__popup');
 const cartBtn = document.getElementById('cart-btn');
 document.querySelector('#cart-btn').onclick = () =>{
-    cartItemContainer.classList.toggle('active');
+    cartPopup.classList.toggle('hide');
 
-    if (cartItemContainer.classList.contains('active')) {
-        // set the color style
-        cartBtn.style.color = '#3B8419';
-    } else {
-        // remove the color style
+    if (cartPopup.classList.contains('hide')) {
+        
         cartBtn.style.color = '';
+    } else {
+        
+        cartBtn.style.color = '#3B8419';
     }
 }
 
