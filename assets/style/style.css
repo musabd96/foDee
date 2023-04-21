@@ -57,6 +57,10 @@ body {
     background-size: cover;
 }
 
+section{
+    padding: 2rem 7%;
+}
+
 .btn{
     margin-top: 1rem;
     display: inline-block;
@@ -263,7 +267,6 @@ body {
 
 .btn{
     margin-bottom: 2rem;
-    width: 100%;
     font-size: 2rem;
 }
 
@@ -345,9 +348,50 @@ body {
     color: var(--green);
 }
 
-.btn{
+.cart-item-container .btn{
     width: 100%;
     text-align: center ;
+}
+
+/* =============== HOME SECTION =============== */
+
+.home{
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+}
+
+.home .text-container{
+    max-width: 60rem;
+    float: left;
+}
+
+.home .content h3{
+    font-size: 3rem;
+    color: var(--main-color);
+    margin-top: 20rem;
+    margin-bottom: 2rem;
+}
+.home .content h4{
+    font-size: 3rem;
+    color: var(--main-color);
+    margin-bottom: 2rem;
+}
+
+.home .content h1{
+    font-size: 8rem;
+    color: var(--main-color);
+    margin-bottom: 2rem;
+}
+
+.image{
+    width: 60rem;
+    margin-top: 5rem;
+    margin-left: 40rem;
+    border-radius: 100%;
+    transform: rotate(0deg);
 }
 
 
@@ -356,7 +400,23 @@ body {
 
 
 
+/* .social_media{
+    justify-self: center;
+    display: flex;
+    column-gap: 2.25rem;
+    padding-left: 2rem;
 
+}
+
+.socail_media-link{
+    font-size: 1.75rem;
+    transition: color .3s;
+    color: #fff;
+}
+
+.socail_media-link:hover{
+    color: #3B8419;
+} */
 
 
 
@@ -385,11 +445,14 @@ body {
     .header{
         padding: 1.5rem rem;
     }
+    section{
+        padding: 2rem 5%;
+    }
 }
 
 
 @media (max-width:991px){
-   
+
     #menu-btn,
     .close-btn{
         display: inline-block;
@@ -403,7 +466,7 @@ body {
         width: 30rem;
         height: calc(100vh - 9.5rem);
     }
-  
+
     .active{
         right: 0;
     }
@@ -419,5 +482,12 @@ body {
 
     .logo img{
         margin-left: -10rem;
+    }
+
+    .image{
+        width: 40rem;
+        margin-left: 4rem;
+        border-radius: 100%;
+        transform: rotate(0deg);
     }
 }
