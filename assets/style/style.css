@@ -59,6 +59,7 @@ body {
 
 section{
     padding: 2rem 7%;
+    display: flex;
 }
 
 .btn{
@@ -163,7 +164,6 @@ section{
 
 .wrapper.register{
     height: 650px;
-    /* right: 32rem;top: 20rem; */
 }
 
 .wrapper .form__box{
@@ -316,7 +316,7 @@ section{
     right: -100%;
     height: calc(100vh - 9.5rem);
     width: 35rem;
-    background: var(--main-color);
+    background: #D9D9D9;
     padding: 0  1.5rem;
 }
 
@@ -367,11 +367,15 @@ section{
 /* =============== HOME SECTION =============== */
 
 .home {
-    display: flex;
+    
     justify-content: center;
     align-items: center;
     padding: 80px 0;
     height: 100vh;
+}
+
+.hidden{
+    display: none;
 }
 
 .content {
@@ -462,7 +466,7 @@ section{
         position: absolute;
         top: 100%;
         right: -100%;
-        background: var(--main-color);
+        background: #D9D9D9;
         width: 30rem;
         height: calc(100vh - 9.5rem);
     }

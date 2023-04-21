@@ -62,17 +62,12 @@ const closeBtn = document.querySelector('.fa-times');
 
 
 document.querySelector('#menu-btn').onclick = () =>{
-
+    
     
     menuBtn.style.display = 'none';
     closeBtn.style.display = 'inline-block';
     closeBtn.style.color = 'red';
-    navBar.classList.add('active');
-
-
-    
-    
-    
+    navBar.classList.add('active');     
 }
 
 closeBtn.addEventListener('click', () =>{
@@ -81,3 +76,26 @@ closeBtn.addEventListener('click', () =>{
     menuBtn.style.display = 'inline-block';
     menuBtn.style.color = '';
 })
+
+/* =============== NAV =============== */
+
+
+const navLinks = document.querySelectorAll('.navbar a');
+const sections = document.querySelectorAll('section');
+
+
+navLinks.forEach(link => {
+  link.addEventListener('click', () => {
+    
+    const sectionId = link.getAttribute('href');
+    sections.forEach(section => {
+      if (section.id === sectionId) {
+        section.style.display = 'flex';
+      } else {
+        section.style.display = 'none';
+      }
+    });
+  });
+});
+
+
