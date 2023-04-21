@@ -57,45 +57,19 @@ document.querySelector('#cart-btn').onclick = () =>{
 /* =============== MENU BAR =============== */
 
 const navBar = document.querySelector('.navbar');
-const menuBtn = document.querySelector('.fa-bars');
-const closeBtn = document.querySelector('.fa-times');
-
-
+const menuBtn = document.getElementById('menu-btn');
 document.querySelector('#menu-btn').onclick = () =>{
-    
-    
-    menuBtn.style.display = 'none';
-    closeBtn.style.display = 'inline-block';
-    closeBtn.style.color = 'red';
-    navBar.classList.add('active');     
+    navBar.classList.toggle('active');
+
+    if (navBar.classList.contains('active')) {
+        // set the color style
+        menuBtn.style.color = '#3B8419';
+    } else {
+        // remove the color style
+        menuBtn.style.color = '';
+    }
 }
 
-closeBtn.addEventListener('click', () =>{
-    navBar.classList.remove('active');
-    closeBtn.style.display = 'none';
-    menuBtn.style.display = 'inline-block';
-    menuBtn.style.color = '';
-})
-
 /* =============== NAV =============== */
-
-
-const navLinks = document.querySelectorAll('.navbar a');
-const sections = document.querySelectorAll('section');
-
-
-navLinks.forEach(link => {
-  link.addEventListener('click', () => {
-    
-    const sectionId = link.getAttribute('href');
-    sections.forEach(section => {
-      if (section.id === sectionId) {
-        section.style.display = 'flex';
-      } else {
-        section.style.display = 'none';
-      }
-    });
-  });
-});
 
 
