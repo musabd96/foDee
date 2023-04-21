@@ -353,9 +353,9 @@ section{
 }
 
 
-.btn__minus,
-.btn__add {
-    font-size: 3rem;
+.quantity .fa-minus, 
+.quantity .fa-plus {
+    font-size: 2rem;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -363,22 +363,23 @@ section{
     width: 3rem;
     height: 3rem;
     cursor: pointer;
+    color: var(--main-color);
 }
 
-.btn__add{
+.quantity .fa-plus{
     background-color: #3B8419;
 }
 
-.btn__minus{
+.quantity .fa-minus{
     margin-left:1rem;
     background-color: #b72121;
 }
 
-.btn__minus:hover{
+.quantity .fa-minus:hover{
     background-color: #ec2424;
 }
 
-.btn__add:hover {
+.quantity .fa-plus:hover {
     background-color: #5fb935;
 }
 
@@ -391,16 +392,12 @@ section{
     font-weight: bold;
     font-size: 2rem;
 }
-.close__btn i{
+
+.quantity .fa-trash{
+    color: var(--grey);
     font-size: 2rem;
-    color: #b72121;
-    cursor: pointer;
+    margin-left: 2rem;
 }
-
-.close__btn i:hover{
-    color: #ec2424;
-}
-
 
 .item_price{
     font-weight: 500;
@@ -418,8 +415,7 @@ section{
     border-top: solid 1px rgba(211, 211, 211, 0.767);
 }
 
-.checkout,
-.view__cart{
+.cart__popup .btn{
     width: 95%;
     text-align: center;
     cursor: pointer;
