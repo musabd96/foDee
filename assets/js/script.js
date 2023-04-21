@@ -20,14 +20,14 @@ userBtn.addEventListener('click', function() {
 
 const wrapper = document.querySelector('.wrapper');
 const loginLink = document.querySelector('.login__link');
-const registerLink = document.querySelector('.register__link');
+const registerLink = document.querySelector('.registration__link');
 
 registerLink.addEventListener('click', () =>{
-    wrapper.classList.add('active');
-})
+    wrapper.classList.add('register');
+});
 loginLink.addEventListener('click', () =>{
-    wrapper.classList.remove('active');
-})
+    wrapper.classList.remove('register');
+});
 
 function goBack() {
     cartBtn.style.backgroundColor = '#3E464E';
@@ -69,7 +69,7 @@ document.querySelector('#menu-btn').onclick = () =>{
     closeBtn.style.color = 'red';
     navBar.classList.add('active');
 
-    
+
     
     
     

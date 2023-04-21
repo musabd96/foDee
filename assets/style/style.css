@@ -140,7 +140,7 @@ section{
 }
 
 .wrapper{
-    top: 25rem;
+    top: 20rem;
     font-size: 1.5rem;
     position: fixed;
     width: 500px;
@@ -156,20 +156,20 @@ section{
     overflow: hidden;
     transition: height .2s ease;
     font-weight: 500;
-    
+
 }
 
 
 
-.wrapper.active{
+.wrapper.register{
     height: 650px;
-    right: 32rem;top: 20rem;
+    /* right: 32rem;top: 20rem; */
 }
 
 .wrapper .form__box{
     width: 100%;
     padding: 40px;
-    
+
 
 }
 
@@ -178,7 +178,7 @@ section{
     transform: translateX(0);
 }
 
-.wrapper.active .form__box.login{
+.wrapper.register .form__box.login{
     transition: none;
     transform: translateX(500px);
 }
@@ -189,7 +189,7 @@ section{
     transform: translateX(500px);
 }
 
-.wrapper.active .form__box.register{
+.wrapper.register .form__box.register{
     transition: transform .18s ease;
     transform: translateX(0);
 }
@@ -484,7 +484,7 @@ section{
         margin-left: -10rem;
     }
 
-    
+
     .content {
         display: flex;
         flex-direction: column;
