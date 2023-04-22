@@ -64,6 +64,45 @@ section{
 .btn:hover{
     letter-spacing: .2rem;
 }
+
+.heading {
+    text-align: center;
+    margin-top: 9rem;
+    font-size: 5rem;
+    text-transform: uppercase;
+    color: var(--main-color);
+}
+
+.heading span{
+    color: var(--green);
+    text-transform: uppercase;
+
+}
+
+select {
+    padding: 10px;
+    font-size: 16px;
+    border-radius: 5px;
+    border: 1px solid var(--main-color);
+    background: #D9D9D9;
+  }
+  
+  option {
+    font-size: 14px;
+    color: var(--black);
+  }
+  
+  option:hover {
+    background-color: #f2f2f2;
+  }
+  
+  option:checked {
+    background-color: #007bff;
+    color: #fff;
+  }
+  
+
+
 /* =============== HEADER =============== */
 .header{
     display: flex;
@@ -347,37 +386,6 @@ section{
     margin-left: 1rem;
 }
 
-
-.quantity .fa-minus, 
-.quantity .fa-plus {
-    font-size: 2rem;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border-radius: 50%;
-    width: 3rem;
-    height: 3rem;
-    cursor: pointer;
-    color: var(--main-color);
-}
-
-.quantity .fa-plus{
-    background-color: #3B8419;
-}
-
-.quantity .fa-minus{
-    margin-left:1rem;
-    background-color: #b72121;
-}
-
-.quantity .fa-minus:hover{
-    background-color: #ec2424;
-}
-
-.quantity .fa-plus:hover {
-    background-color: #5fb935;
-}
-
 .quantity__nr{
     display: flex;
     justify-content: center;
@@ -411,14 +419,8 @@ section{
 }
 
 .cart__popup .btn{
-    width: 95%;
     text-align: center;
-    cursor: pointer;
-    border: 2px solid #3B8419;
-    border-radius: 10px;
     font-size: 2rem;
-    margin: 1px auto;
-    padding: 10px 15px;
     margin-bottom: 2%;
 }
 
@@ -540,7 +542,7 @@ section{
     margin-bottom: 2rem;
 }
 
-/* =============== MENU =============== */
+/* =============== MENU SECTION =============== */
 
 #menu{
     overflow: auto;
@@ -553,19 +555,6 @@ section{
     
 }
 
-.heading {
-    text-align: center;
-    margin-top: 8rem;
-    font-size: 5rem;
-    text-transform: uppercase;
-    color: var(--main-color);
-}
-
-.heading span{
-    color: var(--green);
-    text-transform: uppercase;
-
-}
 
 .menu .box-container .box{
     padding: 5rem;
@@ -603,6 +592,53 @@ section{
 
 .menu .box-container .box .btn{
     font-size: 2rem;
+}
+/* =============== CART SECTION =============== */
+#cart{
+    overflow-y: auto;
+    max-height: 70%;
+}
+
+.checkout__wrapper .cart__item img{
+    height: 15rem;
+}
+
+.checkout__wrapper .cart__item h3{
+    color: var(--main-color);
+    margin-left: 2rem;
+    margin-bottom: 3rem;
+}
+
+.checkout__wrapper .cart__item .quantity select{
+    margin-left: 2rem;
+}
+
+.checkout__wrapper .cart__item .quantity a{
+    color: #676c72;
+    font-size: 4rem;
+}
+
+.checkout__wrapper .cart__item .quantity a:hover{
+    color: #868c94;
+}
+
+.checkout__wrapper .item_price{
+    color: var(--main-color);
+    margin-top: 4rem;
+}
+
+.cart .total{
+    
+    color: var(--main-color);
+    font-size: 4rem;
+}
+
+.cart .btn{
+    margin-bottom: 25rem;
+    font-size: 4rem;
+    width: 50%;
+    margin-left: 25rem;
+    text-align: center;
 }
 
 
