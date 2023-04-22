@@ -148,23 +148,13 @@ section{
     font-weight: 500;
 }
 
-
-
-
-
 .wrapper.register{
     height: 650px;
 }
 
-
-
-
-
 .wrapper .form__box{
     width: 100%;
     padding: 40px;
-
-
 }
 
 .wrapper .form__box.login{
@@ -561,6 +551,20 @@ section{
     gap: 1.5rem;
     margin-top: 10rem;
     
+}
+
+.heading {
+    text-align: center;
+    margin-top: 8rem;
+    font-size: 5rem;
+    text-transform: uppercase;
+    color: var(--main-color);
+}
+
+.heading span{
+    color: var(--green);
+    text-transform: uppercase;
+
 }
 
 .menu .box-container .box{
