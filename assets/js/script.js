@@ -108,12 +108,13 @@ const checkoutMenuBtn = document.querySelector('#checkout__menu-btn');
 const menuLink = document.getElementById('#menu');
 
 logoBtn.addEventListener('click', function() {
-  // Show the home section and hide all other sections
+  
   const homeSection = document.querySelector(this.hash);
   homeSection.classList.remove('hidden');
   sections.forEach(section => {
     if (section !== homeSection) {
       section.classList.add('hidden');
+      cartBtn.style.display = '';
     }
   });
 
@@ -129,7 +130,7 @@ logoBtn.addEventListener('click', function() {
 });
 
 checkoutMenuBtn.addEventListener('click', function() {
-  // Show the menu section and hide all other sections
+  
   const menuSection = document.querySelector(this.hash);
   menuSection.classList.remove('hidden');
   sections.forEach(section => {
@@ -138,7 +139,7 @@ checkoutMenuBtn.addEventListener('click', function() {
     }
   });
 
-  // Highlight the menu link
+  
   navLinks.forEach(link => {
     link.classList.remove('active');
     link.style.color = '';
@@ -151,17 +152,18 @@ checkoutMenuBtn.addEventListener('click', function() {
 
 navLinks.forEach(link => {
   link.addEventListener('click', function() {
-    // Show the section corresponding to the clicked link
+    
     const sectionToShow = document.querySelector(this.hash);
     sectionToShow.classList.remove('hidden');
-    // Hide all other sections
+    
     sections.forEach(section => {
       if (section !== sectionToShow) {
         section.classList.add('hidden');
+        cartBtn.style.display = '';
       }
     });
     
-    // Highlight the clicked link
+    
     navLinks.forEach(otherLink => {
       if (otherLink !== this) {
         otherLink.classList.remove('active');
@@ -172,9 +174,9 @@ navLinks.forEach(link => {
     this.style.color = '#3B8419';
   });
   
-  // Add event listener to Checkout button
+  
   checkoutBtn.addEventListener('click', function() {
-    // Show the cart section and hide all other sections
+    
     const cartSection = document.querySelector(this.hash);
     cartSection.classList.remove('hidden');
     sections.forEach(section => {
@@ -184,7 +186,7 @@ navLinks.forEach(link => {
       }
     });
     
-    // Highlight the Checkout button
+    
     navLinks.forEach(link => {
       if (link !== checkoutBtn) {
         link.classList.remove('active');
@@ -192,14 +194,10 @@ navLinks.forEach(link => {
       }
     });
     checkoutBtn.classList.add('active');
-    checkoutBtn.style.color = '#3B8419';
+    cartBtn.style.display = 'none';
   });
 
   
 });
 
-
-/* =============== NAV =============== */
-
-// const logoBtn = document.getElementById('.logo__btn');
 
