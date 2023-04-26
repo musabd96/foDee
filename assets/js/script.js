@@ -157,6 +157,7 @@ navLinks.forEach(link => {
       if (section !== sectionToShow) {
         section.classList.add('hidden');
         userBtn.style.color = '';
+        cartBtn.style.display = ''
       }
     });
     
@@ -180,6 +181,7 @@ navLinks.forEach(link => {
       if (section !== cartSection) {
         section.classList.add('hidden');
         cartPopup.classList.add('hidden');
+        cartBtn.style.display = 'none'
       }
     });
     
