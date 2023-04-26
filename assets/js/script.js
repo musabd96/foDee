@@ -193,6 +193,6 @@ navLinks.forEach(link => {
       }
     });
     checkoutBtn.classList.add('active');
-    checkoutBtn.style.color = '#3B8419';
+    userBtn.style.color = '';
   });
 });
