@@ -1,29 +1,4 @@
 
-// // =============== PROFILE =============== //
-
-// const userBtn = document.getElementById('user-btn');
-// const loginRegisterSection = document.querySelector('.login-register');
-
-// userBtn.addEventListener('click', function() {
-//   loginRegisterSection.classList.toggle('hidden');
-//   if (loginRegisterSection.classList.contains('hidden')) {
-//     // remove the color style
-//     userBtn.style.color = '';
-//   } else {
-//     // set the color style
-//     userBtn.style.color = '#3B8419';
-//   }
-// });
-
-// document.addEventListener('click', function(event) {
-//   if (!loginRegisterSection.contains(event.target) && !userBtn.contains(event.target)) {
-//     loginRegisterSection.classList.add('hidden');
-//     userBtn.style.color = '';
-//   }
-// });
-
-
-
 // =============== LOGIN/REGISTER =============== //
 
 const wrapper = document.querySelector('.wrapper');
@@ -103,9 +78,9 @@ const navLinks = document.querySelectorAll('.navbar a');
 const sections = document.querySelectorAll('section');
 const checkoutBtn = document.querySelector('#checkout-btn');
 const logoBtn = document.querySelector('#logo__btn');
-const homeLink = document.querySelector('#home');
+const homeLink = document.getElementById('#home__btn');
 const checkoutMenuBtn = document.querySelector('#checkout__menu-btn');
-const menuLink = document.querySelector('#menu');
+const menuLink = document.getElementById('#menu__btn');
 const userBtn = document.querySelector('#user-btn');
 
 logoBtn.addEventListener('click', function() {
