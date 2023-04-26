@@ -108,18 +108,19 @@ navLinks.forEach(link => {
     // Show the section corresponding to the clicked link
     const sectionToShow = document.querySelector(this.hash);
     sectionToShow.classList.remove('hidden');
-
+    
     // Hide all other sections
     sections.forEach(section => {
       if (section !== sectionToShow) {
         section.classList.add('hidden');
       }
     });
-
+    
     // Highlight the clicked link
     navLinks.forEach(otherLink => {
       if (otherLink !== this) {
         otherLink.classList.remove('active');
+        otherLink.style.color = '';
       }
     });
     this.classList.add('active');
