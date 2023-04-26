@@ -560,11 +560,11 @@ select {
 
 
 .cart .content .cart__item img{
-    height: 10rem;
+    height: 5rem;
 }
 
 .cart .content .cart__item h3{
-    font-size: 2.5rem;
+    font-size: 2rem;
     font-weight: 600;
     color: var(--main-color);
     
@@ -579,7 +579,7 @@ select {
 .cart .content .cart__item .quantity .fa-trash{
     color: #676c72;
     margin-left: 3rem;
-    font-size: 3rem;
+    font-size: 2rem;
 }
 .cart .content .cart__item .quantity .fa-trash:hover{
     color: red;
@@ -587,7 +587,7 @@ select {
 
 .cart .content .cart__item .item__price{
     color: var(--main-color);
-    font-size: 3rem;
+    font-size: 2rem;
     margin-left: auto;
 }
 
@@ -601,7 +601,7 @@ select {
 }
 
 .cart .content .total span {
-    font-size: 3rem;
+    font-size: 2rem;
     margin-left: 75%;
     font-size: 4rem;
 }
