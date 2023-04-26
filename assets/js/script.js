@@ -100,26 +100,32 @@ document.addEventListener('click', function(event) {
 
 /* =============== NAV =============== */
 
-// get all the links in the navbar
-const links = document.querySelectorAll('.navbar');
+const navLinks = document.querySelectorAll('.navbar a');
+const sections = document.querySelectorAll('section');
 
-// add an event listener to each link
-links.forEach(link => {
-  link.addEventListener('click', () => {
-    // get the target section
-    const target = document.querySelector(link.getAttribute('href'));
+navLinks.forEach(link => {
+  link.addEventListener('click', function() {
+    // Show the section corresponding to the clicked link
+    const sectionToShow = document.querySelector(this.hash);
+    sectionToShow.classList.remove('hidden');
 
-    // remove the "hidden" class from the target section
-    target.classList.remove('hidden');
-
-    // add the "hidden" class to all other sections
-    const sections = document.querySelectorAll('.content');
+    // Hide all other sections
     sections.forEach(section => {
-      if (section !== target) {
+      if (section !== sectionToShow) {
         section.classList.add('hidden');
       }
     });
+
+    // Highlight the clicked link
+    navLinks.forEach(otherLink => {
+      if (otherLink !== this) {
+        otherLink.classList.remove('active');
+      }
+    });
+    this.classList.add('active');
+    this.style.color = '#3B8419';
   });
 });
+
 
 
