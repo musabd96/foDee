@@ -1,26 +1,26 @@
 
-// =============== PROFILE =============== //
+// // =============== PROFILE =============== //
 
-const userBtn = document.getElementById('user-btn');
-const loginRegisterSection = document.querySelector('.login-register');
+// const userBtn = document.getElementById('user-btn');
+// const loginRegisterSection = document.querySelector('.login-register');
 
-userBtn.addEventListener('click', function() {
-  loginRegisterSection.classList.toggle('hidden');
-  if (loginRegisterSection.classList.contains('hidden')) {
-    // remove the color style
-    userBtn.style.color = '';
-  } else {
-    // set the color style
-    userBtn.style.color = '#3B8419';
-  }
-});
+// userBtn.addEventListener('click', function() {
+//   loginRegisterSection.classList.toggle('hidden');
+//   if (loginRegisterSection.classList.contains('hidden')) {
+//     // remove the color style
+//     userBtn.style.color = '';
+//   } else {
+//     // set the color style
+//     userBtn.style.color = '#3B8419';
+//   }
+// });
 
-document.addEventListener('click', function(event) {
-  if (!loginRegisterSection.contains(event.target) && !userBtn.contains(event.target)) {
-    loginRegisterSection.classList.add('hidden');
-    userBtn.style.color = '';
-  }
-});
+// document.addEventListener('click', function(event) {
+//   if (!loginRegisterSection.contains(event.target) && !userBtn.contains(event.target)) {
+//     loginRegisterSection.classList.add('hidden');
+//     userBtn.style.color = '';
+//   }
+// });
 
 
 
@@ -103,18 +103,19 @@ const navLinks = document.querySelectorAll('.navbar a');
 const sections = document.querySelectorAll('section');
 const checkoutBtn = document.querySelector('#checkout-btn');
 const logoBtn = document.querySelector('#logo__btn');
-const homeLink = document.getElementById('#home');
+const homeLink = document.querySelector('#home');
 const checkoutMenuBtn = document.querySelector('#checkout__menu-btn');
-const menuLink = document.getElementById('#menu');
+const menuLink = document.querySelector('#menu');
+const userBtn = document.querySelector('#user-btn');
 
 logoBtn.addEventListener('click', function() {
-  
+  // Show the home section and hide all other sections
   const homeSection = document.querySelector(this.hash);
   homeSection.classList.remove('hidden');
   sections.forEach(section => {
     if (section !== homeSection) {
       section.classList.add('hidden');
-      cartBtn.style.display = '';
+      userBtn.style.color = '';
     }
   });
 
@@ -123,6 +124,7 @@ logoBtn.addEventListener('click', function() {
     if (link !== logoBtn) {
       link.classList.remove('active');
       link.style.color = '';
+      
     }
   });
   logoBtn.classList.add('active');
@@ -130,7 +132,7 @@ logoBtn.addEventListener('click', function() {
 });
 
 checkoutMenuBtn.addEventListener('click', function() {
-  
+  // Show the menu section and hide all other sections
   const menuSection = document.querySelector(this.hash);
   menuSection.classList.remove('hidden');
   sections.forEach(section => {
@@ -139,7 +141,7 @@ checkoutMenuBtn.addEventListener('click', function() {
     }
   });
 
-  
+  // Highlight the menu link
   navLinks.forEach(link => {
     link.classList.remove('active');
     link.style.color = '';
@@ -148,22 +150,42 @@ checkoutMenuBtn.addEventListener('click', function() {
   menuLink.style.color = '#3B8419';
 });
 
+userBtn.addEventListener('click', function() {
+  // Show the login/register section and hide all other sections
+  const loginSection = document.querySelector('.login-register');
+  loginSection.classList.remove('hidden');
+  sections.forEach(section => {
+    if (section !== loginSection) {
+      section.classList.add('hidden');
+      userBtn.style.color = '';
+    }
+  });
 
+  // Highlight the user button
+  navLinks.forEach(link => {
+    if (link !== userBtn) {
+      link.classList.remove('active');
+      link.style.color = '';
+    }
+  });
+  userBtn.classList.add('active');
+  userBtn.style.color = '#3B8419';
+});
 
 navLinks.forEach(link => {
   link.addEventListener('click', function() {
-    
+    // Show the section corresponding to the clicked link
     const sectionToShow = document.querySelector(this.hash);
     sectionToShow.classList.remove('hidden');
-    
+    // Hide all other sections
     sections.forEach(section => {
       if (section !== sectionToShow) {
         section.classList.add('hidden');
-        cartBtn.style.display = '';
+        userBtn.style.color = '';
       }
     });
     
-    
+    // Highlight the clicked link
     navLinks.forEach(otherLink => {
       if (otherLink !== this) {
         otherLink.classList.remove('active');
@@ -174,9 +196,9 @@ navLinks.forEach(link => {
     this.style.color = '#3B8419';
   });
   
-  
+  // Add event listener to Checkout button
   checkoutBtn.addEventListener('click', function() {
-    
+    // Show the cart section and hide all other sections
     const cartSection = document.querySelector(this.hash);
     cartSection.classList.remove('hidden');
     sections.forEach(section => {
@@ -186,7 +208,7 @@ navLinks.forEach(link => {
       }
     });
     
-    
+    // Highlight the Checkout button
     navLinks.forEach(link => {
       if (link !== checkoutBtn) {
         link.classList.remove('active');
@@ -194,10 +216,6 @@ navLinks.forEach(link => {
       }
     });
     checkoutBtn.classList.add('active');
-    cartBtn.style.display = 'none';
+    checkoutBtn.style.color = '#3B8419';
   });
-
-  
 });
-
-
