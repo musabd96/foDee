@@ -45,13 +45,13 @@ loginLink.addEventListener('click', () =>{
 
 /* =============== CART BAR =============== */
 
-const cartPopup = document.querySelector('.cart__popup');
+const cartPopup = document.querySelector('.cart__items-container');
 const cartBtn = document.getElementById('cart-btn');
 
 // Open cart popup on click
 document.querySelector('#cart-btn').onclick = () => {
-  cartPopup.classList.toggle('hide');
-  if (cartPopup.classList.contains('hide')) {
+  cartPopup.classList.toggle('hidden');
+  if (cartPopup.classList.contains('hidden')) {
     cartBtn.style.color = '';
   } else {
     cartBtn.style.color = '#3B8419';
@@ -64,7 +64,7 @@ document.addEventListener('click', function(event) {
   const isClickInsideBtn = cartBtn.contains(event.target);
   
   if (!isClickInsidePopup && !isClickInsideBtn) {
-    cartPopup.classList.add('hide');
+    cartPopup.classList.add('hidden');
     cartBtn.style.color = '';
   }
 });
@@ -98,7 +98,28 @@ document.addEventListener('click', function(event) {
   }
 });
 
-
 /* =============== NAV =============== */
+
+// get all the links in the navbar
+const links = document.querySelectorAll('.navbar');
+
+// add an event listener to each link
+links.forEach(link => {
+  link.addEventListener('click', () => {
+    // get the target section
+    const target = document.querySelector(link.getAttribute('href'));
+
+    // remove the "hidden" class from the target section
+    target.classList.remove('hidden');
+
+    // add the "hidden" class to all other sections
+    const sections = document.querySelectorAll('.content');
+    sections.forEach(section => {
+      if (section !== target) {
+        section.classList.add('hidden');
+      }
+    });
+  });
+});
 
 
