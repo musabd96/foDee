@@ -102,6 +102,52 @@ document.addEventListener('click', function(event) {
 const navLinks = document.querySelectorAll('.navbar a');
 const sections = document.querySelectorAll('section');
 const checkoutBtn = document.querySelector('#checkout-btn');
+const logoBtn = document.querySelector('#logo__btn');
+const homeLink = document.getElementById('#home');
+const checkoutMenuBtn = document.querySelector('#checkout__menu-btn');
+const menuLink = document.getElementById('#menu');
+
+logoBtn.addEventListener('click', function() {
+  // Show the home section and hide all other sections
+  const homeSection = document.querySelector(this.hash);
+  homeSection.classList.remove('hidden');
+  sections.forEach(section => {
+    if (section !== homeSection) {
+      section.classList.add('hidden');
+    }
+  });
+
+  // Highlight the logo button
+  navLinks.forEach(link => {
+    if (link !== logoBtn) {
+      link.classList.remove('active');
+      link.style.color = '';
+    }
+  });
+  logoBtn.classList.add('active');
+  homeLink.style.color = '#3B8419';
+});
+
+checkoutMenuBtn.addEventListener('click', function() {
+  // Show the menu section and hide all other sections
+  const menuSection = document.querySelector(this.hash);
+  menuSection.classList.remove('hidden');
+  sections.forEach(section => {
+    if (section !== menuSection) {
+      section.classList.add('hidden');
+    }
+  });
+
+  // Highlight the menu link
+  navLinks.forEach(link => {
+    link.classList.remove('active');
+    link.style.color = '';
+  });
+  menuLink.classList.add('active');
+  menuLink.style.color = '#3B8419';
+});
+
+
 
 navLinks.forEach(link => {
   link.addEventListener('click', function() {
@@ -148,6 +194,12 @@ navLinks.forEach(link => {
     checkoutBtn.classList.add('active');
     checkoutBtn.style.color = '#3B8419';
   });
+
+  
 });
 
+
+/* =============== NAV =============== */
+
+// const logoBtn = document.getElementById('.logo__btn');
 
