@@ -43,6 +43,11 @@ body {
     overflow: auto;
 }
 
+.active-link {
+    color: #3B8419;
+  }
+
+
 section{
     padding: 2rem 2%;
     height: auto;

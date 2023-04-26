@@ -99,16 +99,15 @@ document.addEventListener('click', function(event) {
 });
 
 /* =============== NAV =============== */
-
 const navLinks = document.querySelectorAll('.navbar a');
 const sections = document.querySelectorAll('section');
+const checkoutBtn = document.querySelector('#checkout-btn');
 
 navLinks.forEach(link => {
   link.addEventListener('click', function() {
     // Show the section corresponding to the clicked link
     const sectionToShow = document.querySelector(this.hash);
     sectionToShow.classList.remove('hidden');
-    
     // Hide all other sections
     sections.forEach(section => {
       if (section !== sectionToShow) {
@@ -126,7 +125,29 @@ navLinks.forEach(link => {
     this.classList.add('active');
     this.style.color = '#3B8419';
   });
+  
+  // Add event listener to Checkout button
+  checkoutBtn.addEventListener('click', function() {
+    // Show the cart section and hide all other sections
+    const cartSection = document.querySelector(this.hash);
+    cartSection.classList.remove('hidden');
+    sections.forEach(section => {
+      if (section !== cartSection) {
+        section.classList.add('hidden');
+        cartPopup.classList.add('hidden');
+      }
+    });
+    
+    // Highlight the Checkout button
+    navLinks.forEach(link => {
+      if (link !== checkoutBtn) {
+        link.classList.remove('active');
+        link.style.color = '';
+      }
+    });
+    checkoutBtn.classList.add('active');
+    checkoutBtn.style.color = '#3B8419';
+  });
 });
-
 
 
