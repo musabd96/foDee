@@ -267,7 +267,7 @@
             </div>
         </section>
         <!--=============== HOME SECTION ===============-->
-        <section class="home " id="home">
+        <section class="home hidden" id="home">
             <div class="content">
                 <div class="text-container">
                     <h3>Are you Hungry?</h3>
@@ -318,7 +318,7 @@
         </section>
 
         <!--=============== CART SECTION ===============-->
-        <section class="cart hidden" id="cart">
+        <section class="cart " id="cart">
             <h1 class="heading">checkout <span> Cart</span></h1>
             <div class="container">
                 <div class="content">
@@ -435,6 +435,85 @@
                     <div class="total">total: <span>$0.00 </span></div>
                     <a href="#payment" class="btn" id="paymen__btn">Payment</a>
                 </div>  
+                <div class="payment">
+                    <form action="">
+                        <div class="row">
+                            <div class="col">
+                                <h3 class="title">billing address</h3>
+                                <div class="inputbox">
+                                    <span>full name :</span>
+                                    <input type="text" placeholder="full name">
+                                </div>
+
+                                <div class="inputbox">
+                                    <span>email :</span>
+                                    <input type="email" placeholder="example@example.com">  
+                                </div>
+                                
+                                <div class="inputbox">
+                                    <span>address :</span>
+                                    <input type="text" placeholder="street address">
+                                </div>
+
+                                <div class="inputbox">
+                                    <span>city :</span>
+                                    <input type="text" placeholder="Stockholm">
+                                </div>
+
+                                <div class="flex">
+                                    <div class="inputbox">
+                                        <span>country :</span>
+                                        <input type="text" placeholder="sweden">
+                                    </div>
+
+                                    <div class="inputbox">
+                                        <span>zip code :</span>
+                                        <input type="text" placeholder="123 45">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col">
+                                <h3 class="title">payment</h3>
+                               
+                                <div class="inputbox">
+                                    <span>cards accepted :</span>
+                                    <img src="assets/img/payments-group.png" alt="">
+                                </div>
+
+                                <div class="inputbox">
+                                    <span>name on card :</span>
+                                    <input type="text" placeholder="name on card">
+                                </div>
+
+                                
+                                <div class="inputbox">
+                                    <span>credit card number :</span>
+                                    <input type="number" placeholder="1111-2222-3333-4444">
+                                </div>
+
+                                <div class="inputbox">
+                                    <span>exp month :</span>
+                                    <input type="number" placeholder="MM">
+                                </div>
+
+                                <div class="flex">
+                                    <div class="inputbox">
+                                        <span>exp year :</span>
+                                        <input type="number" placeholder="YY">
+                                    </div>
+
+                                    <div class="inputbox">
+                                        <span>CVV :</span>
+                                        <input type="number" placeholder="123">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <input type="submit" value="proceed to checkout" class="btn">
+                    </form>
+                </div>
             </div>
             
         </section>

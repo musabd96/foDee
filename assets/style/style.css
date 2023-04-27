@@ -560,7 +560,14 @@ select {
 .cart .container .content{
     margin-top: 4rem;
     border: 1px solid #D9D9D9;
-    width: 80%;
+    width: 80%; 
+    margin-bottom: 3rem; 
+}
+
+
+.cart .container .payment h1{
+    font-size: 2rem;
+    color: var(--green);
 }
 
 .cart .cart__item{
@@ -634,10 +641,36 @@ select {
     margin-bottom: 5rem;
 }
 
+/* =============== payment =============== */
+
+.payment form{
+    border: 1px solid #D9D9D9;
+    width: 100%;
+    padding: 2rem;
+}
+
+.payment form .row{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
 
 
+.payment form .col{
+    flex: 1 1 250px;
+}
 
 
+.payment form .col img{
+    width: 25rem;
+    background: var(--main-color);
+}
+
+.payment form .col .title{
+    font-size: 2rem;
+    color: var(--main-color);
+    padding-bottom: 5px;   
+}
 
 
 /* =============== DEVICE SIZE =============== */
