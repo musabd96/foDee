@@ -318,10 +318,10 @@
         </section>
 
         <!--=============== CART SECTION ===============-->
-        <section class="cart " id="cart">
+        <section class="cart" id="cart">
             <h1 class="heading">checkout <span> Cart</span></h1>
             <div class="container">
-                <div class="content">
+                <div class="cart__list">
                 
                     <div class="cart__item">
                         <img src="assets/img/hambugar.png" alt="">
@@ -432,10 +432,13 @@
                         
                     </div>
                     
-                    <div class="total">total: <span>$0.00 </span></div>
-                    <a href="#payment" class="btn" id="paymen__btn">Payment</a>
+                    <div class="total">
+                        <div class="total__title">total: </div> 
+                        <div class="total__price">$0.00 </div>
+                    </div>
+                    <input type="submit" value="continue to address and payment" class="btn">
                 </div>  
-                <div class="payment">
+                <div class="billing hidden">
                     <form action="">
                         <div class="row">
                             <div class="col">
@@ -472,7 +475,15 @@
                                     </div>
                                 </div>
                             </div>
+                        </div>
 
+                        <input type="submit" value="proceed to payment" class="btn">
+                    </form>
+                </div>
+
+                <div class="payment hidden">
+                    <form action="">
+                        <div class="row">
                             <div class="col">
                                 <h3 class="title">payment</h3>
                                
@@ -494,13 +505,13 @@
 
                                 <div class="inputbox">
                                     <span>exp month :</span>
-                                    <input type="number" placeholder="MM">
+                                    <input type="number" placeholder="January">
                                 </div>
 
                                 <div class="flex">
                                     <div class="inputbox">
                                         <span>exp year :</span>
-                                        <input type="number" placeholder="YY">
+                                        <input type="number" placeholder="2023">
                                     </div>
 
                                     <div class="inputbox">
@@ -511,9 +522,10 @@
                             </div>
                         </div>
 
-                        <input type="submit" value="proceed to checkout" class="btn">
+                        <input type="submit" value="pay" class="btn">
                     </form>
                 </div>
+                
             </div>
             
         </section>

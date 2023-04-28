@@ -196,3 +196,9 @@ navLinks.forEach(link => {
     userBtn.style.color = '';
   });
 });
+
+
+
+
+/* =============== Payment =============== */
+
