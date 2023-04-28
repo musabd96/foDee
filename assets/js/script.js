@@ -87,6 +87,7 @@ logoBtn.addEventListener('click', function() {
   // Show the home section and hide all other sections
   const homeSection = document.querySelector(this.hash);
   homeSection.classList.remove('hidden');
+  
   sections.forEach(section => {
     if (section !== homeSection) {
       section.classList.add('hidden');
@@ -307,8 +308,7 @@ function showOrderReceivedAlert() {
     } else {
       
       home.classList.remove('hidden');
-      
-      
+      homeLink.style.color = '#3B8419';
     }
   }).finally(() => {
     // Code to be executed after the popup is closed, regardless of whether the user clicked OK or dismissed the popup
@@ -340,27 +340,112 @@ function showPaymentSuccess(){
 function showLoading(){
   let timerInterval
 Swal.fire({
-  title: ' Payment Processing!',
-  html: 'Thank you for your purchase! We are processing your payment',
-  timer: 5000,
-  timerProgressBar: true,
-  didOpen: () => {
-    Swal.showLoading()
-    const b = Swal.getHtmlContainer().querySelector('b')
-    timerInterval = setInterval(() => {
-      b.textContent = Swal.getTimerLeft()
-    }, 100)
-  },
-  willClose: () => {
-    clearInterval(timerInterval)
-  }
-}).then((result) => {
-  /* Read more about handling dismissals below */
-  if (result.dismiss === Swal.DismissReason.timer) {
-    showPaymentSuccess();
-    setTimeout(function() {
-      showOrderReceivedAlert();
-    }, 3000);
-  }
-})
+    title: ' Payment Processing!',
+    html: 'Thank you for your purchase! We are processing your payment',
+    timer: 5000,
+    timerProgressBar: true,
+    didOpen: () => {
+      Swal.showLoading()
+      const b = Swal.getHtmlContainer().querySelector('b')
+      timerInterval = setInterval(() => {
+        b.textContent = Swal.getTimerLeft()
+      }, 100)
+    },
+    willClose: () => {
+      clearInterval(timerInterval)
+    }
+  }).then((result) => {
+    if (result.dismiss === Swal.DismissReason.timer) {
+      showPaymentSuccess();
+      setTimeout(function() {
+        showOrderReceivedAlert();
+      }, 3000);
+    }
+  })
 }
+
+
+
+function showSection(sectionId) {
+  // Hide all sections
+  var sections = document.getElementsByTagName('section');
+  for (var i = 0; i < sections.length; i++) {
+    sections[i].classList.add('hidden');
+  }
+
+  // Show the requested section
+  var section = document.getElementById(sectionId);
+  if (section) {
+    section.classList.remove('hidden');
+    
+    // Update navigation links to show active section
+    var navLinks = document.querySelectorAll('.navbar a');
+    for (var i = 0; i < navLinks.length; i++) {
+      var link = navLinks[i];
+      if (link.getAttribute('href') === '#' + sectionId) {
+        link.classList.add('active');
+        link.style.color = '#3B8419';
+      } else {
+        link.classList.remove('active');
+        link.style.color = '';
+      }
+    }
+  }
+}
+
+// Show the correct section based on the initial path
+showSection(window.location.hash.slice(1));
+
+// Show or hide sections when the path changes
+window.onhashchange = function() {
+  showSection(window.location.hash.slice(1));
+};
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// // Get the hash value from the URL
+// const hash = window.location.hash;
+
+// // Get all of the sections on the page
+// const Sections = document.querySelectorAll('section');
+
+// // Hide all sections except the one with the corresponding ID
+// function showSection(sectionID) {
+//   Sections.forEach(section => {
+//     if (section.id === sectionID) {
+//       section.classList.remove('hidden');
+//     } else {
+//       section.classList.add('hidden');
+//     }
+//   });
+// }
+
+// // Show the appropriate section based on the hash value
+// if (hash === '#home') {
+//   showSection('home');
+// } else if (hash === '#menu') {
+//   showSection('menu');
+// } else if (hash === '#order') {
+//   showSection('order');
+// }
+
+
+
+
+
+window.onload = function() {
+  window.location.href = "#home";
+};
