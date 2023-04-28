@@ -587,7 +587,13 @@ select {
 .cart__list .cart__item .details .quantity select{
     font-size: 1.5rem;
     margin-right: 2rem;
-    height: 4rem;
+    height: 5rem;
+    background: var(--grey);
+    color: var(--main-color);
+}
+
+.cart__list .cart__item .details .quantity option{
+    color: var(--main-color);
 }
 
 .cart__list .cart__item .details .quantity a{

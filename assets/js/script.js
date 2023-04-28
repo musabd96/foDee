@@ -1,4 +1,6 @@
-
+window.onload = function() {
+  window.location.href = "#home";
+};
 // =============== LOGIN/REGISTER =============== //
 
 const wrapper = document.querySelector('.wrapper');
@@ -405,47 +407,3 @@ window.onhashchange = function() {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-// // Get the hash value from the URL
-// const hash = window.location.hash;
-
-// // Get all of the sections on the page
-// const Sections = document.querySelectorAll('section');
-
-// // Hide all sections except the one with the corresponding ID
-// function showSection(sectionID) {
-//   Sections.forEach(section => {
-//     if (section.id === sectionID) {
-//       section.classList.remove('hidden');
-//     } else {
-//       section.classList.add('hidden');
-//     }
-//   });
-// }
-
-// // Show the appropriate section based on the hash value
-// if (hash === '#home') {
-//   showSection('home');
-// } else if (hash === '#menu') {
-//   showSection('menu');
-// } else if (hash === '#order') {
-//   showSection('order');
-// }
-
-
-
-
-
-window.onload = function() {
-  window.location.href = "#home";
-};
