@@ -106,6 +106,7 @@ select {
   }
 
 
+  
 
 /* =============== HEADER =============== */
 .header{
@@ -705,7 +706,24 @@ select {
  width: 100%;
 }
 
+.fa-exclamation-circle{
+    display: none;
+    margin-top: 5px;
+}
+.fa-exclamation-circle h4{
+    margin-top: 5px;
+    font-size: 1rem;
+    margin-left: 3px;
+}
+.error__icon{
+    color: red;
+    display: flex;
+    font-size: 1.5rem;
+}
 
+.billing form .row .col .inputbox input.error{
+    border: 1px solid #c60606
+}
 
 
 /* =============== DEVICE SIZE =============== */

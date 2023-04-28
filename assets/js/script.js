@@ -181,6 +181,7 @@ navLinks.forEach(link => {
       if (section !== cartSection) {
         section.classList.add('hidden');
         cartPopup.classList.add('hidden');
+        cartList.classList.toggle('hidden');
         cartBtn.style.display = 'none'
       }
     });
@@ -200,73 +201,81 @@ navLinks.forEach(link => {
 
 
 
-/* =============== Payment =============== */
+/* =============== BILLING =============== */
 
+const cart = document.querySelector('.cart');
 const cartList = document.querySelector('.cart__list');
 const billing = document.querySelector('.billing');
-const paymen = document.querySelector('.payment');
-
+const payment = document.querySelector('.payment');
 
 document.querySelector('#billing__btn').onclick = () => {
   cartList.classList.toggle('hidden');
   billing.classList.remove('hidden');
+};
+
+const billingForm = document.querySelector('.billing form');
+const billingInputs = billingForm.querySelectorAll('input');
+const errorIcons = billingForm.querySelectorAll('.error-icon');
+const inputBox= billingForm.querySelectorAll('.inputbox input');
+
+function validateInputs() {
+  let valid = true;
+  billingInputs.forEach((input, index) => {
+    if (!input.value) {
+      errorIcons[index].classList.add('error__icon');
+      inputBox[index].classList.add('error');
+      valid = false;
+    } 
+  });
+  return valid;
 }
 
 document.querySelector('#payment__btn').onclick = () => {
-  const nameInput = document.querySelector('.billing input[type="text"][placeholder="full name"]');
-  const emailInput = document.querySelector('.billing input[type="email"][placeholder="example@example.com"]');
-  const addressInput = document.querySelector('.billing input[type="text"][placeholder="street address"]');
-  const cityInput = document.querySelector('.billing input[type="text"][placeholder="Stockholm"]');
-  const countryInput = document.querySelector('.billing input[type="text"][placeholder="sweden"]');
-  const zipInput = document.querySelector('.billing input[type="text"][placeholder="123 45"]');
-  
-  // Perform validation on form fields here
-  let isValid = true;
-  if (nameInput.value.trim() === '') {
-    nameInput.classList.add('error');
-    isValid = false;
-  } else {
-    nameInput.classList.remove('error');
-  }
-  
-  if (!emailInput.checkValidity()) {
-    emailInput.classList.add('error');
-    isValid = false;
-  } else {
-    emailInput.classList.remove('error');
-  }
-  
-  if (addressInput.value.trim() === '') {
-    addressInput.classList.add('error');
-    isValid = false;
-  } else {
-    addressInput.classList.remove('error');
-  }
-  
-  if (cityInput.value.trim() === '') {
-    cityInput.classList.add('error');
-    isValid = false;
-  } else {
-    cityInput.classList.remove('error');
-  }
-  
-  if (countryInput.value.trim() === '') {
-    countryInput.classList.add('error');
-    isValid = false;
-  } else {
-    countryInput.classList.remove('error');
-  }
-  
-  if (zipInput.value.trim() === '') {
-    zipInput.classList.add('error');
-    isValid = false;
-  } else {
-    zipInput.classList.remove('error');
-  }
-  
-  if (isValid) {
-    billing.classList.toggle('hidden');
-    paymen.classList.remove('hidden');
+  if (validateInputs()) {
+    billing.classList.add('hidden'); 
+    payment.classList.remove('hidden'); 
   }
 };
 
+const paymentForm = document.querySelector('.payment form');
+const paymentInputs = paymentForm.querySelectorAll('input');
+const paymentErrorIcons = paymentForm.querySelectorAll('.error-icon');
+const paymentInputBox = paymentForm.querySelectorAll('.inputbox input');
+
+function validatePaymentInputs() {
+  let valid = true;
+  paymentInputs.forEach((input, index) => {
+    if (!input.value) {
+      paymentErrorIcons[index].classList.add('error__icon');
+      paymentInputBox[index].classList.add('error');
+      valid = false;
+    } 
+  });
+  return valid;
+}
+
+document.querySelector('#buy__btn').onclick = () => {
+  if (validatePaymentInputs()) {
+    // cart to order
+    payment.classList.add('hidden');
+    cart.classList.add('hidden');
+    cartBtn.style.display = '';
+    cartList.classList.remove('hidden');
+    order.classList.remove('hidden');
+
+  }
+};
+
+billingInputs.forEach((input, index) => {
+  input.oninput = () => {
+    errorIcons[index].classList.remove('error__icon');
+    inputBox[index].classList.remove('error');
+  };
+});
+
+paymentInputs.forEach((input, index) => {
+  input.oninput = () => {
+    paymentErrorIcons[index].classList.remove('error__icon');
+    paymentInputBox[index].classList.remove('error');
+  };
+});
