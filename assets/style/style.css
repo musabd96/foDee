@@ -511,12 +511,12 @@ select {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(30rem, 1fr));
     gap: 1.5rem;
-    margin-top: 10rem;
-
+    margin: 2rem;
 }
 
 
 .menu .box-container .box{
+    width: 30rem;
     padding: 5rem;
     text-align: center;
     border: var(--border);
