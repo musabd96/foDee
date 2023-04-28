@@ -203,6 +203,7 @@ navLinks.forEach(link => {
 
 /* =============== BILLING =============== */
 
+const home = document.querySelector('.home');
 const cart = document.querySelector('.cart');
 const cartList = document.querySelector('.cart__list');
 const billing = document.querySelector('.billing');
@@ -242,6 +243,7 @@ const paymentInputs = paymentForm.querySelectorAll('input');
 const paymentErrorIcons = paymentForm.querySelectorAll('.error-icon');
 const paymentInputBox = paymentForm.querySelectorAll('.inputbox input');
 
+
 function validatePaymentInputs() {
   let valid = true;
   paymentInputs.forEach((input, index) => {
@@ -257,11 +259,12 @@ function validatePaymentInputs() {
 document.querySelector('#buy__btn').onclick = () => {
   if (validatePaymentInputs()) {
     // cart to order
-    payment.classList.add('hidden');
-    cart.classList.add('hidden');
-    cartBtn.style.display = '';
-    cartList.classList.remove('hidden');
-    order.classList.remove('hidden');
+    showLoading();
+    // payment.classList.add('hidden');
+    // cart.classList.add('hidden');
+    // cartBtn.style.display = '';
+    // cartList.classList.remove('hidden');
+    // order.classList.remove('hidden');
 
   }
 };
@@ -279,3 +282,85 @@ paymentInputs.forEach((input, index) => {
     paymentInputBox[index].classList.remove('error');
   };
 });
+
+
+
+
+/* =============== SWAL ALERTS =============== */
+
+function showOrderReceivedAlert() {
+  Swal.fire({
+    title: 'Sweet!',
+    text: 'Order received! Your food is on the way! Enjoy.',
+    imageUrl: 'https://media2.giphy.com/media/cmCHuk53AiTmOwBXlw/200w.gif?cid=6c09b9522woj2ew8u0wzjsqp2ya1px05g7398hzlksi1uekh&rid=200w.gif&ct=g',
+    imageWidth: 400,
+    imageHeight: 200,
+    imageAlt: 'Custom image',
+    customClass: {
+      content: 'my-custom-class',
+      confirmButton: 'my-button-class'
+    }
+  }).then((result) => {
+    if (result.isConfirmed) {
+      order.classList.remove('hidden');
+      
+    } else {
+      
+      home.classList.remove('hidden');
+      
+      
+    }
+  }).finally(() => {
+    // Code to be executed after the popup is closed, regardless of whether the user clicked OK or dismissed the popup
+    cartBtn.style.display = '';
+    payment.classList.add('hidden');
+    cart.classList.add('hidden');
+    cartList.classList.remove('hidden');
+  });
+  
+}
+
+
+function showPaymentSuccess(){
+  Swal.fire({
+    position: 'center',
+    icon: 'success',
+    title: 'Your payment successed',
+    showConfirmButton: false,
+    timer: 3000,
+    customClass: {
+      container: 'swal-container',
+      popup: 'swal-popup',
+      title: 'swal-title',
+      content: 'swal-text'
+    }
+  })
+}
+
+function showLoading(){
+  let timerInterval
+Swal.fire({
+  title: ' Payment Processing!',
+  html: 'Thank you for your purchase! We are processing your payment',
+  timer: 5000,
+  timerProgressBar: true,
+  didOpen: () => {
+    Swal.showLoading()
+    const b = Swal.getHtmlContainer().querySelector('b')
+    timerInterval = setInterval(() => {
+      b.textContent = Swal.getTimerLeft()
+    }, 100)
+  },
+  willClose: () => {
+    clearInterval(timerInterval)
+  }
+}).then((result) => {
+  /* Read more about handling dismissals below */
+  if (result.dismiss === Swal.DismissReason.timer) {
+    showPaymentSuccess();
+    setTimeout(function() {
+      showOrderReceivedAlert();
+    }, 3000);
+  }
+})
+}

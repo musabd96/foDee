@@ -41,6 +41,8 @@ body {
     background-repeat: no-repeat;
     background-size: cover;
     overflow: auto;
+
+    font-family: "Open Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
 
 .active-link {
@@ -724,6 +726,41 @@ select {
 .billing form .row .col .inputbox input.error{
     border: 1px solid #c60606
 }
+
+/* =============== SWAL POPUP =============== */
+
+.my-custom-class {
+    font-size: 2rem;
+}
+
+.my-button-class {
+    padding: 1rem 1rem;
+    font-size: 2rem;
+}
+  
+.swal-title {
+  font-size: 3rem;
+}
+
+.swal-text {
+  font-size: 4rem;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 /* =============== DEVICE SIZE =============== */
