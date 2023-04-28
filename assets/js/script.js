@@ -202,3 +202,71 @@ navLinks.forEach(link => {
 
 /* =============== Payment =============== */
 
+const cartList = document.querySelector('.cart__list');
+const billing = document.querySelector('.billing');
+const paymen = document.querySelector('.payment');
+
+
+document.querySelector('#billing__btn').onclick = () => {
+  cartList.classList.toggle('hidden');
+  billing.classList.remove('hidden');
+}
+
+document.querySelector('#payment__btn').onclick = () => {
+  const nameInput = document.querySelector('.billing input[type="text"][placeholder="full name"]');
+  const emailInput = document.querySelector('.billing input[type="email"][placeholder="example@example.com"]');
+  const addressInput = document.querySelector('.billing input[type="text"][placeholder="street address"]');
+  const cityInput = document.querySelector('.billing input[type="text"][placeholder="Stockholm"]');
+  const countryInput = document.querySelector('.billing input[type="text"][placeholder="sweden"]');
+  const zipInput = document.querySelector('.billing input[type="text"][placeholder="123 45"]');
+  
+  // Perform validation on form fields here
+  let isValid = true;
+  if (nameInput.value.trim() === '') {
+    nameInput.classList.add('error');
+    isValid = false;
+  } else {
+    nameInput.classList.remove('error');
+  }
+  
+  if (!emailInput.checkValidity()) {
+    emailInput.classList.add('error');
+    isValid = false;
+  } else {
+    emailInput.classList.remove('error');
+  }
+  
+  if (addressInput.value.trim() === '') {
+    addressInput.classList.add('error');
+    isValid = false;
+  } else {
+    addressInput.classList.remove('error');
+  }
+  
+  if (cityInput.value.trim() === '') {
+    cityInput.classList.add('error');
+    isValid = false;
+  } else {
+    cityInput.classList.remove('error');
+  }
+  
+  if (countryInput.value.trim() === '') {
+    countryInput.classList.add('error');
+    isValid = false;
+  } else {
+    countryInput.classList.remove('error');
+  }
+  
+  if (zipInput.value.trim() === '') {
+    zipInput.classList.add('error');
+    isValid = false;
+  } else {
+    zipInput.classList.remove('error');
+  }
+  
+  if (isValid) {
+    billing.classList.toggle('hidden');
+    paymen.classList.remove('hidden');
+  }
+};
+
