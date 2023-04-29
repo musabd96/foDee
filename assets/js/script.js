@@ -401,18 +401,11 @@ window.onhashchange = function() {
 
 
 
-// const loginBtn = document.getElementById('login-btn');
 
-//   // Add a click event listener to the login button
-//   loginBtn.addEventListener('click', () => {
-//     // Simulate a successful login (replace this with your actual login code)
-//     const isLoggedIn = true;
+/* =============== BACKEND JS =============== */
 
-//     if (isLoggedIn) {
-//       // Redirect to the cart section
-//       window.location.href = '#cart';
-//     }
-//   });
+
+/* =============== login =============== */
 
 const loginBtn = document.getElementById('login-btn');
 
@@ -437,9 +430,38 @@ loginBtn.addEventListener('click', (event) => {
     response.json().then(data => {
       if (data.isLoggedIn) {
         console.log('Login successful');
-        window.location.href = '/#cart';
+        console.log('Customer ID:', data.customer_customer_id); // log customer_customer_id value in console
+        sessionStorage.setItem('login_username', data.login_username);
+        sessionStorage.setItem('customer_customer_id', data.customer_customer_id);
+
+        Swal.fire({
+          position: 'center',
+          icon: 'success',
+          title: 'Login successful',
+          showConfirmButton: false,
+          timer: 3000,
+          customClass: {
+            container: 'swal-container',
+            popup: 'swal-popup',
+            title: 'swal-title',
+            content: 'swal-text'
+          }
+        })
+        setTimeout(function() {
+          // userBtn.style.display = 'none'
+          window.location.href = '/#cart';
+        }, 3000);
+
       } else {
         console.log('Invalid username or password');
+        Swal.fire({
+          position: 'center',
+          icon: 'error',
+          title: 'Invalid username or password',
+          showConfirmButton: false,
+          timer: 2000
+        })
+        
       }
     });
   } else {
@@ -449,3 +471,14 @@ loginBtn.addEventListener('click', (event) => {
 .catch(error => console.error(error));
 
 });
+
+const name = document.getElementById('name').textContent;
+const initial = name.charAt(0).toUpperCase();
+document.getElementById('initial').textContent = initial;
+
+
+/* =============== registration =============== */
+
+
+
+
