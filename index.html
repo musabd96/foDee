@@ -36,7 +36,7 @@
         </nav>
         
         <div class="icons">
-            <div class="fas fa-user" id="user-btn"></div>
+            <a class="fas fa-user" id="user-btn" href="#login"></a>
             <div class="fas fa-shopping-cart" id="cart-btn"></div>
             <div class="fas fa-bars" id="menu-btn"></div>
         </div>
@@ -187,43 +187,41 @@
     
     <div class="container">
         <!--=============== LOGIN/REGISTER SECTION ===============-->
-        <section class="login-register hidden">
+        <section class="login-register hidden" id="login">
             <div class="wrapper">
                 
                 <div class="form__box login">
-                    <form action="#">
+                    <form action="#login" method="POST">
                         <h2>Login</h2>
                         <div class="input__box">
-                            <span class="icon">
-                                <i class="ri-account-circle-line"></i>
-                            </span>
-                            
-                            <input type="username" required>
-                            <label >Username</label>
+                          <span class="icon">
+                            <i class="ri-account-circle-line"></i>
+                          </span>
+                          <input type="text" name="username" id="username" required>
+                          <label>Username</label>
                         </div>
-    
                         <div class="input__box">
-                            <span class="icon">
-                                <i class="ri-lock-line"></i>
-                            </span>
-                            
-                            <input type="password" required>
-                            <label >Password</label>
+                          <span class="icon">
+                            <i class="ri-lock-line"></i>
+                          </span>
+                          <input type="password" name="password" id="password" required>
+                          <label>Password</label>
                         </div>
                         <div class="remember__forget">
-                            <label>
-                                <input type="checkbox"> Remember me
-                            </label>
-                            <a href="#">Forget Password?</a>
+                          <label>
+                            <input type="checkbox"> Remember me
+                          </label>
+                          <a href="#">Forget Password?</a>
                         </div>
-                        <a href="#" class="btn">Login</a>
+                        <button type="submit" class="btn" id="login-btn">Login</button>
                         <div class="login__register">
-                            <p>
-                                Don't have an account?      
-                                <a class="registration__link">Register</a>
-                            </p>
+                          <p>
+                            Don't have an account?
+                            <a class="registration__link">Register</a>
+                          </p>
                         </div>
-                    </form>
+                      </form>
+                      
                 </div>
     
                 <div class="form__box register">
@@ -272,7 +270,7 @@
             </div>
         </section>
         <!--=============== HOME SECTION ===============-->
-        <section class="home " id="home" href="#home">
+        <section class="home " id="home">
             <div class="content">
                 <div class="text-container">
                     <h3>Are you Hungry?</h3>
@@ -288,7 +286,7 @@
         </section>
         
         <!--=============== MENU SECTION ===============-->
-        <section class="menu hidden" id="menu" href="#home">
+        <section class="menu hidden" id="menu">
             <div class="content">
                 <h1 class="heading">
                     Our <span>menu</span> 
@@ -311,7 +309,7 @@
         </section>
 
         <!--=============== CART SECTION ===============-->
-        <section class="cart hidden" id="cart" href="#cart">
+        <section class="cart hidden" id="cart">
             <h1 class="heading">checkout <span> Cart</span></h1>
             <div class="container">
                 <div class="cart__list">
@@ -476,7 +474,7 @@
             
         </section>
 
-        <section class="order hidden" id="order" href="#order">
+        <section class="order hidden" id="order">
             <h1 class="heading"> your<span> Orders</span></h1>
         </section>
     </div>

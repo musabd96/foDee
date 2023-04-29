@@ -139,7 +139,8 @@ select {
     border-bottom: var(--btn-border);
 }
 
-.icons div{
+.icons div,
+.icons a{
     color: var(--main-color);
     cursor: pointer;
     font-size: 2.5rem;
@@ -252,6 +253,7 @@ select {
     height: 60px;
     border-bottom: 2px solid #3B8419;
     margin: 50px 0;
+    
 }
 
 .input__box label{
@@ -281,6 +283,7 @@ select {
     background: transparent;
     border: none;
     outline: none;
+    text-transform: lowercase;
 }
 
 .input__box .icon{

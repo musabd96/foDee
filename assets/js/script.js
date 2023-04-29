@@ -263,12 +263,6 @@ document.querySelector('#buy__btn').onclick = () => {
   if (validatePaymentInputs()) {
     // cart to order
     showLoading();
-    // payment.classList.add('hidden');
-    // cart.classList.add('hidden');
-    // cartBtn.style.display = '';
-    // cartList.classList.remove('hidden');
-    // order.classList.remove('hidden');
-
   }
 };
 
@@ -407,3 +401,51 @@ window.onhashchange = function() {
 
 
 
+// const loginBtn = document.getElementById('login-btn');
+
+//   // Add a click event listener to the login button
+//   loginBtn.addEventListener('click', () => {
+//     // Simulate a successful login (replace this with your actual login code)
+//     const isLoggedIn = true;
+
+//     if (isLoggedIn) {
+//       // Redirect to the cart section
+//       window.location.href = '#cart';
+//     }
+//   });
+
+const loginBtn = document.getElementById('login-btn');
+
+loginBtn.addEventListener('click', (event) => {
+  event.preventDefault(); // prevent the default form submission
+
+  const username = document.querySelector('#username').value;
+  const password = document.querySelector('#password').value;
+  
+  fetch('/', {
+  method: 'POST',
+  headers: {
+    'Content-Type': 'application/x-www-form-urlencoded'
+  },
+  body: new URLSearchParams({
+    username: username,
+    password: password
+  })
+})
+.then(response => {
+  if (response.ok) {
+    response.json().then(data => {
+      if (data.isLoggedIn) {
+        console.log('Login successful');
+        window.location.href = '/#cart';
+      } else {
+        console.log('Invalid username or password');
+      }
+    });
+  } else {
+    console.log('Error:', response.status);
+  }
+})
+.catch(error => console.error(error));
+
+});
