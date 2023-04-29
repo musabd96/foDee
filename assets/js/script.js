@@ -430,6 +430,8 @@ userBtn.addEventListener('click', () => {
   }
 });
 
+
+//if the user click out side the profile or login section will close the popup
 const profileEl = document.querySelector('.profile');
 document.addEventListener('click', function(event) {
   const isClickInsidePopup = profileEl.contains(event.target);
@@ -452,6 +454,9 @@ document.addEventListener('click', function(event) {
     userBtn.style.color = '';
   }
 });
+
+
+//login DB
 
 const loginBtn = document.getElementById('login-btn');
 
