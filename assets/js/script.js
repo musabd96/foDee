@@ -551,18 +551,77 @@ const logoutBtn = document.getElementById('logout');
 
 logoutBtn.addEventListener('click', (event) => {
   event.preventDefault(); // prevent default link behavior
-
+  
   // clear localStorage values
   localStorage.removeItem('login_username');
   localStorage.removeItem('customer_id');
   localStorage.removeItem('customer_fullname');
-
+  
   // redirect to login page
-
+  
   window.location.href = '/';
 });
 
 
 
+/* =============== Register =============== */
 
+const registerForm = document.querySelector('.register form');
+registerForm.addEventListener('submit', (event) => {
+  event.preventDefault(); // prevent the default form submission
 
+  const username = registerForm.querySelector('input[name="username"]').value;
+  const email = registerForm.querySelector('input[name="email"]').value;
+  const password = registerForm.querySelector('input[name="password"]').value;
+
+  fetch('/register', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/x-www-form-urlencoded'
+    },
+    body: new URLSearchParams({
+      username: username,
+      email: email,
+      password: password
+    })
+  })
+  .then(response => {
+    if (response.ok) {
+      response.json().then(data => {
+        if (data.isRegistered) {
+          console.log('Registration successful');
+          Swal.fire({
+            position: 'center',
+            icon: 'success',
+            title: 'Registration successful',
+            showConfirmButton: false,
+            timer: 3000,
+            customClass: {
+              container: 'swal-container',
+              popup: 'swal-popup',
+              title: 'swal-title',
+              content: 'swal-text'
+            }
+          })
+          setTimeout(function() {
+            window.location.href = '/#menu';
+          }, 3000);
+        } else {
+          console.log('Registration failed:', data.message);
+          Swal.fire({
+            position: 'center',
+            icon: 'error',
+            title: 'Registration failed',
+            text: data.message,
+            showConfirmButton: false,
+            timer: 2000
+          })
+
+        }
+      });
+    } else {
+      console.log('Error:', response.status);
+    }
+  })
+  .catch(error => console.error(error));
+});

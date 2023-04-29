@@ -23,29 +23,27 @@ app.get('/', function(req, res) {
   res.sendFile(__dirname + '/index.html');
 });
 
+// handle login request
 app.post('/', encoder, function(req, res){
   var username = req.body.username;
   var password = req.body.password;
 
-  console.log(username, password);
-  console.log(typeof username);
-  console.log(typeof password);
+  
+  
 
   conn.query('SELECT * FROM login WHERE login_username = ? AND login_password = ?', [username, password], function(error,loginResults,fields){
     
     if (error) throw error;
     
-    console.log(loginResults); 
+     
     
     if(loginResults.length > 0){
-      console.log('is login ')
+      
       var customer_customer_id = loginResults[0].customer_customer_id;
 
       conn.query('SELECT * FROM customer WHERE customer_id = ?', [customer_customer_id], function(error,customerResults,fields){
     
         if (error) throw error;
-        
-        console.log(customerResults); 
         
         if(customerResults.length > 0){
           console.log('customer info retrieved')
@@ -57,17 +55,90 @@ app.post('/', encoder, function(req, res){
                       customer_fullname: customerInfo.customer_fullname,
                       customer_email: customerInfo.customer_email });
         } else{
-          console.log('no customer info retrieved')
+        
           res.json({ isLoggedIn: false });
         }
       });
       
     } else{
-      console.log('is not login ')
+
       res.json({ isLoggedIn: false });
     }
   });
 })
+
+// handle registration request
+// app.post('/', encoder, function(req, res){
+//   var username = req.body.username;
+//   var email = req.body.email;
+//   var password = req.body.password;
+
+//   // perform validation checks here
+
+//   conn.query('INSERT INTO customer (customer_fullname, customer_email) VALUES (?, ?)', [username, email], function(error,customerResults,fields){
+
+//     if (error) throw error;
+
+//     conn.query('SELECT MAX(customer_id) FROM customer;', function(error,maxCustomerResults,fields){
+//       if (error) throw error;
+
+//       if(maxCustomerResults.length > 0){
+//         console.log('customer info retrieved')
+//         var customer_customer_id  = maxCustomerResults[0]['MAX(customer_id)'];
+
+//         conn.query('INSERT INTO login (login_username, login_password, customer_customer_id) VALUES (?, ?, ?)', [username, password, customer_customer_id], function(error,loginResults,fields){
+
+//           if (error) throw error;
+
+//           console.log('Registration successful');
+//           res.json({ isRegistered: true });
+//         });
+
+//       } else {
+//         console.log('Registration unsuccessful');
+//         res.json({ isRegistered: false });
+//       }
+
+//     });
+
+//   });
+// });
+
+app.post('/register', encoder, function(req, res){
+  var username = req.body.username;
+  var email = req.body.email;
+  var password = req.body.password;
+
+  // Check if the username already exists in the database
+  conn.query('SELECT * FROM login WHERE login_username = ?', [username], function(error, results, fields){
+    if (error) throw error;
+
+    if(results.length > 0){
+      // Username already exists, send an error response to the client
+      res.json({ isRegistered: false, message: 'Username already exists' });
+    } else{
+      // Username doesn't exist, insert the new user into the database
+      conn.query('INSERT INTO customer (customer_fullname, customer_email) VALUES (?, ?)', [username, email], function(error, customerResults, fields){
+        if (error) throw error;
+        conn.query('SELECT MAX(customer_id) FROM customer;', function(error,maxCustomerResults,fields){
+          if (error) throw error;
+          if(maxCustomerResults.length > 0){
+            var customer_customer_id  = maxCustomerResults[0]['MAX(customer_id)'];
+          }
+          
+
+          conn.query('INSERT INTO login (login_username, login_password, customer_customer_id) VALUES (?, ?, ?)', [username, password, customer_customer_id], function(error, loginResults, fields){
+            if (error) throw error;
+
+            res.json({ isRegistered: true });
+            console.log('Registration successful');
+          });
+        });
+          
+      });
+    }
+  });
+});
 
 
 
