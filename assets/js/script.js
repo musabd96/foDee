@@ -77,7 +77,7 @@ document.addEventListener('click', function(event) {
 
 /* =============== NAV =============== */
 const navLinks = document.querySelectorAll('.navbar a');
-const sections = document.querySelectorAll('section');
+// const sections = document.querySelectorAll('section');
 const checkoutBtn = document.querySelector('#checkout-btn');
 const logoBtn = document.querySelector('#logo__btn');
 const homeLink = document.getElementById('#home__btn');
@@ -407,79 +407,156 @@ window.onhashchange = function() {
 
 /* =============== login =============== */
 
+//if the user already login or it not 
+userBtn.addEventListener('click', () => {
+  const customerFullname = localStorage.getItem('customer_fullname');
+  const profileEl = document.querySelector('.profile');
+  const wrapperEl = document.querySelector('.wrapper');
+
+  if (customerFullname) {
+    // customerFullname is not empty, show profile and hide wrapper
+    if(profileEl.classList == 'profile hidden'){
+      profileEl.classList.remove('hidden');
+      userBtn.style.color = '#3B8419';
+    } else{
+      profileEl.classList.add('hidden');
+      userBtn.style.color = '';
+    }
+    wrapperEl.classList.add('hidden');
+  } else {
+    // customerFullname is empty, show wrapper and hide profile
+    wrapperEl.classList.remove('hidden');
+    profileEl.classList.add('hidden');
+  }
+});
+
+const profileEl = document.querySelector('.profile');
+document.addEventListener('click', function(event) {
+  const isClickInsidePopup = profileEl.contains(event.target);
+  const isClickInsideBtn = userBtn.contains(event.target);
+  
+  if (!isClickInsidePopup && !isClickInsideBtn) {
+    profileEl.classList.add('hidden');
+    userBtn.style.color = '';
+  }
+});
+
+const wrapperEl = document.querySelector('.wrapper');
+
+document.addEventListener('click', function(event) {
+   const isClickInsideWrapperp = wrapperEl.contains(event.target);
+  const isClickInsideBtn = userBtn.contains(event.target);
+  
+  if (!isClickInsideWrapperp && !isClickInsideBtn) {
+    wrapperEl.classList.add('hidden');
+    userBtn.style.color = '';
+  }
+});
+
 const loginBtn = document.getElementById('login-btn');
-
-
 
 loginBtn.addEventListener('click', (event) => {
   event.preventDefault(); // prevent the default form submission
 
   const username = document.querySelector('#username').value;
   const password = document.querySelector('#password').value;
-  
+
   fetch('/', {
-  method: 'POST',
-  headers: {
-    'Content-Type': 'application/x-www-form-urlencoded'
-  },
-  body: new URLSearchParams({
-    username: username,
-    password: password
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/x-www-form-urlencoded'
+    },
+    body: new URLSearchParams({
+      username: username,
+      password: password
+    })
   })
-})
-.then(response => {
-  if (response.ok) {
-    response.json().then(data => {
-      if (data.isLoggedIn) {
-        console.log('Login successful');
-        console.log('Customer ID:', data.customer_customer_id); // log customer_customer_id value in console
-        sessionStorage.setItem('login_username', data.login_username);
-        sessionStorage.setItem('customer_customer_id', data.customer_customer_id);
+  .then(response => {
+    if (response.ok) {
+      response.json().then(data => {
+        if (data.isLoggedIn) {
+          console.log('Customer ID:', data.customer_id); // log customer_customer_id value in console
+          localStorage.setItem('login_username', data.login_username);
+          localStorage.setItem('customer_id', data.customer_id);
+          localStorage.setItem('customer_fullname', data.customer_fullname);
+          console.log('Login successful');
+          console.log('Customer ID:', data.customer_id);
+          console.log('Customer Name:', data.customer_fullname);
+          console.log('Customer Email:', data.customer_email);
 
-        Swal.fire({
-          position: 'center',
-          icon: 'success',
-          title: 'Login successful',
-          showConfirmButton: false,
-          timer: 3000,
-          customClass: {
-            container: 'swal-container',
-            popup: 'swal-popup',
-            title: 'swal-title',
-            content: 'swal-text'
-          }
-        })
-        setTimeout(function() {
-          // userBtn.style.display = 'none'
-          window.location.href = '/#cart';
-        }, 3000);
+          const nameSpan = document.querySelector('#name');
+          const iDSpan = document.querySelector('#customer-id');
+          const customerFullname = localStorage.getItem('customer_fullname');
+          const customerId = localStorage.getItem('customer_id');
+          nameSpan.innerHTML = customerFullname;
+          iDSpan.innerHTML = customerId;
 
-      } else {
-        console.log('Invalid username or password');
-        Swal.fire({
-          position: 'center',
-          icon: 'error',
-          title: 'Invalid username or password',
-          showConfirmButton: false,
-          timer: 2000
-        })
-        
-      }
-    });
-  } else {
-    console.log('Error:', response.status);
-  }
-})
-.catch(error => console.error(error));
+          Swal.fire({
+            position: 'center',
+            icon: 'success',
+            title: 'Login successful',
+            showConfirmButton: false,
+            timer: 3000,
+            customClass: {
+              container: 'swal-container',
+              popup: 'swal-popup',
+              title: 'swal-title',
+              content: 'swal-text'
+            }
+          })
+          setTimeout(function() {
+            // userBtn.style.display = 'none'
+            window.location.href = '/#menu';
+          }, 3000);
+
+        } else {
+          console.log('Invalid username or password');
+          Swal.fire({
+            position: 'center',
+            icon: 'error',
+            title: 'Invalid username or password',
+            showConfirmButton: false,
+            timer: 2000
+          })
+
+        }
+      });
+    } else {
+      console.log('Error:', response.status);
+    }
+  })
+  .catch(error => console.error(error));
 
 });
 
-const name = document.getElementById('name').textContent;
-const initial = name.charAt(0).toUpperCase();
-document.getElementById('initial').textContent = initial;
+const nameSpan = document.querySelector('#name');
+const iDSpan = document.querySelector('#customer-id');
+const customerFullname = localStorage.getItem('customer_fullname');
+const customerId = localStorage.getItem('customer_id');
+nameSpan.innerHTML = customerFullname;
+iDSpan.innerHTML = customerId;
 
 
-/* =============== registration =============== */
+
+
+
+/* =============== log out =============== */
+
+const logoutBtn = document.getElementById('logout');
+
+logoutBtn.addEventListener('click', (event) => {
+  event.preventDefault(); // prevent default link behavior
+
+  // clear localStorage values
+  localStorage.removeItem('login_username');
+  localStorage.removeItem('customer_id');
+  localStorage.removeItem('customer_fullname');
+
+  // redirect to login page
+
+  window.location.href = '/';
+});
+
 
 
 

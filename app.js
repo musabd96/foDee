@@ -31,21 +31,44 @@ app.post('/', encoder, function(req, res){
   console.log(typeof username);
   console.log(typeof password);
 
-  conn.query('SELECT * FROM login WHERE login_username = ? AND login_password = ?', [username, password], function(error,results,fields){
+  conn.query('SELECT * FROM login WHERE login_username = ? AND login_password = ?', [username, password], function(error,loginResults,fields){
     
     if (error) throw error;
     
-    console.log(results); 
+    console.log(loginResults); 
     
-    if(results.length > 0){
+    if(loginResults.length > 0){
       console.log('is login ')
-      res.json({ isLoggedIn: true, login_username: results[0].login_username, customer_customer_id: results[0].customer_customer_id });
+      var customer_customer_id = loginResults[0].customer_customer_id;
+
+      conn.query('SELECT * FROM customer WHERE customer_id = ?', [customer_customer_id], function(error,customerResults,fields){
+    
+        if (error) throw error;
+        
+        console.log(customerResults); 
+        
+        if(customerResults.length > 0){
+          console.log('customer info retrieved')
+          var customerInfo = customerResults[0];
+
+          res.json({ isLoggedIn: true, 
+                      login_username: loginResults[0].login_username, 
+                      customer_id: customerInfo.customer_id,
+                      customer_fullname: customerInfo.customer_fullname,
+                      customer_email: customerInfo.customer_email });
+        } else{
+          console.log('no customer info retrieved')
+          res.json({ isLoggedIn: false });
+        }
+      });
+      
     } else{
       console.log('is not login ')
       res.json({ isLoggedIn: false });
     }
   });
 })
+
 
 
 app.listen(4000, () => {
