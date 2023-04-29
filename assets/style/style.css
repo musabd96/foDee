@@ -814,7 +814,16 @@ select {
   font-size: 4rem;
 }
 
+/* =============== DEVICE SIZE =============== */
 
+
+
+
+.account h1{
+    color: var(--main-color);
+    margin-top: 6rem;
+    font-size: 10rem;
+}
 
 
 

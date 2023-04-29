@@ -511,7 +511,6 @@ loginBtn.addEventListener('click', (event) => {
             }
           })
           setTimeout(function() {
-            // userBtn.style.display = 'none'
             window.location.href = '/#menu';
           }, 3000);
 
