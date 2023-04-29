@@ -36,7 +36,7 @@ app.post('/', encoder, function(req, res){
     if (error) throw error;
     
     console.log(results); 
-
+    
     if(results.length > 0){
       console.log('is login ')
       res.json({ isLoggedIn: true, login_username: results[0].login_username, customer_customer_id: results[0].customer_customer_id });

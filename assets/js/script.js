@@ -409,6 +409,8 @@ window.onhashchange = function() {
 
 const loginBtn = document.getElementById('login-btn');
 
+
+
 loginBtn.addEventListener('click', (event) => {
   event.preventDefault(); // prevent the default form submission
 
