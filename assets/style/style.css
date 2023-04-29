@@ -233,7 +233,7 @@ select {
 .wrapper .form__box.register{
     position: absolute;
     transition: none;
-    transform: translateX(500px);
+    transform: translateX(-500px);
 }
 
 .wrapper.register .form__box.register{

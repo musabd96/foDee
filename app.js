@@ -67,42 +67,7 @@ app.post('/', encoder, function(req, res){
   });
 })
 
-// handle registration request
-// app.post('/', encoder, function(req, res){
-//   var username = req.body.username;
-//   var email = req.body.email;
-//   var password = req.body.password;
 
-//   // perform validation checks here
-
-//   conn.query('INSERT INTO customer (customer_fullname, customer_email) VALUES (?, ?)', [username, email], function(error,customerResults,fields){
-
-//     if (error) throw error;
-
-//     conn.query('SELECT MAX(customer_id) FROM customer;', function(error,maxCustomerResults,fields){
-//       if (error) throw error;
-
-//       if(maxCustomerResults.length > 0){
-//         console.log('customer info retrieved')
-//         var customer_customer_id  = maxCustomerResults[0]['MAX(customer_id)'];
-
-//         conn.query('INSERT INTO login (login_username, login_password, customer_customer_id) VALUES (?, ?, ?)', [username, password, customer_customer_id], function(error,loginResults,fields){
-
-//           if (error) throw error;
-
-//           console.log('Registration successful');
-//           res.json({ isRegistered: true });
-//         });
-
-//       } else {
-//         console.log('Registration unsuccessful');
-//         res.json({ isRegistered: false });
-//       }
-
-//     });
-
-//   });
-// });
 
 app.post('/register', encoder, function(req, res){
   var username = req.body.username;

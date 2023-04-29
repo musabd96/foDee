@@ -10,6 +10,7 @@ const registerLink = document.querySelector('.registration__link');
 
 registerLink.addEventListener('click', () =>{
     wrapper.classList.add('register');
+    
 });
 
 loginLink.addEventListener('click', () =>{
@@ -443,17 +444,17 @@ document.addEventListener('click', function(event) {
   }
 });
 
-const wrapperEl = document.querySelector('.wrapper');
+// const wrapperEl = document.querySelector('.wrapper');
 
-document.addEventListener('click', function(event) {
-   const isClickInsideWrapperp = wrapperEl.contains(event.target);
-  const isClickInsideBtn = userBtn.contains(event.target);
+// document.addEventListener('click', function(event) {
+//    const isClickInsideWrapperp = wrapperEl.contains(event.target);
+//   const isClickInsideBtn = userBtn.contains(event.target);
   
-  if (!isClickInsideWrapperp && !isClickInsideBtn) {
-    wrapperEl.classList.add('hidden');
-    userBtn.style.color = '';
-  }
-});
+//   if (!isClickInsideWrapperp && !isClickInsideBtn) {
+//     wrapperEl.classList.add('hidden');
+//     userBtn.style.color = '';
+//   }
+// });
 
 
 //login DB
@@ -604,7 +605,7 @@ registerForm.addEventListener('submit', (event) => {
             }
           })
           setTimeout(function() {
-            window.location.href = '/#menu';
+            registerSuccessCallback();
           }, 3000);
         } else {
           console.log('Registration failed:', data.message);
@@ -625,3 +626,9 @@ registerForm.addEventListener('submit', (event) => {
   })
   .catch(error => console.error(error));
 });
+
+
+function registerSuccessCallback(){
+  // Switch back to login screen
+  document.querySelector('.wrapper').classList.toggle('register');
+}
