@@ -814,16 +814,97 @@ select {
   font-size: 4rem;
 }
 
-/* =============== DEVICE SIZE =============== */
+/* =============== PROFILE SECTION =============== */
 
-
-
-
-.account h1{
+/* =============== account =============== */
+.account {
     color: var(--main-color);
-    margin-top: 6rem;
-    font-size: 10rem;
+    
 }
+
+
+.account .container{
+    margin-top: 10rem;
+    margin: 0 auto;
+    margin-left: 10rem;
+    margin-right: 10rem;
+    align-self: center;
+}
+
+.account .container .account__details,
+.account .container .personal-data__details,
+.account .container .address__details{
+    border: var(--border);
+    margin-top: 3rem;
+}
+
+.account .container .account__details .account__edit,
+.account .container .personal-data__details .personal-data__edit,
+.account .container .address__details .address__edit{
+    display: flex;
+    font-size: 3rem;
+    padding: 2rem;
+    border-bottom: 1px solid #746565;
+}
+
+.account .container .account__details .account__edit .edit,
+.account .container .personal-data__details .personal-data__edit .edit,
+.account .container .address__details .address__edit .edit{
+    margin-left: auto;
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+.account .container .account__details .account__edit .edit:hover,
+.account .container .personal-data__details .personal-data__edit :hover,
+.account .container .address__details .address__edit :hover{
+    color: #3B8419;
+}
+
+.account .container .account__details .account__info,
+.account .container .personal-data__details .personal-data__info,
+.account .container .address__details .address__info{
+    display: flex;
+    flex-direction: column;
+    margin: 2rem;
+    font-size: 2rem;
+}
+
+.account .container .account__details .title,
+.account .container .personal-data__details .fullname,
+.account .container .address__details .phone__number,
+.account .container .personal-data__details .street,
+.account .container .address__details .city,
+.account .container .address__details .zip__code{
+    font-weight: bold; 
+    margin-top: 3rem;    
+     
+}
+
+.account .container .account__details .email,
+.account .container .account__details .password,
+.account .container .personal-data__details .name,
+.account .container .personal-data__details .number,
+.account .container .personal-data__details .street__address,
+.account .container .personal-data__details .nacityTownme,
+.account .container .personal-data__details .zipCode {
+    margin-top: 1rem;    
+}
+
+.account .container .account__details .pass__title,
+.account .container .personal-data__details .pass__title{
+    margin-top: 3rem;
+}
+.account .container .account__details .password,
+.account .container .personal-data__details .number {
+    font-size: 14px;
+}
+
+
+
+
+
+
 
 
 

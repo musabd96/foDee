@@ -308,7 +308,7 @@ function showOrderReceivedAlert() {
       homeLink.style.color = '#3B8419';
     }
   }).finally(() => {
-    // Code to be executed after the popup is closed, regardless of whether the user clicked OK or dismissed the popup
+   
     cartBtn.style.display = '';
     payment.classList.add('hidden');
     cart.classList.add('hidden');
@@ -444,17 +444,6 @@ document.addEventListener('click', function(event) {
   }
 });
 
-// const wrapperEl = document.querySelector('.wrapper');
-
-// document.addEventListener('click', function(event) {
-//    const isClickInsideWrapperp = wrapperEl.contains(event.target);
-//   const isClickInsideBtn = userBtn.contains(event.target);
-  
-//   if (!isClickInsideWrapperp && !isClickInsideBtn) {
-//     wrapperEl.classList.add('hidden');
-//     userBtn.style.color = '';
-//   }
-// });
 
 
 //login DB
@@ -559,7 +548,8 @@ logoutBtn.addEventListener('click', (event) => {
   
   // redirect to login page
   
-  window.location.href = '/';
+  window.location.href = '/#home';
+  location.reload();
 });
 
 
@@ -630,4 +620,25 @@ registerForm.addEventListener('submit', (event) => {
 function registerSuccessCallback(){
   // Switch back to login screen
   document.querySelector('.wrapper').classList.toggle('register');
+}
+
+
+// Check if the URL contains "#account"
+if (window.location.hash === "#profile") {
+
+  // Check if the localStorage has all three items ("login_username", "customer_id", and "customer_fullname")
+  if (!(localStorage.getItem("login_username") && localStorage.getItem("customer_id") && localStorage.getItem("customer_fullname"))) {
+    console.log("User is not logged in. Redirecting to the login page...");
+    window.location.href = "/#home"; // Change this to the actual login page URL
+  } else if (sessionStorage.getItem("account_loaded")) {
+    console.log("User is already on the account page. Redirecting to the home page...");
+    window.location.href = "/#home"; // Change this to the actual home page URL
+  } else {
+    console.log("User is logged in. Showing the account section.");
+    // Remove the "hidden" class from the "account" section to show it
+    document.getElementById("account").classList.remove("hidden");
+    
+    // Set the sessionStorage flag to indicate that the account section has been loaded
+    sessionStorage.setItem("account_loaded", true);
+  }
 }
