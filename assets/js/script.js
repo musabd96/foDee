@@ -476,7 +476,7 @@ const loginBtn = document.getElementById('login-btn');
 loginBtn.addEventListener('click', (event) => {
   event.preventDefault(); // prevent the default form submission
 
-  const username = document.querySelector('#username').value;
+  const username = document.querySelector('#login__email').value;
   const password = document.querySelector('#password').value;
 
   fetch('/', {
@@ -498,16 +498,7 @@ loginBtn.addEventListener('click', (event) => {
           localStorage.setItem('customer_fullname', data.customer_fullname);
           localStorage.setItem('customer_email', data.customer_email);
           localStorage.setItem('customer_phone', data.customer_phone);
-          console.log('login_username:', data.login_username); 
-          console.log('login_password:', data.login_password); 
-          console.log('Login successful');
-          console.log('Customer ID:', data.customer_id);
-          console.log('Customer Name:', data.customer_fullname);
-          console.log('Customer Email:', data.customer_email);
-          console.log('Customer phone:', data.customer_phone);
-
           
-
           Swal.fire({
             position: 'center',
             icon: 'success',
