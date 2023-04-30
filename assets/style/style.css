@@ -872,7 +872,7 @@ select {
 
 .account .container .account__details .title,
 .account .container .personal-data__details .fullname,
-.account .container .address__details .phone__number,
+.account .container .personal-data__details .phone__number,
 .account .container .personal-data__details .street,
 .account .container .address__details .city,
 .account .container .address__details .zip__code{

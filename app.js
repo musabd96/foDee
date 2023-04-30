@@ -35,25 +35,28 @@ app.post('/', encoder, function(req, res){
     
     if (error) throw error;
     
-     
     
     if(loginResults.length > 0){
+      console.log(loginResults);
       
-      var customer_customer_id = loginResults[0].customer_customer_id;
+      var customer_id = loginResults[0].customer_customer_id;
 
-      conn.query('SELECT * FROM customer WHERE customer_id = ?', [customer_customer_id], function(error,customerResults,fields){
+      conn.query('SELECT * FROM fodee.customer WHERE customer_id = ?', [customer_id], function(error,customerResults,fields){
     
         if (error) throw error;
         
         if(customerResults.length > 0){
+          console.log(customerResults);
           console.log('customer info retrieved')
           var customerInfo = customerResults[0];
 
           res.json({ isLoggedIn: true, 
                       login_username: loginResults[0].login_username, 
+                      login_password: loginResults[0].login_password, 
                       customer_id: customerInfo.customer_id,
                       customer_fullname: customerInfo.customer_fullname,
-                      customer_email: customerInfo.customer_email });
+                      customer_email: customerInfo.customer_email,
+                      customer_phone: customerInfo.customer_phone });
         } else{
         
           res.json({ isLoggedIn: false });

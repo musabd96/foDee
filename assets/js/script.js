@@ -1,5 +1,5 @@
 window.onload = function() {
-  window.location.href = "#home";
+  window.location.href = "#account";
 };
 // =============== LOGIN/REGISTER =============== //
 
@@ -470,21 +470,20 @@ loginBtn.addEventListener('click', (event) => {
     if (response.ok) {
       response.json().then(data => {
         if (data.isLoggedIn) {
-          console.log('Customer ID:', data.customer_id); // log customer_customer_id value in console
           localStorage.setItem('login_username', data.login_username);
           localStorage.setItem('customer_id', data.customer_id);
           localStorage.setItem('customer_fullname', data.customer_fullname);
+          localStorage.setItem('customer_email', data.customer_email);
+          localStorage.setItem('customer_phone', data.customer_phone);
+          console.log('login_username:', data.login_username); 
+          console.log('login_password:', data.login_password); 
           console.log('Login successful');
           console.log('Customer ID:', data.customer_id);
           console.log('Customer Name:', data.customer_fullname);
           console.log('Customer Email:', data.customer_email);
+          console.log('Customer phone:', data.customer_phone);
 
-          const nameSpan = document.querySelector('#name');
-          const iDSpan = document.querySelector('#customer-id');
-          const customerFullname = localStorage.getItem('customer_fullname');
-          const customerId = localStorage.getItem('customer_id');
-          nameSpan.innerHTML = customerFullname;
-          iDSpan.innerHTML = customerId;
+          
 
           Swal.fire({
             position: 'center',
@@ -524,11 +523,22 @@ loginBtn.addEventListener('click', (event) => {
 });
 
 const nameSpan = document.querySelector('#name');
+const fullnameSpan = document.querySelector('#customer_fullname');
 const iDSpan = document.querySelector('#customer-id');
-const customerFullname = localStorage.getItem('customer_fullname');
+const phoneSpan = document.querySelector('#number');
+const emailSpan = document.querySelector('#customer_email');
+
+
 const customerId = localStorage.getItem('customer_id');
+const customerFullname = localStorage.getItem('customer_fullname');
+const customerPhone = localStorage.getItem('customer_phone');
+const customerEmail = localStorage.getItem('customer_email');
+console.log(fullnameSpan);
 nameSpan.innerHTML = customerFullname;
+fullnameSpan.innerHTML = customerFullname;
 iDSpan.innerHTML = customerId;
+phoneSpan.innerHTML = customerPhone;
+emailSpan.innerHTML = customerEmail;
 
 
 
