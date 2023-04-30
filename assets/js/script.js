@@ -1,5 +1,5 @@
 window.onload = function() {
-  window.location.href = "#account";
+  window.location.href = "#cart";
 };
 // =============== LOGIN/REGISTER =============== //
 
@@ -206,6 +206,29 @@ navLinks.forEach(link => {
 
 
 /* =============== BILLING =============== */
+
+/* =============== Country opstion =============== */
+document.addEventListener('DOMContentLoaded', () => {
+  const countries = document.querySelector('#countries');
+
+  // Add a default "Select country" option
+  countries.innerHTML = '<option value="" selected>Select country</option>';
+
+  fetch('https://restcountries.com/v3.1/all')
+    .then(res => res.json())
+    .then(data => {
+      data.sort((a, b) => a.name.common.localeCompare(b.name.common));
+      let output = '';
+      data.forEach(country => {
+        output += `<option>${country.name.common}</option>`;
+      });
+      countries.innerHTML += output;
+    })
+    .catch(err => {
+      console.log(err);
+    });
+});
+
 
 const home = document.querySelector('.home');
 const cart = document.querySelector('.cart');

@@ -771,6 +771,12 @@ select {
     margin-top: 5px;
 }
 
+.billing form .row .col .flex .inputbox select{
+    background: var(--main-color);
+    border: 1px solid #D9D9D9;
+    width: 20rem;
+}
+
 .billing form .btn,
 .payment form .btn{
  width: 100%;
