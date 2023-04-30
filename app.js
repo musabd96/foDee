@@ -25,15 +25,16 @@ app.get('/', function(req, res) {
 
 // handle login request
 app.post('/', encoder, function(req, res){
-  var email = req.body.email;
+  var username = req.body.username;
   var password = req.body.password;
 
   
-  
-  conn.query('SELECT * FROM login WHERE login_email = ? AND login_password = ?', [email, password], function(error,loginResults,fields){
+  console.log('email:', username);
+  console.log('password:', password);
+
+  conn.query('SELECT * FROM login WHERE login_email = ? AND login_password = ?', [username, password], function(error,loginResults,fields){
     
     if (error) throw error;
-    console.log(email, password);
     
     
     if(loginResults.length > 0){
