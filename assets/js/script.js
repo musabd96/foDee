@@ -1,5 +1,5 @@
 window.onload = function() {
-  window.location.href = "#cart";
+  window.location.href = "#home";
 };
 // =============== LOGIN/REGISTER =============== //
 
@@ -476,7 +476,7 @@ const loginBtn = document.getElementById('login-btn');
 loginBtn.addEventListener('click', (event) => {
   event.preventDefault(); // prevent the default form submission
 
-  const username = document.querySelector('#username').value;
+  const username = document.querySelector('#login__email').value;
   const password = document.querySelector('#password').value;
 
   fetch('/', {
@@ -513,7 +513,7 @@ loginBtn.addEventListener('click', (event) => {
             }
           })
           setTimeout(function() {
-            window.location.href = '/#menu';
+            location.reload();
           }, 3000);
 
         } else {
@@ -570,9 +570,6 @@ logoutBtn.addEventListener('click', (event) => {
   localStorage.removeItem('customer_id');
   localStorage.removeItem('customer_fullname');
   
-  // redirect to login page
-  
-  window.location.href = '/#home';
   location.reload();
 });
 
