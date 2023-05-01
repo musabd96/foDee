@@ -12,11 +12,12 @@ var currentUrl = window.location.href;
 // Check for URL changes
 window.addEventListener('hashchange', function() {
   var newUrl = window.location.href;
-  const customerEmail = localStorage.getItem('login_email');
+  // const customerEmail = localStorage.getItem('login_email');
   const loginSection = document.querySelector(".login-register"); 
   const accountSection = document.querySelector('.account');
   // If the URL has changed, block the section
   if (newUrl === 'http://localhost:4000/#account') {
+    console.log(customerEmail);
     if(customerEmail !== null){
       console.log('email ok')
       accountSection.classList.remove('blocked');
@@ -28,7 +29,8 @@ window.addEventListener('hashchange', function() {
       loginSection.classList.add("must_login"); 
 
     }
-  }
+  } 
+ 
 });
 
 
@@ -528,7 +530,12 @@ loginBtn.addEventListener('click', (event) => {
           // Save user data to localStorage
           localStorage.setItem('login_email', data.login_email);
           localStorage.setItem('customer_id', data.customer_id);
-          
+          localStorage.setItem('customer_fullname', data.customer_fullname);
+          localStorage.setItem('customer_phone', data.customer_phone);
+          localStorage.setItem('customer_address', data.customer_address);
+          localStorage.setItem('customer_city', data.customer_city);
+          localStorage.setItem('customer_state', data.customer_state);
+          localStorage.setItem('customer_zipcode', data.customer_zipcode);
           console.log('data.customer_fullname: ', data.customer_fullname )
           // Check if user is logging in for the first time
           if (data.customer_fullname === null) {
@@ -555,12 +562,7 @@ loginBtn.addEventListener('click', (event) => {
               window.location.href = '/#account';
             }, 1000);
           } else {
-            localStorage.setItem('customer_fullname', data.customer_fullname);
-            localStorage.setItem('customer_phone', data.customer_phone);
-            localStorage.setItem('customer_address', data.customer_address);
-            localStorage.setItem('customer_city', data.customer_city);
-            localStorage.setItem('customer_state', data.customer_state);
-            localStorage.setItem('customer_zipcode', data.customer_zipcode);
+            
             Swal.fire({
               position: 'center',
               icon: 'success',
@@ -611,36 +613,63 @@ const countrySpan = document.querySelector('#state');
 const zipCodeSpan = document.querySelector('#zipCode');
 
 
-const customerEmail = localStorage.getItem('login_email');
-const customerId = localStorage.getItem('customer_id');
-const customerFullname = localStorage.getItem('customer_fullname');
+var customerEmail = localStorage.getItem('login_email');
+var customerId = localStorage.getItem('customer_id');
+var customerFullname = localStorage.getItem('customer_fullname');
 
 // console.log(customerFullname);
-const customerPhone = localStorage.getItem('customer_phone');
-const customerAddress = localStorage.getItem('customer_address');
-const customerCity = localStorage.getItem('customer_city');
-const customerState = localStorage.getItem('customer_state');
-const customerZipcode = localStorage.getItem('customer_zipcode');
+var customerPhone = localStorage.getItem('customer_phone');
+var customerAddress = localStorage.getItem('customer_address');
+var customerCity = localStorage.getItem('customer_city');
+var customerState = localStorage.getItem('customer_state');
+var customerZipcode = localStorage.getItem('customer_zipcode');
 
 
 
 iDSpan.innerHTML = customerId;
 emailSpan.innerHTML = customerEmail;
-// nameSpan.innerHTML = customerFullname;
-if (customerFullname === null) {
-  customerFullname = "";
+
+
+
+
+
+if(customerFullname != 'null'){
+  fullnameSpan.innerHTML = customerFullname;
+  nameSpan.innerHTML = customerFullname;
+} else {
+  fullnameSpan.innerHTML = "";
+  nameSpan.innerHTML = '';
 }
 
-nameSpan.innerHTML = customerFullname;
+if(customerPhone != 'null'){
+  phoneSpan.innerHTML = customerPhone;
+} else {
+  phoneSpan.innerHTML = "";
+}
 
+if(customerAddress != 'null'){
+  streetAddressSpan.innerHTML = customerAddress;
+} else {
+  streetAddressSpan.innerHTML = "";
+}
 
-fullnameSpan.innerHTML = customerFullname;
-phoneSpan.innerHTML = customerPhone;
-streetAddressSpan.innerHTML = customerAddress;
-cityNameSpan.innerHTML = customerCity;
-countrySpan.innerHTML = customerState;
-zipCodeSpan.innerHTML = customerZipcode;
+if(customerCity != 'null'){
+  cityNameSpan.innerHTML = customerCity;
+} else {
+  cityNameSpan.innerHTML = "";
+}
 
+if(customerState != 'null'){
+  countrySpan.innerHTML = customerState;
+} else {
+  countrySpan.innerHTML = "";
+}
+
+if(customerZipcode != 'null'){
+  zipCodeSpan.innerHTML = customerZipcode;
+} else {
+  zipCodeSpan.innerHTML = "";
+}
 
 
 /* =============== log out =============== */
