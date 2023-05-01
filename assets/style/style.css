@@ -881,6 +881,7 @@ select {
 .account .container .personal-data__details .phone__number,
 .account .container .personal-data__details .street,
 .account .container .address__details .city,
+.account .container .address__details .country,
 .account .container .address__details .zip__code{
     font-weight: bold; 
     margin-top: 3rem;    
