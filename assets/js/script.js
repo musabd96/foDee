@@ -1,8 +1,9 @@
 window.onload = function() {
-  window.location.href = "#home";
+  if(window.location.href !== 'http://localhost:4000/#account'){
+
+    window.location.href = "#home";
+  }
   
-
-
 };
 
 // Get the initial URL
@@ -11,15 +12,16 @@ var currentUrl = window.location.href;
 // Check for URL changes
 window.addEventListener('hashchange', function() {
   var newUrl = window.location.href;
+  const customerEmail = localStorage.getItem('login_email');
   const loginSection = document.querySelector(".login-register"); 
   const accountSection = document.querySelector('.account');
-  console.log(newUrl);
   // If the URL has changed, block the section
   if (newUrl === 'http://localhost:4000/#account') {
     if(customerEmail !== null){
       console.log('email ok')
       accountSection.classList.remove('blocked');
       loginSection.classList.remove("must_login"); 
+      accountSection
     }else{
       console.log('email not ok')
       accountSection.classList.add('blocked');
@@ -108,7 +110,7 @@ document.addEventListener('click', function(event) {
 
 /* =============== NAV =============== */
 const navLinks = document.querySelectorAll('.navbar a');
-const sections = document.querySelectorAll('section');
+// const sections = document.querySelectorAll('section');
 const checkoutBtn = document.querySelector('#checkout-btn');
 const logoBtn = document.querySelector('#logo__btn');
 const homeLink = document.getElementById('#home__btn');
@@ -523,36 +525,18 @@ loginBtn.addEventListener('click', (event) => {
     if (response.ok) {
       response.json().then(data => {
         if (data.isLoggedIn) {
-
-          
-
-          //save to localstorage to get data 
+          // Save user data to localStorage
           localStorage.setItem('login_email', data.login_email);
           localStorage.setItem('customer_id', data.customer_id);
-          localStorage.setItem('customer_fullname', data.customer_fullname);
-          localStorage.setItem('customer_phone', data.customer_phone);
-          localStorage.setItem('customer_address', data.customer_address);
-          localStorage.setItem('customer_city', data.customer_city);
-          localStorage.setItem('customer_state', data.customer_state);
-          localStorage.setItem('customer_zipcode', data.customer_zipcode);
           
-          // console.log(data.login_email)
-          // console.log(data.customer_id)
-          // console.log(data.customer_fullname)
-          // console.log(data.customer_phone)
-          // console.log(data.customer_address)
-          // console.log(data.customer_city)
-          // console.log(data.customer_state)
-          // console.log(data.customer_zipcode)
+          console.log('data.customer_fullname: ', data.customer_fullname )
           // Check if user is logging in for the first time
-          if (data.isFirstLogin) {
-            console.log('First login');
-            
+          if (data.customer_fullname === null) {
             Swal.fire({
               position: 'center',
               icon: 'success',
-              title: 'Welcome to FoDee ',
-              text: 'You are logging in for the first time. Please update your profile.',
+              title: 'Welcome to FoDee',
+              text: 'Please update your profile.',
               showConfirmButton: false,
               timer: 3000,
               customClass: {
@@ -561,14 +545,22 @@ loginBtn.addEventListener('click', (event) => {
                 title: 'swal-title',
                 content: 'swal-text'
               }
-            })
+            });
+            
+            // Redirect to account page after timeout
             setTimeout(function() {
-              window.location.href ='/#account';
-            }, 3000);
-            console.log('welcome to fodee')
-
-          } else{
-
+              setTimeout(function() {
+                location.reload();
+              }, 1000);
+              window.location.href = '/#account';
+            }, 1000);
+          } else {
+            localStorage.setItem('customer_fullname', data.customer_fullname);
+            localStorage.setItem('customer_phone', data.customer_phone);
+            localStorage.setItem('customer_address', data.customer_address);
+            localStorage.setItem('customer_city', data.customer_city);
+            localStorage.setItem('customer_state', data.customer_state);
+            localStorage.setItem('customer_zipcode', data.customer_zipcode);
             Swal.fire({
               position: 'center',
               icon: 'success',
@@ -581,15 +573,14 @@ loginBtn.addEventListener('click', (event) => {
                 title: 'swal-title',
                 content: 'swal-text'
               }
-            })
+            });
+
+            // Reload the page after timeout
             setTimeout(function() {
+              window.location.href = '/#home';
               location.reload();
             }, 3000);
-            console.log('welcome back')
-            
           }
-          
-
         } else {
           console.log('Invalid username or password');
           Swal.fire({
@@ -598,8 +589,7 @@ loginBtn.addEventListener('click', (event) => {
             title: 'Invalid username or password',
             showConfirmButton: false,
             timer: 2000
-          })
-
+          });
         }
       });
     } else {
@@ -607,8 +597,8 @@ loginBtn.addEventListener('click', (event) => {
     }
   })
   .catch(error => console.error(error));
-
 });
+
 
 const nameSpan = document.querySelector('#name');
 const fullnameSpan = document.querySelector('#customer_fullname');
@@ -624,6 +614,8 @@ const zipCodeSpan = document.querySelector('#zipCode');
 const customerEmail = localStorage.getItem('login_email');
 const customerId = localStorage.getItem('customer_id');
 const customerFullname = localStorage.getItem('customer_fullname');
+
+// console.log(customerFullname);
 const customerPhone = localStorage.getItem('customer_phone');
 const customerAddress = localStorage.getItem('customer_address');
 const customerCity = localStorage.getItem('customer_city');
@@ -631,9 +623,17 @@ const customerState = localStorage.getItem('customer_state');
 const customerZipcode = localStorage.getItem('customer_zipcode');
 
 
+
 iDSpan.innerHTML = customerId;
 emailSpan.innerHTML = customerEmail;
+// nameSpan.innerHTML = customerFullname;
+if (customerFullname === null) {
+  customerFullname = "";
+}
+
 nameSpan.innerHTML = customerFullname;
+
+
 fullnameSpan.innerHTML = customerFullname;
 phoneSpan.innerHTML = customerPhone;
 streetAddressSpan.innerHTML = customerAddress;
@@ -660,7 +660,7 @@ logoutBtn.addEventListener('click', (event) => {
   localStorage.removeItem('customer_state');
   localStorage.removeItem('customer_zipcode');
   
-  
+  window.location.href = '/#home';
   location.reload();
 });
 
@@ -728,7 +728,6 @@ registerForm.addEventListener('submit', (event) => {
 
 
 function registerSuccessCallback(){
-  // Switch back to login screen
   document.querySelector('.wrapper').classList.toggle('register');
 }
 

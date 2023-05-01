@@ -27,10 +27,8 @@ app.get('/', function(req, res) {
 app.post('/', encoder, function(req, res){
   var email = req.body.email;
   var password = req.body.password;
-
   
-  console.log('email:', email);
-  console.log('password:', password);
+  
 
   conn.query('SELECT * FROM login WHERE login_email = ? AND login_password = ?', [email, password], function(error,loginResults,fields){
     
@@ -38,8 +36,6 @@ app.post('/', encoder, function(req, res){
     
     
     if(loginResults.length > 0){
-      console.log(loginResults);
-      // res.json({ isLoggedIn: true})
       var login_email = loginResults[0].login_email;
 
       conn.query('SELECT * FROM fodee.customer WHERE login_login_email = ?', [login_email], function(error,customerResults,fields){
@@ -47,10 +43,12 @@ app.post('/', encoder, function(req, res){
         if (error) throw error;
         
         if(customerResults.length > 0){
-          console.log(customerResults);
-          console.log('customer info retrieved')
           var customerInfo = customerResults[0];
+          if(customerInfo.customer_fullname != 'null' ){
+            console.log('its not null')
 
+          }
+          console.log(customerInfo)
           res.json({ isLoggedIn: true, 
                       login_email: loginResults[0].login_email, 
                       customer_id: customerInfo.customer_id,
@@ -93,8 +91,7 @@ app.post('/register', encoder, function(req, res){
         if (error) throw error;
         conn.query('INSERT INTO fodee.customer (login_login_email) VALUES (?)', [email, password], function(error, loginResults, fields){
           if (error) throw error;
-          var isNewUser = true;
-          res.json({ isRegistered: true, isNewUser: isNewUser  });
+          res.json({ isRegistered: true});
           console.log('Registration successful');
         });
           
@@ -102,6 +99,7 @@ app.post('/register', encoder, function(req, res){
     }
   });
 });
+
 
 
 
