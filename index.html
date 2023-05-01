@@ -425,7 +425,7 @@
                     <div class="personal-data__edit">
                 
                         <div class="personal-data__text">Personal data</div>
-                        <div class="edit">edit</div>
+                        <div class="edit" onclick="showEditForm()">edit</div>
                     </div>
 
                     <div class="personal-data__info">
@@ -433,6 +433,16 @@
                         <span class="name" id="customer_fullname" ></span>
                         <span class="phone__number" >phone number</span>
                         <span class="number" id="number"></span>
+                    </div>
+                    <div class="edit-form" style="display: none;">
+                        <label for="fullname-input">Full Name:</label>
+                        <input type="text" id="fullname-input">
+                    
+                        <label for="phone-input">Phone Number:</label>
+                        <input type="text" id="phone-input">
+                    
+                        <button onclick="saveChanges()">Save</button>
+                        <button onclick="hideEditForm()">Cancel</button>
                     </div>
 
                 </div>

@@ -697,6 +697,7 @@ logoutBtn.addEventListener('click', (event) => {
 
 /* =============== Register =============== */
 
+
 const registerForm = document.querySelector('.register form');
 registerForm.addEventListener('submit', (event) => {
   event.preventDefault(); // prevent the default form submission
@@ -760,3 +761,39 @@ function registerSuccessCallback(){
   document.querySelector('.wrapper').classList.toggle('register');
 }
 
+
+/* =============== EDIT ACCOUNT =============== */
+
+function showEditForm() {
+  var editForm = document.querySelector('.edit-form');
+  editForm.style.display = 'block';
+
+  var personalDataInfo = document.querySelector('.personal-data__info');
+  personalDataInfo.style.display = 'none';
+
+  var fullnameInput = document.querySelector('#fullname-input');
+  fullnameInput.value = document.querySelector('#customer_fullname').innerHTML;
+
+  var phoneInput = document.querySelector('#phone-input');
+  phoneInput.value = document.querySelector('#number').innerHTML;
+}
+
+function hideEditForm() {
+  var editForm = document.querySelector('.edit-form');
+  editForm.style.display = 'none';
+
+  var personalDataInfo = document.querySelector('.personal-data__info');
+  personalDataInfo.style.display = 'block';
+}
+
+function saveChanges() {
+  var fullnameInput = document.querySelector('#fullname-input');
+  var newFullName = fullnameInput.value;
+  document.querySelector('#customer_fullname').innerHTML = newFullName;
+
+  var phoneInput = document.querySelector('#phone-input');
+  var newPhoneNumber = phoneInput.value;
+  document.querySelector('#number').innerHTML = newPhoneNumber;
+
+  hideEditForm();
+}
