@@ -1,5 +1,5 @@
 window.onload = function() {
-  window.location.href = "#home";
+  window.location.href = "#account";
 };
 // =============== LOGIN/REGISTER =============== //
 
@@ -476,7 +476,7 @@ const loginBtn = document.getElementById('login-btn');
 loginBtn.addEventListener('click', (event) => {
   event.preventDefault(); // prevent the default form submission
 
-  const username = document.querySelector('#login__email').value;
+  const email = document.querySelector('#login__email').value;
   const password = document.querySelector('#password').value;
 
   fetch('/', {
@@ -485,7 +485,7 @@ loginBtn.addEventListener('click', (event) => {
       'Content-Type': 'application/x-www-form-urlencoded'
     },
     body: new URLSearchParams({
-      username: username,
+      email: email,
       password: password
     })
   })
@@ -493,12 +493,26 @@ loginBtn.addEventListener('click', (event) => {
     if (response.ok) {
       response.json().then(data => {
         if (data.isLoggedIn) {
-          localStorage.setItem('login_username', data.login_username);
+
+          //save to localstorage to get data 
+          localStorage.setItem('login_email', data.login_email);
           localStorage.setItem('customer_id', data.customer_id);
           localStorage.setItem('customer_fullname', data.customer_fullname);
-          localStorage.setItem('customer_email', data.customer_email);
           localStorage.setItem('customer_phone', data.customer_phone);
+          localStorage.setItem('customer_address', data.customer_address);
+          localStorage.setItem('customer_city', data.customer_city);
+          localStorage.setItem('customer_state', data.customer_state);
+          localStorage.setItem('customer_zipcode', data.customer_zipcode);
           
+          console.log(data.login_email)
+          console.log(data.customer_id)
+          console.log(data.customer_fullname)
+          console.log(data.customer_phone)
+          console.log(data.customer_address)
+          console.log(data.customer_city)
+          console.log(data.customer_state)
+          console.log(data.customer_zipcode)
+
           Swal.fire({
             position: 'center',
             icon: 'success',
@@ -541,22 +555,33 @@ const fullnameSpan = document.querySelector('#customer_fullname');
 const iDSpan = document.querySelector('#customer-id');
 const phoneSpan = document.querySelector('#number');
 const emailSpan = document.querySelector('#customer_email');
+const streetAddressSpan = document.querySelector('#street__address');
+const cityNameSpan = document.querySelector('#city__name');
+const countrySpan = document.querySelector('#state');
+const zipCodeSpan = document.querySelector('#zipCode');
 
 
+const customerEmail = localStorage.getItem('login_email');
 const customerId = localStorage.getItem('customer_id');
 const customerFullname = localStorage.getItem('customer_fullname');
 const customerPhone = localStorage.getItem('customer_phone');
-const customerEmail = localStorage.getItem('customer_email');
-console.log(fullnameSpan);
+const customerAddress = localStorage.getItem('customer_address');
+const customerCity = localStorage.getItem('customer_city');
+const customerState = localStorage.getItem('customer_state');
+const customerZipcode = localStorage.getItem('customer_zipcode');
+
+
+iDSpan.innerHTML = customerId;
+emailSpan.innerHTML = customerEmail;
 nameSpan.innerHTML = customerFullname;
 fullnameSpan.innerHTML = customerFullname;
-iDSpan.innerHTML = customerId;
 phoneSpan.innerHTML = customerPhone;
-emailSpan.innerHTML = customerEmail;
+streetAddressSpan.innerHTML = customerAddress;
+cityNameSpan.innerHTML = customerCity;
+countrySpan.innerHTML = customerState;
+zipCodeSpan.innerHTML = customerZipcode;
 
-
-
-
+console.log(customerEmail);
 
 /* =============== log out =============== */
 
@@ -581,7 +606,6 @@ const registerForm = document.querySelector('.register form');
 registerForm.addEventListener('submit', (event) => {
   event.preventDefault(); // prevent the default form submission
 
-  const username = registerForm.querySelector('input[name="username"]').value;
   const email = registerForm.querySelector('input[name="email"]').value;
   const password = registerForm.querySelector('input[name="password"]').value;
 
@@ -591,7 +615,6 @@ registerForm.addEventListener('submit', (event) => {
       'Content-Type': 'application/x-www-form-urlencoded'
     },
     body: new URLSearchParams({
-      username: username,
       email: email,
       password: password
     })
