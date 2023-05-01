@@ -1,6 +1,36 @@
 window.onload = function() {
-  window.location.href = "#account";
+  window.location.href = "#home";
+  
+
+
 };
+
+// Get the initial URL
+var currentUrl = window.location.href;
+
+// Check for URL changes
+window.addEventListener('hashchange', function() {
+  var newUrl = window.location.href;
+  const loginSection = document.querySelector(".login-register"); 
+  const accountSection = document.querySelector('.account');
+  console.log(newUrl);
+  // If the URL has changed, block the section
+  if (newUrl === 'http://localhost:4000/#account') {
+    if(customerEmail !== null){
+      console.log('email ok')
+      accountSection.classList.remove('blocked');
+      loginSection.classList.remove("must_login"); 
+    }else{
+      console.log('email not ok')
+      accountSection.classList.add('blocked');
+      loginSection.classList.add("must_login"); 
+
+    }
+  }
+});
+
+
+
 // =============== LOGIN/REGISTER =============== //
 
 const wrapper = document.querySelector('.wrapper');
@@ -78,7 +108,7 @@ document.addEventListener('click', function(event) {
 
 /* =============== NAV =============== */
 const navLinks = document.querySelectorAll('.navbar a');
-// const sections = document.querySelectorAll('section');
+const sections = document.querySelectorAll('section');
 const checkoutBtn = document.querySelector('#checkout-btn');
 const logoBtn = document.querySelector('#logo__btn');
 const homeLink = document.getElementById('#home__btn');
@@ -504,14 +534,14 @@ loginBtn.addEventListener('click', (event) => {
           localStorage.setItem('customer_state', data.customer_state);
           localStorage.setItem('customer_zipcode', data.customer_zipcode);
           
-          console.log(data.login_email)
-          console.log(data.customer_id)
-          console.log(data.customer_fullname)
-          console.log(data.customer_phone)
-          console.log(data.customer_address)
-          console.log(data.customer_city)
-          console.log(data.customer_state)
-          console.log(data.customer_zipcode)
+          // console.log(data.login_email)
+          // console.log(data.customer_id)
+          // console.log(data.customer_fullname)
+          // console.log(data.customer_phone)
+          // console.log(data.customer_address)
+          // console.log(data.customer_city)
+          // console.log(data.customer_state)
+          // console.log(data.customer_zipcode)
 
           Swal.fire({
             position: 'center',
@@ -581,7 +611,7 @@ cityNameSpan.innerHTML = customerCity;
 countrySpan.innerHTML = customerState;
 zipCodeSpan.innerHTML = customerZipcode;
 
-console.log(customerEmail);
+
 
 /* =============== log out =============== */
 
@@ -591,9 +621,15 @@ logoutBtn.addEventListener('click', (event) => {
   event.preventDefault(); // prevent default link behavior
   
   // clear localStorage values
-  localStorage.removeItem('login_username');
+  localStorage.removeItem('login_email');
   localStorage.removeItem('customer_id');
   localStorage.removeItem('customer_fullname');
+  localStorage.removeItem('customer_phone');
+  localStorage.removeItem('customer_address');
+  localStorage.removeItem('customer_city');
+  localStorage.removeItem('customer_state');
+  localStorage.removeItem('customer_zipcode');
+  
   
   location.reload();
 });
