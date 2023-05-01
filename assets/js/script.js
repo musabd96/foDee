@@ -524,6 +524,8 @@ loginBtn.addEventListener('click', (event) => {
       response.json().then(data => {
         if (data.isLoggedIn) {
 
+          
+
           //save to localstorage to get data 
           localStorage.setItem('login_email', data.login_email);
           localStorage.setItem('customer_id', data.customer_id);
@@ -542,23 +544,51 @@ loginBtn.addEventListener('click', (event) => {
           // console.log(data.customer_city)
           // console.log(data.customer_state)
           // console.log(data.customer_zipcode)
+          // Check if user is logging in for the first time
+          if (data.isFirstLogin) {
+            console.log('First login');
+            
+            Swal.fire({
+              position: 'center',
+              icon: 'success',
+              title: 'Welcome to FoDee ',
+              text: 'You are logging in for the first time. Please update your profile.',
+              showConfirmButton: false,
+              timer: 3000,
+              customClass: {
+                container: 'swal-container',
+                popup: 'swal-popup',
+                title: 'swal-title',
+                content: 'swal-text'
+              }
+            })
+            setTimeout(function() {
+              window.location.href ='/#account';
+            }, 3000);
+            console.log('welcome to fodee')
 
-          Swal.fire({
-            position: 'center',
-            icon: 'success',
-            title: 'Login successful',
-            showConfirmButton: false,
-            timer: 3000,
-            customClass: {
-              container: 'swal-container',
-              popup: 'swal-popup',
-              title: 'swal-title',
-              content: 'swal-text'
-            }
-          })
-          setTimeout(function() {
-            location.reload();
-          }, 3000);
+          } else{
+
+            Swal.fire({
+              position: 'center',
+              icon: 'success',
+              title: 'Login successful',
+              showConfirmButton: false,
+              timer: 3000,
+              customClass: {
+                container: 'swal-container',
+                popup: 'swal-popup',
+                title: 'swal-title',
+                content: 'swal-text'
+              }
+            })
+            setTimeout(function() {
+              location.reload();
+            }, 3000);
+            console.log('welcome back')
+            
+          }
+          
 
         } else {
           console.log('Invalid username or password');
@@ -702,23 +732,3 @@ function registerSuccessCallback(){
   document.querySelector('.wrapper').classList.toggle('register');
 }
 
-
-// Check if the URL contains "#account"
-if (window.location.hash === "#profile") {
-
-  // Check if the localStorage has all three items ("login_username", "customer_id", and "customer_fullname")
-  if (!(localStorage.getItem("login_username") && localStorage.getItem("customer_id") && localStorage.getItem("customer_fullname"))) {
-    console.log("User is not logged in. Redirecting to the login page...");
-    window.location.href = "/#home"; // Change this to the actual login page URL
-  } else if (sessionStorage.getItem("account_loaded")) {
-    console.log("User is already on the account page. Redirecting to the home page...");
-    window.location.href = "/#home"; // Change this to the actual home page URL
-  } else {
-    console.log("User is logged in. Showing the account section.");
-    // Remove the "hidden" class from the "account" section to show it
-    document.getElementById("account").classList.remove("hidden");
-    
-    // Set the sessionStorage flag to indicate that the account section has been loaded
-    sessionStorage.setItem("account_loaded", true);
-  }
-}

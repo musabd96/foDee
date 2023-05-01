@@ -93,8 +93,8 @@ app.post('/register', encoder, function(req, res){
         if (error) throw error;
         conn.query('INSERT INTO fodee.customer (login_login_email) VALUES (?)', [email, password], function(error, loginResults, fields){
           if (error) throw error;
-
-          res.json({ isRegistered: true });
+          var isNewUser = true;
+          res.json({ isRegistered: true, isNewUser: isNewUser  });
           console.log('Registration successful');
         });
           
