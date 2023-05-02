@@ -534,7 +534,7 @@ loginBtn.addEventListener('click', (event) => {
           localStorage.setItem('customer_phone', data.customer_phone);
           localStorage.setItem('customer_address', data.customer_address);
           localStorage.setItem('customer_city', data.customer_city);
-          localStorage.setItem('customer_state', data.customer_state);
+          localStorage.setItem('customer_country', data.customer_country);
           localStorage.setItem('customer_zipcode', data.customer_zipcode);
           console.log('data.customer_fullname: ', data.customer_fullname )
           // Check if user is logging in for the first time
@@ -621,7 +621,7 @@ var customerFullname = localStorage.getItem('customer_fullname');
 var customerPhone = localStorage.getItem('customer_phone');
 var customerAddress = localStorage.getItem('customer_address');
 var customerCity = localStorage.getItem('customer_city');
-var customerState = localStorage.getItem('customer_state');
+var customerState = localStorage.getItem('customer_country');
 var customerZipcode = localStorage.getItem('customer_zipcode');
 
 
@@ -686,7 +686,7 @@ logoutBtn.addEventListener('click', (event) => {
   localStorage.removeItem('customer_phone');
   localStorage.removeItem('customer_address');
   localStorage.removeItem('customer_city');
-  localStorage.removeItem('customer_state');
+  localStorage.removeItem('customer_country');
   localStorage.removeItem('customer_zipcode');
   
   window.location.href = '/#home';

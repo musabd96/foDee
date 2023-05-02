@@ -56,7 +56,7 @@ app.post('/', encoder, function(req, res){
                       customer_phone: customerInfo.customer_phone,
                       customer_address: customerInfo.customer_address,
                       customer_city: customerInfo.customer_city,
-                      customer_state: customerInfo.customer_state,
+                      customer_country: customerInfo.customer_country,
                       customer_zipcode: customerInfo.customer_zipcode
                     });
         } else{

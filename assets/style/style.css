@@ -968,6 +968,10 @@ select {
     margin-right: 3rem;
 }
 
+.account .container .personal-data__details .edit__form .buttons #cancel:hover,
+.account .container .address__details .edit__form .buttons #cancel:hover{
+    background: var(--red);
+}
 
 
 
