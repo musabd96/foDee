@@ -763,37 +763,36 @@ function registerSuccessCallback(){
 
 
 /* =============== EDIT ACCOUNT =============== */
-
-function showEditForm() {
-  var editForm = document.querySelector('.edit__form');
-  editForm.style.display = 'block';
-
-  var personalDataInfo = document.querySelector('.personal-data__info');
-  personalDataInfo.style.display = 'none';
-
-  var fullnameInput = document.querySelector('#fullname-input');
-  fullnameInput.value = document.querySelector('#customer_fullname').innerHTML;
-
-  var phoneInput = document.querySelector('#phone-input');
-  phoneInput.value = document.querySelector('#number').innerHTML;
-}
-
-function hideEditForm() {
-  var editForm = document.querySelector('.edit__form');
-  editForm.style.display = 'none';
-
-  var personalDataInfo = document.querySelector('.personal-data__info');
-  personalDataInfo.style.display = 'block';
-}
-
-function saveChanges() {
-  var fullnameInput = document.querySelector('#fullname-input');
-  var newFullName = fullnameInput.value;
-  document.querySelector('#customer_fullname').innerHTML = newFullName;
-
-  var phoneInput = document.querySelector('#phone-input');
-  var newPhoneNumber = phoneInput.value;
-  document.querySelector('#number').innerHTML = newPhoneNumber;
-
-  hideEditForm();
-}
+ // Get all the "edit" buttons
+ const editButtons = document.querySelectorAll('.edit_personal-data, .edit__address');
+    
+ // Add a click event listener to each "edit" button
+ editButtons.forEach(editButton => {
+     editButton.addEventListener('click', () => {
+         // Get the corresponding edit form and info section
+         const editForm = editButton.parentNode.parentNode.querySelector('.edit__form');
+         const infoSection = editButton.parentNode.parentNode.querySelector('.personal-data__info, .address__info');
+         
+         // Remove the "hidden" class from the edit form and hide the info section
+         editForm.classList.remove('hidden');
+         infoSection.classList.add('hidden');
+         
+         // Get the "Save" and "Cancel" buttons
+         const saveButton = editForm.querySelector('.btn:nth-of-type(1)');
+         const cancelButton = editForm.querySelector('.btn:nth-of-type(2)');
+         
+         // Add a click event listener to the "Save" button
+         saveButton.addEventListener('click', () => {
+             // Add the "hidden" class back to the edit form and show the info section
+             editForm.classList.add('hidden');
+             infoSection.classList.remove('hidden');
+         });
+         
+         // Add a click event listener to the "Cancel" button
+         cancelButton.addEventListener('click', () => {
+             // Add the "hidden" class back to the edit form and show the info section
+             editForm.classList.add('hidden');
+             infoSection.classList.remove('hidden');
+         });
+     });
+ });

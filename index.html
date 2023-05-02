@@ -409,7 +409,7 @@
                     <div class="account__edit">
                 
                         <div class="account__text">account</div>
-                        <div class="edit">edit</div>
+                        <div class="edit__account">edit</div>
                     </div>
 
                     <div class="account__info">
@@ -425,7 +425,7 @@
                     <div class="personal-data__edit">
                 
                         <div class="personal-data__text">Personal data</div>
-                        <div class="edit__personal-data" onclick="showEditForm()">edit</div>
+                        <div class="edit_personal-data" >edit</div>
                     </div>
 
                     <div class="personal-data__info">
@@ -434,15 +434,17 @@
                         <span class="phone__number" >phone number</span>
                         <span class="number" id="number"></span>
                     </div>
-                    <div class="edit__form" style="display: none;">
-                        <span for="fullname-input">Full Name:</span>
-                        <input type="text" id="fullname-input">
+                    <div class="edit__form hidden" >
+                        <div for="fullname__input">Full Name</div>
+                        <input type="text" id="fullname__input">
                     
-                        <span for="phone-input">Phone Number:</span>
-                        <input type="text" id="phone-input">
-                    
-                        <button onclick="saveChanges()">Save</button>
-                        <button onclick="hideEditForm()">Cancel</button>
+                        <div for="phone__input">Phone Number</div>
+                        <input type="text" id="phone__input">
+                        
+                        <div class="buttons">
+                            <button class="btn">Save</button>
+                            <button class="btn">Cancel</button>
+                        </div>
                     </div>
 
                 </div>
@@ -451,28 +453,47 @@
                     <div class="address__edit">
                 
                         <div class="address__text">Address</div>
-                        <div class="edit" onclick="showEditForm()">edit</div>
+                        <div class="edit__address">edit</div>
                     </div>
 
                     <div class="address__info">
-                        <span class="street">Street address</span>
-                        <span class="street__address" id="street__address"></span>
-                        <span class="city">city</span>
-                        <span class="cityname" id="city__name"></span>
-                        <span class="country">country</span>
-                        <span class="state" id="state"></span>
-                        <span class="zip__code">zip code</span>
-                        <span class="zipCode" id="zipCode"></span>
+                        <div class="street">Street address</div>
+                        <div class="street__address" id="street__address"></div>
+                        <div class="city">city</div>
+                        <div class="cityname" id="city__name"></div>
+                        <div class="country">country</div>
+                        <div class="state" id="state"></div>
+                        <div class="zip__code">zip code</div>
+                        <div class="zipCode" id="zipCode"></div>
                     </div>
-                    <div class="edit__form" style="display: none;">
-                        <span for="fullname-input">Full Name:</span>
-                        <input type="text" id="fullname-input">
+                    <div class="edit__form hidden">
+                        <div for="city__name">Street address</div>
+                        <input type="text" id="address__input">
                     
-                        <span for="phone-input">Phone Number:</span>
-                        <input type="text" id="phone-input">
+                        <div for="city__input">city</div>
+                        <input type="text" id="city__input">
                     
-                        <button onclick="saveChanges()">Save</button>
-                        <button onclick="hideEditForm()">Cancel</button>
+                        <div for="country__input">country</div>
+                        <input type="text" id="country__input">
+                    
+                        <div class="flex">
+                            <div class="country">
+                                <div for="phone-input">country</div>
+                                <select name="countries" id="countries" placeholder="countries"></select>
+                            </div>
+                            
+                            <div class="zipcode">
+
+                                
+                                <div for="zip__code">zip code</div>
+                                <input type="text" id="zip__code">
+                            </div>
+                        </div>
+                    
+                        <div class="buttons">
+                            <button class="btn">Save</button>
+                            <button class="btn">Cancel</button>
+                        </div>
                     </div>
 
                 </div>
