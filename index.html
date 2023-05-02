@@ -425,7 +425,7 @@
                     <div class="personal-data__edit">
                 
                         <div class="personal-data__text">Personal data</div>
-                        <div class="edit" onclick="showEditForm()">edit</div>
+                        <div class="edit__personal-data" onclick="showEditForm()">edit</div>
                     </div>
 
                     <div class="personal-data__info">
@@ -434,11 +434,11 @@
                         <span class="phone__number" >phone number</span>
                         <span class="number" id="number"></span>
                     </div>
-                    <div class="edit-form" style="display: none;">
-                        <label for="fullname-input">Full Name:</label>
+                    <div class="edit__form" style="display: none;">
+                        <span for="fullname-input">Full Name:</span>
                         <input type="text" id="fullname-input">
                     
-                        <label for="phone-input">Phone Number:</label>
+                        <span for="phone-input">Phone Number:</span>
                         <input type="text" id="phone-input">
                     
                         <button onclick="saveChanges()">Save</button>
@@ -451,7 +451,7 @@
                     <div class="address__edit">
                 
                         <div class="address__text">Address</div>
-                        <div class="edit">edit</div>
+                        <div class="edit" onclick="showEditForm()">edit</div>
                     </div>
 
                     <div class="address__info">
@@ -463,6 +463,16 @@
                         <span class="state" id="state"></span>
                         <span class="zip__code">zip code</span>
                         <span class="zipCode" id="zipCode"></span>
+                    </div>
+                    <div class="edit__form" style="display: none;">
+                        <span for="fullname-input">Full Name:</span>
+                        <input type="text" id="fullname-input">
+                    
+                        <span for="phone-input">Phone Number:</span>
+                        <input type="text" id="phone-input">
+                    
+                        <button onclick="saveChanges()">Save</button>
+                        <button onclick="hideEditForm()">Cancel</button>
                     </div>
 
                 </div>

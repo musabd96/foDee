@@ -765,7 +765,7 @@ function registerSuccessCallback(){
 /* =============== EDIT ACCOUNT =============== */
 
 function showEditForm() {
-  var editForm = document.querySelector('.edit-form');
+  var editForm = document.querySelector('.edit__form');
   editForm.style.display = 'block';
 
   var personalDataInfo = document.querySelector('.personal-data__info');
@@ -779,7 +779,7 @@ function showEditForm() {
 }
 
 function hideEditForm() {
-  var editForm = document.querySelector('.edit-form');
+  var editForm = document.querySelector('.edit__form');
   editForm.style.display = 'none';
 
   var personalDataInfo = document.querySelector('.personal-data__info');
