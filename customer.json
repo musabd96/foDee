@@ -3,11 +3,11 @@
     "customer_id": "1",
     "customer_email": "nageyem@gmail.com",
     "customer_fullname": "mus",
-    "customer_phone": "777",
-    "customer_address": "torget",
+    "customer_phone": "1234",
+    "customer_address": "torget 1b",
     "customer_city": "angered",
-    "customer_country": "Sweden",
-    "customer_zipcode": "12345"
+    "customer_country": "Portugal",
+    "customer_zipcode": "11"
   },
   {
     "customer_id": "2",

@@ -823,41 +823,95 @@ function registerSuccessCallback(){
 
 
 /* =============== EDIT ACCOUNT =============== */
- // Get all the "edit" buttons
- const editButtons = document.querySelectorAll('.edit_personal-data, .edit__address');
+// Get all the "edit" buttons
+const editPersonalData = document.querySelectorAll('.edit_personal-data');
 
- // Add a click event listener to each "edit" button
- editButtons.forEach(editButton => {
-     editButton.addEventListener('click', () => {
-         // Get the corresponding edit form and info section
-         const editForm = editButton.parentNode.parentNode.querySelector('.edit__form');
-         const infoSection = editButton.parentNode.parentNode.querySelector('.personal-data__info, .address__info');
 
-         // Remove the "hidden" class from the edit form and hide the info section
-         editForm.classList.remove('hidden');
-         infoSection.classList.add('hidden');
 
-         // Get the "Save" and "Cancel" buttons
-         const saveButton = editForm.querySelector('.btn:nth-of-type(1)');
-         const cancelButton = editForm.querySelector('.btn:nth-of-type(2)');
+editPersonalData.forEach(editButton => {
+  editButton.addEventListener('click', () => {
+    
+    const editForm = editButton.parentNode.parentNode.querySelector('.edit__form');
+    const personalData = editButton.parentNode.parentNode.querySelector('.personal-data__info');
 
-         // Add a click event listener to the "Save" button
-         saveButton.addEventListener('click', () => {
-             // Add the "hidden" class back to the edit form and show the info section
-             editForm.classList.add('hidden');
-             infoSection.classList.remove('hidden');
-         });
+    
+    editForm.classList.remove('hidden');
+    personalData.classList.add('hidden');
 
-         // Add a click event listener to the "Cancel" button
-         cancelButton.addEventListener('click', () => {
-             // Add the "hidden" class back to the edit form and show the info section
-             editForm.classList.add('hidden');
-             infoSection.classList.remove('hidden');
-         });
-     });
+    
+    const fullNameInput = editForm.querySelector('#fullname__input');
+    const phoneNumberInput = editForm.querySelector('#phone__input');
+
+    fullNameInput.value = personalData.querySelector('.name').textContent;
+    phoneNumberInput.value = personalData.querySelector('.number').textContent;
+
+    console.log(fullNameInput.value)
+    
+    const saveButton = editForm.querySelector('.btn:nth-of-type(1)');
+    const cancelButton = editForm.querySelector('.btn:nth-of-type(2)');
+
+    
+    saveButton.addEventListener('click', () => {
+      
+        editForm.classList.add('hidden');
+        personalData.classList.remove('hidden');
+    });
+
+    
+    cancelButton.addEventListener('click', () => {
+      
+        editForm.classList.add('hidden');
+        personalData.classList.remove('hidden');
+    });
+  });
 });
 
 
+const editAddress = document.querySelectorAll('.edit__address');
+
+
+editAddress.forEach(editButton => {
+  editButton.addEventListener('click', () => {
+    
+    const editForm = editButton.parentNode.parentNode.querySelector('.edit__form');
+    const addressInfo = editButton.parentNode.parentNode.querySelector('.address__info');
+
+    
+    editForm.classList.remove('hidden');
+    addressInfo.classList.add('hidden');
+
+    const addressInput = editForm.querySelector('#address__input');
+    const cityInput = editForm.querySelector('#city__input');
+    const stateInput = editForm.querySelector('#countries');
+    const stateElement = addressInfo.querySelector('.state');
+    const zipCodeInput = editForm.querySelector('#zip__code');
+
+    
+    addressInput.value = addressInfo.querySelector('.street__address').textContent;
+    cityInput.value = addressInfo.querySelector('.cityname').textContent;
+    stateInput.value = stateElement.innerText;
+    zipCodeInput.value = addressInfo.querySelector('.zipCode').textContent;
+    
+    console.log(stateInput.value)
+    
+    const saveButton = editForm.querySelector('.btn:nth-of-type(1)');
+    const cancelButton = editForm.querySelector('.btn:nth-of-type(2)');
+
+    
+    saveButton.addEventListener('click', () => {
+      
+        editForm.classList.add('hidden');
+        personalData.classList.remove('hidden');
+    });
+
+    
+    cancelButton.addEventListener('click', () => {
+      
+        editForm.classList.add('hidden');
+        addressInfo.classList.remove('hidden');
+    });
+  });
+});
 
 /* =============== SAVE EDIT ACCOUNT =============== */
 
