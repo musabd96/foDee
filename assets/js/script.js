@@ -694,64 +694,6 @@ logoutBtn.addEventListener('click', (event) => {
 
 
 const registerForm = document.querySelector('.register form');
-// registerForm.addEventListener('submit', (event) => {
-// // //   event.preventDefault(); // prevent the default form submission
-
-// // //   const email = registerForm.querySelector('input[name="email"]').value;
-// // //   const password = registerForm.querySelector('input[name="password"]').value;
-
-// // //   fetch('/register', {
-// // //     method: 'POST',
-// // //     headers: {
-// // //       'Content-Type': 'application/x-www-form-urlencoded'
-// // //     },
-// // //     body: new URLSearchParams({
-// // //       email: email,
-// // //       password: password
-// // //     })
-// // //   })
-// // //   .then(response => {
-// // //     if (response.ok) {
-// // //       response.json().then(data => {
-// // //         if (data.isRegistered) {
-// // //           console.log('Registration successful');
-// // //           Swal.fire({
-// // //             position: 'center',
-// // //             icon: 'success',
-// // //             title: 'Registration successful',
-// // //             showConfirmButton: false,
-// // //             timer: 3000,
-// // //             customClass: {
-// // //               container: 'swal-container',
-// // //               popup: 'swal-popup',
-// // //               title: 'swal-title',
-// // //               content: 'swal-text'
-// // //             }
-// // //           })
-// // //           setTimeout(function() {
-// // //             registerSuccessCallback();
-// // //           }, 3000);
-// // //         } else {
-// // //           console.log('Registration failed:', data.message);
-// // //           Swal.fire({
-// // //             position: 'center',
-// // //             icon: 'error',
-// // //             title: 'Registration failed',
-// // //             text: data.message,
-// // //             showConfirmButton: false,
-// // //             timer: 2000
-// // //           })
-
-// // //         }
-// // //       });
-// // //     } else {
-// // //       console.log('Error:', response.status);
-// // //     }
-// // //   })
-// // //   .catch(error => console.error(error));
-// // // });
-// });
-
 
 registerForm.addEventListener('submit', (event) => {
   event.preventDefault(); // prevent the default form submission
@@ -913,23 +855,78 @@ function registerSuccessCallback(){
              infoSection.classList.remove('hidden');
          });
      });
- });
+});
 
 
 
- /* =============== SAVE EDIT ACCOUNT =============== */
+/* =============== SAVE EDIT ACCOUNT =============== */
 
-const saveEdit = document.getElementById('save');
 
-saveEdit.addEventListener('click', (event) =>{
+const savePersonalDataEdit = document.getElementById("save__personal-data-edit");
+
+savePersonalDataEdit.addEventListener('click', (event) =>{
   event.preventDefault();
-
+  console.log('save__personal')
   const email = customerEmail;
   const fullName = document.getElementById("fullname__input").value;
   const phone = document.getElementById("phone__input").value;
+
+  fetch('/saveEdit', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/x-www-form-urlencoded'
+    },
+    body: new URLSearchParams({
+      email: email,
+      fullName: fullName,
+      phone: phone
+    })
+  })
+  .then(response => {
+    if(response.ok) {
+      response.json().then(data => {
+        if(data.isSaved){
+
+          localStorage.setItem('customer_fullname', data.customer_fullname);
+          localStorage.setItem('customer_phone', data.customer_phone);
+
+          console.log('data.customer_fullname: ', data.customer_fullname )
+
+          console.log('saved register successfull');
+          Swal.fire({
+            position: 'center',
+            icon: 'success',
+            title: 'account edit is successful',
+            showConfirmButton: false,
+            timer: 3000,
+            customClass: {
+              container: 'swal-container',
+              popup: 'swal-popup',
+              title: 'swal-title',
+              content: 'swal-text'
+            }
+          })
+          location.reload();
+          // window.location.href = '/#account';
+        }
+      });
+    }else {
+      console.log('Error:', response.status);
+    }
+  })
+  .catch(error => console.error(error));
+})
+
+
+const saveAddressEdit = document.getElementById("save__address-edit");
+
+saveAddressEdit.addEventListener('click', (event) =>{
+  event.preventDefault();
+  console.log('save__address')
+  const email = customerEmail;
   const address = document.getElementById("address__input").value;
   const city = document.getElementById("city__input").value;
-  const country = document.getElementById("country__input").value;
+  const country = document.getElementById("countries").value;
   const zipCode = document.getElementById("zip__code").value;
 
   console.log(address)
@@ -941,8 +938,6 @@ saveEdit.addEventListener('click', (event) =>{
     },
     body: new URLSearchParams({
       email: email,
-      fullName: fullName,
-      phone: phone,
       address: address,
       city: city,
       country: country,
@@ -953,14 +948,13 @@ saveEdit.addEventListener('click', (event) =>{
     if(response.ok) {
       response.json().then(data => {
         if(data.isSaved){
-
-          localStorage.setItem('customer_fullname', data.customer_fullname);
-          localStorage.setItem('customer_phone', data.customer_phone);
+          
           localStorage.setItem('customer_address', data.customer_address);
           localStorage.setItem('customer_city', data.customer_city);
           localStorage.setItem('customer_country', data.customer_country);
           localStorage.setItem('customer_zipcode', data.customer_zipcode);
-          console.log('data.customer_fullname: ', data.customer_fullname )
+
+          console.log('data.customer_address: ', data.customer_address )
 
           console.log('saved register successfull');
           Swal.fire({

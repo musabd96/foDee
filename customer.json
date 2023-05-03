@@ -2,20 +2,20 @@
   {
     "customer_id": "1",
     "customer_email": "nageyem@gmail.com",
-    "customer_fullname": "mmm",
-    "customer_phone": "",
-    "customer_address": "",
-    "customer_city": "",
-    "customer_country": "",
-    "customer_zipcode": ""
+    "customer_fullname": "mus",
+    "customer_phone": "777",
+    "customer_address": "torget",
+    "customer_city": "angered",
+    "customer_country": "Sweden",
+    "customer_zipcode": "12345"
   },
   {
     "customer_id": "2",
     "customer_email": "faynageye@gmail.com",
     "customer_fullname": "mustafa",
     "customer_phone": "0712345678",
-    "customer_address": "",
-    "customer_city": "",
+    "customer_address": "torget",
+    "customer_city": "angered",
     "customer_country": "",
     "customer_zipcode": ""
   }
