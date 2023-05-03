@@ -901,7 +901,8 @@ editAddress.forEach(editButton => {
     saveButton.addEventListener('click', () => {
       
         editForm.classList.add('hidden');
-        personalData.classList.remove('hidden');
+        addressInfo.classList.remove('hidden');
+        
     });
 
     
