@@ -1,7 +1,7 @@
 window.onload = function() {
   if(window.location.href !== 'http://localhost:4000/#account'){
 
-    window.location.href = "#home";
+    window.location.href = "#cart";
   }
 
 };

@@ -240,9 +240,12 @@
         <section class="cart " id="cart">
             <h1 class="heading">checkout <span> Cart</span></h1>
             <div class="container">
-                <div class="cart__list">
-                
-                    <div class="cart__item">
+                <div class="cart__list ">
+                    <div class="cart__edit hidden">
+                        <div class="cart__text">cart</div>
+                        <div class="edit__cart">edit</div>
+                    </div>
+                    <div class="cart__item hidden">
                         <img src="/img/hambugar.png" alt="">
                         <div class="details">
                             <h3>
@@ -271,16 +274,21 @@
                     </div>
                     
                     
-                    <div class="total">
+                    <div class="total hidden">
                         <div class="total__title">total: </div> 
                         <div class="total__price">$0.00 </div>
                     </div>
                     <input type="submit" value="continue to address and payment" class="btn" id="payment__btn">
                 </div>  
                 
-                <div class="payment hidden">
+                <div class="payment ">
+                    
                     <form action="">
-                        <div class="row">
+                        <div class="payment__edit hidden">
+                            <div class="payment__text">payment</div>
+                            <div class="edit__paymen">edit</div>
+                        </div>
+                        <div class="row hidden">
                             <div class="col">
                                 <h3 class="title">payment</h3>
                                
