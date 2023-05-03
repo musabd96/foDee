@@ -19,12 +19,10 @@ window.addEventListener('hashchange', function() {
   if (newUrl === 'http://localhost:4000/#account') {
     console.log(customerEmail);
     if(customerEmail !== null){
-      console.log('email ok')
       accountSection.classList.remove('blocked');
       loginSection.classList.remove("must_login");
       accountSection
     }else{
-      console.log('email not ok')
       accountSection.classList.add('blocked');
       loginSection.classList.add("must_login");
 
@@ -239,7 +237,8 @@ navLinks.forEach(link => {
 
 
 
-/* =============== BILLING =============== */
+/* =============== PAYMENT =============== */
+
 
 /* =============== Country opstion =============== */
 document.addEventListener('DOMContentLoaded', () => {
@@ -262,84 +261,6 @@ document.addEventListener('DOMContentLoaded', () => {
       console.log(err);
     });
 });
-
-
-const home = document.querySelector('.home');
-const cart = document.querySelector('.cart');
-const cartList = document.querySelector('.cart__list');
-const billing = document.querySelector('.billing');
-const payment = document.querySelector('.payment');
-
-document.querySelector('#billing__btn').onclick = () => {
-  cartList.classList.toggle('hidden');
-  billing.classList.remove('hidden');
-};
-
-const billingForm = document.querySelector('.billing form');
-const billingInputs = billingForm.querySelectorAll('input');
-const errorIcons = billingForm.querySelectorAll('.error-icon');
-const inputBox= billingForm.querySelectorAll('.inputbox input');
-
-function validateInputs() {
-  let valid = true;
-  billingInputs.forEach((input, index) => {
-    if (!input.value) {
-      errorIcons[index].classList.add('error__icon');
-      inputBox[index].classList.add('error');
-      valid = false;
-    }
-  });
-  return valid;
-}
-
-document.querySelector('#payment__btn').onclick = () => {
-  if (validateInputs()) {
-    billing.classList.add('hidden');
-    payment.classList.remove('hidden');
-  }
-};
-
-const paymentForm = document.querySelector('.payment form');
-const paymentInputs = paymentForm.querySelectorAll('input');
-const paymentErrorIcons = paymentForm.querySelectorAll('.error-icon');
-const paymentInputBox = paymentForm.querySelectorAll('.inputbox input');
-
-
-function validatePaymentInputs() {
-  let valid = true;
-  paymentInputs.forEach((input, index) => {
-    if (!input.value) {
-      paymentErrorIcons[index].classList.add('error__icon');
-      paymentInputBox[index].classList.add('error');
-      valid = false;
-    }
-  });
-  return valid;
-}
-
-document.querySelector('#buy__btn').onclick = () => {
-  if (validatePaymentInputs()) {
-    // cart to order
-    showLoading();
-  }
-};
-
-billingInputs.forEach((input, index) => {
-  input.oninput = () => {
-    errorIcons[index].classList.remove('error__icon');
-    inputBox[index].classList.remove('error');
-  };
-});
-
-paymentInputs.forEach((input, index) => {
-  input.oninput = () => {
-    paymentErrorIcons[index].classList.remove('error__icon');
-    paymentInputBox[index].classList.remove('error');
-  };
-});
-
-
-
 
 /* =============== SWAL ALERTS =============== */
 
@@ -845,7 +766,7 @@ editPersonalData.forEach(editButton => {
     fullNameInput.value = personalData.querySelector('.name').textContent;
     phoneNumberInput.value = personalData.querySelector('.number').textContent;
 
-    console.log(fullNameInput.value)
+    
     
     const saveButton = editForm.querySelector('.btn:nth-of-type(1)');
     const cancelButton = editForm.querySelector('.btn:nth-of-type(2)');
@@ -892,7 +813,7 @@ editAddress.forEach(editButton => {
     stateInput.value = stateElement.innerText;
     zipCodeInput.value = addressInfo.querySelector('.zipCode').textContent;
     
-    console.log(stateInput.value)
+    
     
     const saveButton = editForm.querySelector('.btn:nth-of-type(1)');
     const cancelButton = editForm.querySelector('.btn:nth-of-type(2)');
