@@ -3,7 +3,7 @@ window.onload = function() {
 
     window.location.href = "#home";
   }
-  
+
 };
 
 // Get the initial URL
@@ -13,7 +13,7 @@ var currentUrl = window.location.href;
 window.addEventListener('hashchange', function() {
   var newUrl = window.location.href;
   // const customerEmail = localStorage.getItem('login_email');
-  const loginSection = document.querySelector(".login-register"); 
+  const loginSection = document.querySelector(".login-register");
   const accountSection = document.querySelector('.account');
   // If the URL has changed, block the section
   if (newUrl === 'http://localhost:4000/#account') {
@@ -21,16 +21,16 @@ window.addEventListener('hashchange', function() {
     if(customerEmail !== null){
       console.log('email ok')
       accountSection.classList.remove('blocked');
-      loginSection.classList.remove("must_login"); 
+      loginSection.classList.remove("must_login");
       accountSection
     }else{
       console.log('email not ok')
       accountSection.classList.add('blocked');
-      loginSection.classList.add("must_login"); 
+      loginSection.classList.add("must_login");
 
     }
-  } 
- 
+  }
+
 });
 
 
@@ -44,7 +44,7 @@ const registerLink = document.querySelector('.registration__link');
 
 registerLink.addEventListener('click', () =>{
     wrapper.classList.add('register');
-    
+
 });
 
 loginLink.addEventListener('click', () =>{
@@ -74,7 +74,7 @@ document.querySelector('#cart-btn').onclick = () => {
 document.addEventListener('click', function(event) {
   const isClickInsidePopup = cartPopup.contains(event.target);
   const isClickInsideBtn = cartBtn.contains(event.target);
-  
+
   if (!isClickInsidePopup && !isClickInsideBtn) {
     cartPopup.classList.add('hidden');
     cartBtn.style.color = '';
@@ -103,7 +103,7 @@ document.querySelector('#menu-btn').onclick = () => {
 document.addEventListener('click', function(event) {
   const isClickInsideMenu = navBar.contains(event.target);
   const isClickInsideBtn = menuBtn.contains(event.target);
-  
+
   if (!isClickInsideMenu && !isClickInsideBtn) {
     navBar.classList.remove('active');
     menuBtn.style.color = '';
@@ -124,7 +124,7 @@ logoBtn.addEventListener('click', function() {
   // Show the home section and hide all other sections
   const homeSection = document.querySelector(this.hash);
   homeSection.classList.remove('hidden');
-  
+
   sections.forEach(section => {
     if (section !== homeSection) {
       section.classList.add('hidden');
@@ -137,7 +137,7 @@ logoBtn.addEventListener('click', function() {
     if (link !== logoBtn) {
       link.classList.remove('active');
       link.style.color = '';
-      
+
     }
   });
   logoBtn.classList.add('active');
@@ -198,7 +198,7 @@ navLinks.forEach(link => {
         cartBtn.style.display = ''
       }
     });
-    
+
     // Highlight the clicked link
     navLinks.forEach(otherLink => {
       if (otherLink !== this) {
@@ -209,7 +209,7 @@ navLinks.forEach(link => {
     this.classList.add('active');
     this.style.color = '#3B8419';
   });
-  
+
   // Add event listener to Checkout button
   checkoutBtn.addEventListener('click', function() {
     // Show the cart section and hide all other sections
@@ -223,7 +223,7 @@ navLinks.forEach(link => {
         cartBtn.style.display = 'none'
       }
     });
-    
+
     // Highlight the Checkout button
     navLinks.forEach(link => {
       if (link !== checkoutBtn) {
@@ -287,15 +287,15 @@ function validateInputs() {
       errorIcons[index].classList.add('error__icon');
       inputBox[index].classList.add('error');
       valid = false;
-    } 
+    }
   });
   return valid;
 }
 
 document.querySelector('#payment__btn').onclick = () => {
   if (validateInputs()) {
-    billing.classList.add('hidden'); 
-    payment.classList.remove('hidden'); 
+    billing.classList.add('hidden');
+    payment.classList.remove('hidden');
   }
 };
 
@@ -312,7 +312,7 @@ function validatePaymentInputs() {
       paymentErrorIcons[index].classList.add('error__icon');
       paymentInputBox[index].classList.add('error');
       valid = false;
-    } 
+    }
   });
   return valid;
 }
@@ -358,20 +358,20 @@ function showOrderReceivedAlert() {
   }).then((result) => {
     if (result.isConfirmed) {
       order.classList.remove('hidden');
-      
+
     } else {
-      
+
       home.classList.remove('hidden');
       homeLink.style.color = '#3B8419';
     }
   }).finally(() => {
-   
+
     cartBtn.style.display = '';
     payment.classList.add('hidden');
     cart.classList.add('hidden');
     cartList.classList.remove('hidden');
   });
-  
+
 }
 
 
@@ -431,7 +431,7 @@ function showSection(sectionId) {
   var section = document.getElementById(sectionId);
   if (section) {
     section.classList.remove('hidden');
-    
+
     // Update navigation links to show active section
     var navLinks = document.querySelectorAll('.navbar a');
     for (var i = 0; i < navLinks.length; i++) {
@@ -458,7 +458,7 @@ window.onhashchange = function() {
 
 /* =============== login =============== */
 
-//if the user already login or it not 
+//if the user already login or it not
 userBtn.addEventListener('click', () => {
   const customerFullname = localStorage.getItem('customer_fullname');
   const profileEl = document.querySelector('.profile');
@@ -487,7 +487,7 @@ const profileEl = document.querySelector('.profile');
 document.addEventListener('click', function(event) {
   const isClickInsidePopup = profileEl.contains(event.target);
   const isClickInsideBtn = userBtn.contains(event.target);
-  
+
   if (!isClickInsidePopup && !isClickInsideBtn) {
     profileEl.classList.add('hidden');
     userBtn.style.color = '';
@@ -546,7 +546,7 @@ loginBtn.addEventListener('click', (event) => {
                 content: 'swal-text'
               }
             });
-            
+
             // Redirect to account page after timeout
             setTimeout(function() {
               setTimeout(function() {
@@ -555,7 +555,7 @@ loginBtn.addEventListener('click', (event) => {
               window.location.href = '/#account';
             }, 1000);
           } else {
-            
+
             Swal.fire({
               position: 'center',
               icon: 'success',
@@ -671,7 +671,7 @@ const logoutBtn = document.getElementById('logout');
 
 logoutBtn.addEventListener('click', (event) => {
   event.preventDefault(); // prevent default link behavior
-  
+
   // clear localStorage values
   localStorage.removeItem('login_email');
   localStorage.removeItem('customer_id');
@@ -681,7 +681,7 @@ logoutBtn.addEventListener('click', (event) => {
   localStorage.removeItem('customer_city');
   localStorage.removeItem('customer_country');
   localStorage.removeItem('customer_zipcode');
-  
+
   window.location.href = '/#home';
   location.reload();
 });
@@ -758,29 +758,29 @@ function registerSuccessCallback(){
 /* =============== EDIT ACCOUNT =============== */
  // Get all the "edit" buttons
  const editButtons = document.querySelectorAll('.edit_personal-data, .edit__address');
-    
+
  // Add a click event listener to each "edit" button
  editButtons.forEach(editButton => {
      editButton.addEventListener('click', () => {
          // Get the corresponding edit form and info section
          const editForm = editButton.parentNode.parentNode.querySelector('.edit__form');
          const infoSection = editButton.parentNode.parentNode.querySelector('.personal-data__info, .address__info');
-         
+
          // Remove the "hidden" class from the edit form and hide the info section
          editForm.classList.remove('hidden');
          infoSection.classList.add('hidden');
-         
+
          // Get the "Save" and "Cancel" buttons
          const saveButton = editForm.querySelector('.btn:nth-of-type(1)');
          const cancelButton = editForm.querySelector('.btn:nth-of-type(2)');
-         
+
          // Add a click event listener to the "Save" button
          saveButton.addEventListener('click', () => {
              // Add the "hidden" class back to the edit form and show the info section
              editForm.classList.add('hidden');
              infoSection.classList.remove('hidden');
          });
-         
+
          // Add a click event listener to the "Cancel" button
          cancelButton.addEventListener('click', () => {
              // Add the "hidden" class back to the edit form and show the info section
@@ -798,7 +798,7 @@ const saveEdit = document.getElementById('save');
 
 saveEdit.addEventListener('click', (event) =>{
   event.preventDefault();
-  
+
   const email = customerEmail;
   const fullName = document.getElementById("fullname__input").value;
   const phone = document.getElementById("phone__input").value;
@@ -806,7 +806,7 @@ saveEdit.addEventListener('click', (event) =>{
   const city = document.getElementById("city__input").value;
   const country = document.getElementById("country__input").value;
   const zipCode = document.getElementById("zip__code").value;
-  console.log('email is : ', email)
+
   fetch('/saveEdit', {
     method: 'POST',
     headers: {
@@ -826,6 +826,15 @@ saveEdit.addEventListener('click', (event) =>{
     if(response.ok) {
       response.json().then(data => {
         if(data.isSaved){
+
+          localStorage.setItem('customer_fullname', data.customer_fullname);
+          localStorage.setItem('customer_phone', data.customer_phone);
+          localStorage.setItem('customer_address', data.customer_address);
+          localStorage.setItem('customer_city', data.customer_city);
+          localStorage.setItem('customer_country', data.customer_country);
+          localStorage.setItem('customer_zipcode', data.customer_zipcode);
+          console.log('data.customer_fullname: ', data.customer_fullname )
+
           console.log('saved register successfull');
           Swal.fire({
             position: 'center',
@@ -840,8 +849,8 @@ saveEdit.addEventListener('click', (event) =>{
               content: 'swal-text'
             }
           })
-          // location.reload();
-          window.location.href = '/#account';
+          location.reload();
+          // window.location.href = '/#account';
         }
       });
     }else {

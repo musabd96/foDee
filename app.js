@@ -89,7 +89,7 @@ app.post('/register', encoder, function(req, res){
       // Username doesn't exist, insert the new user into the database
       conn.query('INSERT INTO fodee.login (login_email, login_password) VALUES (?, ?)', [email, password], function(error, customerResults, fields){
         if (error) throw error;
-        conn.query('INSERT INTO fodee.customer (login_login_email) VALUES (?)', [email, password], function(error, loginResults, fields){
+        conn.query('INSERT INTO fodee.customer (login_login_email) VALUES (?)', [email], function(error, loginResults, fields){
           if (error) throw error;
           res.json({ isRegistered: true});
           console.log('Registration successful');
@@ -114,18 +114,23 @@ app.post('/saveEdit', encoder, function(req, res){
 
   console.log('email: ', email,  'and ',' name: ', fullName)
 
-  conn.query('UPDATE fodee.customer SET customer_fullName = ?, customer_phone = ?, customer_address = ?, customer_city = ?, customer_country = ?, customer_zipCode = ? WHERE login_login_email = ?', 
-            [fullName, phone, address, city, country, zipCode, email ], function(error, fields){
+  conn.query('UPDATE fodee.customer SET customer_fullName = ?, customer_phone = ?, customer_address = ?, customer_city = ?, customer_country = ?, customer_zipCode = ? WHERE login_login_email = ?', [fullName, phone, address, city, country, zipCode, email ], function(error, fields){
     if (error) throw error;
-    res.json({ isSaved: true});
-    console.log('data saved: ', 
-      fullName, 
-      phone, 
-      address, 
-      city, 
-      country, 
-      zipCode);
-    console.log('Registration successful');
+    conn.query('SELECT * FROM fodee.customer WHERE login_login_email = ?', [email], function(error,customerResults,fields){
+      if (error) throw error;
+      var customerInfo = customerResults[0];
+      console.log('customer info:', customerInfo)
+      res.json({ isSaved: true,
+        customer_fullname: customerInfo.customer_fullname,
+        customer_phone: customerInfo.customer_phone,
+        customer_address: customerInfo.customer_address,
+        customer_city: customerInfo.customer_city,
+        customer_country: customerInfo.customer_country,
+        customer_zipcode: customerInfo.customer_zipcode
+      });
+      
+      console.log('changes have been saved');
+    });
   }); 
 })
 
