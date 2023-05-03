@@ -59,16 +59,16 @@ app.post('/', encoder, function(req, res){
           }
           console.log('login success')
           res.json({ isLoggedIn: true, 
-                      
-                      customer_email: customerInfo.customer_email,
-                      customer_id: customerInfo.customer_id,
-                      customer_fullname: customerInfo.customer_fullname,
-                      customer_phone: customerInfo.customer_phone,
-                      customer_address: customerInfo.customer_address,
-                      customer_city: customerInfo.customer_city,
-                      customer_country: customerInfo.customer_country,
-                      customer_zipcode: customerInfo.customer_zipcode
-                    });
+                                
+            customer_id: customerInfo.customer_id,
+            customer_email: customerInfo.customer_email,
+            customer_fullname: customerInfo.customer_fullname,
+            customer_phone: customerInfo.customer_phone,
+            customer_address: customerInfo.customer_address,
+            customer_city: customerInfo.customer_city,
+            customer_country: customerInfo.customer_country,
+            customer_zipcode: customerInfo.customer_zipcode
+          });
         } else{
           res.json({ isLoggedIn: false });
         }
@@ -184,7 +184,21 @@ app.post('/saveEdit', encoder, function(req, res){
         res.json({ isSaved: false, message: 'Error saving customer data' });
         return;
       }
-      res.json({ isSaved: true });
+      // Read the updated customer data from the file
+      const updatedRawData = fs.readFileSync('customer.json');
+      const updatedCustomerData = JSON.parse(updatedRawData);
+      const updatedCustomer = updatedCustomerData.find(c => c.customer_email === email);
+
+      res.json({ isSaved: true, 
+        
+        customer_email: updatedCustomer.customer_email,
+        customer_fullname: updatedCustomer.customer_fullname,
+        customer_phone: updatedCustomer.customer_phone,
+        customer_address: updatedCustomer.customer_address,
+        customer_city: updatedCustomer.customer_city,
+        customer_country: updatedCustomer.customer_country,
+        customer_zipcode: updatedCustomer.customer_zipcode
+      });
       console.log('Update successful');
     });
   } else {
