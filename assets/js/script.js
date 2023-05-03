@@ -807,6 +807,8 @@ saveEdit.addEventListener('click', (event) =>{
   const country = document.getElementById("country__input").value;
   const zipCode = document.getElementById("zip__code").value;
 
+  console.log(address)
+
   fetch('/saveEdit', {
     method: 'POST',
     headers: {
