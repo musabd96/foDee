@@ -101,6 +101,39 @@ app.post('/register', encoder, function(req, res){
 });
 
 
+// account edit
+
+app.post('/saveEdit', encoder, function(req, res){
+  var email = req.body.email;
+  var fullName = req.body.fullName;
+  var phone = req.body.phone;
+  var address = req.body.address;
+  var city = req.body.city;
+  var country = req.body.country;
+  var zipCode = req.body.zipCode;
+
+  console.log('email: ', email,  'and ',' name: ', fullName)
+
+  conn.query('UPDATE fodee.customer SET customer_fullName = ?, customer_phone = ?, customer_address = ?, customer_city = ?, customer_country = ?, customer_zipCode = ? WHERE login_login_email = ?', 
+            [fullName, phone, address, city, country, zipCode, email ], function(error, fields){
+    if (error) throw error;
+    res.json({ isSaved: true});
+    console.log('data saved: ', 
+      fullName, 
+      phone, 
+      address, 
+      city, 
+      country, 
+      zipCode);
+    console.log('Registration successful');
+  }); 
+})
+
+
+
+
+
+
 
 
 app.listen(4000, () => {

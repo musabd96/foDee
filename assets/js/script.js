@@ -456,13 +456,6 @@ window.onhashchange = function() {
 };
 
 
-
-
-
-
-/* =============== BACKEND JS =============== */
-
-
 /* =============== login =============== */
 
 //if the user already login or it not 
@@ -796,3 +789,64 @@ function registerSuccessCallback(){
          });
      });
  });
+
+
+
+ /* =============== SAVE EDIT ACCOUNT =============== */
+
+const saveEdit = document.getElementById('save');
+
+saveEdit.addEventListener('click', (event) =>{
+  event.preventDefault();
+  
+  const email = customerEmail;
+  const fullName = document.getElementById("fullname__input").value;
+  const phone = document.getElementById("phone__input").value;
+  const address = document.getElementById("address__input").value;
+  const city = document.getElementById("city__input").value;
+  const country = document.getElementById("country__input").value;
+  const zipCode = document.getElementById("zip__code").value;
+  console.log('email is : ', email)
+  fetch('/saveEdit', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/x-www-form-urlencoded'
+    },
+    body: new URLSearchParams({
+      email: email,
+      fullName: fullName,
+      phone: phone,
+      address: address,
+      city: city,
+      country: country,
+      zipCode: zipCode
+    })
+  })
+  .then(response => {
+    if(response.ok) {
+      response.json().then(data => {
+        if(data.isSaved){
+          console.log('saved register successfull');
+          Swal.fire({
+            position: 'center',
+            icon: 'success',
+            title: 'account edit is successful',
+            showConfirmButton: false,
+            timer: 3000,
+            customClass: {
+              container: 'swal-container',
+              popup: 'swal-popup',
+              title: 'swal-title',
+              content: 'swal-text'
+            }
+          })
+          // location.reload();
+          window.location.href = '/#account';
+        }
+      });
+    }else {
+      console.log('Error:', response.status);
+    }
+  })
+  .catch(error => console.error(error));
+})
