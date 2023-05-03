@@ -521,7 +521,7 @@ loginBtn.addEventListener('click', (event) => {
       response.json().then(data => {
         if (data.isLoggedIn) {
           // Save user data to localStorage
-          localStorage.setItem('login_email', data.login_email);
+          localStorage.setItem('login_email', data.customer_email);
           localStorage.setItem('customer_id', data.customer_id);
           localStorage.setItem('customer_fullname', data.customer_fullname);
           localStorage.setItem('customer_phone', data.customer_phone);
@@ -531,7 +531,7 @@ loginBtn.addEventListener('click', (event) => {
           localStorage.setItem('customer_zipcode', data.customer_zipcode);
           console.log('data.customer_fullname: ', data.customer_fullname )
           // Check if user is logging in for the first time
-          if (data.customer_fullname === null) {
+          if (data.customer_fullname === '') {
             Swal.fire({
               position: 'center',
               icon: 'success',
@@ -622,13 +622,15 @@ var customerZipcode = localStorage.getItem('customer_zipcode');
 iDSpan.innerHTML = customerId;
 emailSpan.innerHTML = customerEmail;
 
+console.log(customerFullname)
 
 
 
 
-if(customerFullname != 'null'){
+if(customerFullname != 'null' || customerFullname != '' ){
   fullnameSpan.innerHTML = customerFullname;
   nameSpan.innerHTML = customerFullname;
+  console.log('not ', customerFullname)
 } else {
   fullnameSpan.innerHTML = "";
   nameSpan.innerHTML = '';

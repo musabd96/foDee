@@ -1,1 +1,22 @@
-[{"login_email":"faynageye@gmail.com"},{"login_email":"nageyem@gmail.com"},{"login_email":"nageye@gmail.com"}]
+[
+  {
+    "customer_id": "1",
+    "customer_email": "nageyem@gmail.com",
+    "customer_fullname": "mmm",
+    "customer_phone": "",
+    "customer_address": "",
+    "customer_city": "",
+    "customer_country": "",
+    "customer_zipcode": ""
+  },
+  {
+    "customer_id": "2",
+    "customer_email": "faynageye@gmail.com",
+    "customer_fullname": "mus",
+    "customer_phone": "0712345678",
+    "customer_address": "",
+    "customer_city": "",
+    "customer_country": "",
+    "customer_zipcode": ""
+  }
+]

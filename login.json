@@ -1,1 +1,10 @@
-[{"email":"faynageye@gmail.com","password":"1"},{"email":"nageyem@gmail.com","password":"1"},{"email":"nageye@gmail.com","password":"1"}]
+[
+  {
+    "email": "nageyem@gmail.com",
+    "password": "1"
+  },
+  {
+    "email": "faynageye@gmail.com",
+    "password": "1"
+  }
+]
