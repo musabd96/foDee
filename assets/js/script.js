@@ -692,62 +692,185 @@ logoutBtn.addEventListener('click', (event) => {
 
 
 const registerForm = document.querySelector('.register form');
+// registerForm.addEventListener('submit', (event) => {
+// // //   event.preventDefault(); // prevent the default form submission
+
+// // //   const email = registerForm.querySelector('input[name="email"]').value;
+// // //   const password = registerForm.querySelector('input[name="password"]').value;
+
+// // //   fetch('/register', {
+// // //     method: 'POST',
+// // //     headers: {
+// // //       'Content-Type': 'application/x-www-form-urlencoded'
+// // //     },
+// // //     body: new URLSearchParams({
+// // //       email: email,
+// // //       password: password
+// // //     })
+// // //   })
+// // //   .then(response => {
+// // //     if (response.ok) {
+// // //       response.json().then(data => {
+// // //         if (data.isRegistered) {
+// // //           console.log('Registration successful');
+// // //           Swal.fire({
+// // //             position: 'center',
+// // //             icon: 'success',
+// // //             title: 'Registration successful',
+// // //             showConfirmButton: false,
+// // //             timer: 3000,
+// // //             customClass: {
+// // //               container: 'swal-container',
+// // //               popup: 'swal-popup',
+// // //               title: 'swal-title',
+// // //               content: 'swal-text'
+// // //             }
+// // //           })
+// // //           setTimeout(function() {
+// // //             registerSuccessCallback();
+// // //           }, 3000);
+// // //         } else {
+// // //           console.log('Registration failed:', data.message);
+// // //           Swal.fire({
+// // //             position: 'center',
+// // //             icon: 'error',
+// // //             title: 'Registration failed',
+// // //             text: data.message,
+// // //             showConfirmButton: false,
+// // //             timer: 2000
+// // //           })
+
+// // //         }
+// // //       });
+// // //     } else {
+// // //       console.log('Error:', response.status);
+// // //     }
+// // //   })
+// // //   .catch(error => console.error(error));
+// // // });
+// });
+
+
 registerForm.addEventListener('submit', (event) => {
   event.preventDefault(); // prevent the default form submission
 
   const email = registerForm.querySelector('input[name="email"]').value;
   const password = registerForm.querySelector('input[name="password"]').value;
-
+  console.log('registration form: ', 'email: ' , email , 'password: ', password);
+  
   fetch('/register', {
     method: 'POST',
     headers: {
-      'Content-Type': 'application/x-www-form-urlencoded'
+      'Content-Type': 'application/json'
     },
-    body: new URLSearchParams({
+    body: JSON.stringify({
       email: email,
       password: password
     })
   })
   .then(response => {
     if (response.ok) {
-      response.json().then(data => {
-        if (data.isRegistered) {
-          console.log('Registration successful');
-          Swal.fire({
-            position: 'center',
-            icon: 'success',
-            title: 'Registration successful',
-            showConfirmButton: false,
-            timer: 3000,
-            customClass: {
-              container: 'swal-container',
-              popup: 'swal-popup',
-              title: 'swal-title',
-              content: 'swal-text'
-            }
-          })
-          setTimeout(function() {
-            registerSuccessCallback();
-          }, 3000);
-        } else {
-          console.log('Registration failed:', data.message);
-          Swal.fire({
-            position: 'center',
-            icon: 'error',
-            title: 'Registration failed',
-            text: data.message,
-            showConfirmButton: false,
-            timer: 2000
-          })
-
+      console.log('Registration successful');
+      Swal.fire({
+        position: 'center',
+        icon: 'success',
+        title: 'Registration successful',
+        showConfirmButton: false,
+        timer: 3000,
+        customClass: {
+          container: 'swal-container',
+          popup: 'swal-popup',
+          title: 'swal-title',
+          content: 'swal-text'
         }
+      })
+      setTimeout(function() {
+        registerSuccessCallback();
+      }, 3000);
+    } else if (response.status === 409) {
+      console.log('Registration failed:', response.statusText);
+      Swal.fire({
+        position: 'center',
+        icon: 'error',
+        title: 'Registration failed',
+        text: 'Email already exists',
+        showConfirmButton: false,
+        timer: 2000
       });
     } else {
-      console.log('Error:', response.status);
+      console.log('Registration failed:', response.statusText);
+      response.json().then(data => {
+        Swal.fire({
+          position: 'center',
+          icon: 'error',
+          title: 'Registration failed',
+          text: data.message || response.statusText,
+          showConfirmButton: false,
+          timer: 2000
+        });
+      });
     }
   })
   .catch(error => console.error(error));
 });
+
+
+
+document.querySelector('form').addEventListener('submit', function(event) {
+  event.preventDefault(); // prevent default form submit behavior
+  register();
+});
+
+function register() {
+  const email = document.querySelector('input[name="email"]').value;
+  const password = document.querySelector('input[name="password"]').value;
+  const confirmPassword = document.querySelector('input[name="confirm__password"]').value;
+  const agreeTerms = document.querySelector('input[type="checkbox"]').checked;
+
+  // validate form data
+  if (!email || !password || !confirmPassword) {
+    alert('Please fill in all required fields');
+    return;
+  }
+
+  if (password !== confirmPassword) {
+    alert('Passwords do not match');
+    return;
+  }
+
+  if (!agreeTerms) {
+    alert('Please agree to the terms and conditions');
+    return;
+  }
+
+  const data = {
+    email: email,
+    password: password,
+  };
+
+  fetch('/register', {
+    method: 'POST',
+    body: JSON.stringify(data),
+    headers: {
+      'Content-Type': 'application/json'
+    }
+  })
+  .then(response => response.json())
+  .then(data => {
+    if (data.success) {
+      alert('Registration successful!');
+      // redirect to login page
+      // window.location.href = '#menu';
+    } else {
+      alert(data.message);
+    }
+  })
+  .catch(error => {
+    console.error('Error:', error);
+  });
+}
+
+
 
 
 function registerSuccessCallback(){
