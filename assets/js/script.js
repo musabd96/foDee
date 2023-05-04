@@ -263,6 +263,27 @@ btn__cart.addEventListener("click", function() {
 
 });
 
+/* ======== Edit Button ======== */
+const edit__cartBtn= document.querySelector("#edit__cart-btn");
+
+edit__cartBtn.addEventListener("click", function() {
+  total.classList.toggle("hidden");
+  cartItem.classList.toggle("hidden");
+  cartEdit.classList.toggle("hidden");
+  btnCart.classList.toggle("hidden");
+  editCart.classList.add("hidden");
+
+  deliveryEdit.classList.add("hidden");
+  editDelivery.classList.add("hidden");
+  deliveryInfo.classList.add("hidden");
+  
+
+  row.classList.add("hidden");
+  btnPayment.classList.add("hidden");
+})
+
+
+
 /* =============== ADDRESS =============== */
 
 const btn__address = document.querySelector("#btn__address");
@@ -283,6 +304,20 @@ btn__address.addEventListener("click", function() {
 
   console.log(btnDelivery); 
 });
+
+
+const edit_deliveryBtn= document.querySelector("#edit_delivery-btn");
+
+edit_deliveryBtn.addEventListener("click", function() {
+  
+  deliveryEdit.classList.remove("hidden");
+  editDelivery.classList.remove("hidden");
+  deliveryInfo.classList.remove("hidden");
+  
+
+  row.classList.add("hidden");
+  btnPayment.classList.add("hidden");
+})
 
 /* =============== Payment =============== */
 
