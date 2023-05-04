@@ -4,7 +4,8 @@ const bodyParser = require('body-parser');
 const encoder = bodyParser.urlencoded({ extended: true });
 const fs = require('fs');
 const app = express();
-app.use(express.static('assets'));
+// app.use(express.static('assets'));
+app.use(express.static(__dirname));
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
