@@ -239,6 +239,19 @@ navLinks.forEach(link => {
 
 /* =============== PAYMENT =============== */
 
+const addressPaymentBtn = document.querySelector("#address__payment");
+const total = document.querySelector(".total");
+const cartEdit = document.querySelector(".cart__edit");
+const cartItem = document.querySelector(".cart__items-list");
+
+addressPaymentBtn.addEventListener("click", function() {
+  total.classList.add("hidden");
+  cartItem.classList.add("hidden");
+  cartEdit.classList.add("hidden");
+  console.log(cartEdit)
+});
+
+
 
 /* =============== Country opstion =============== */
 document.addEventListener('DOMContentLoaded', () => {

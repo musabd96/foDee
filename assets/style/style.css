@@ -637,7 +637,11 @@ select {
     color: #3B8419;
 }
 
-.cart__list .cart__item{
+.cart__list .edit__cart.hidden{
+    display: none;
+}
+
+.cart__list .cart__items-list{
     display: flex;
     flex-wrap: wrap;
     gap: 1rem;
@@ -645,17 +649,17 @@ select {
     margin: 2rem 1rem;
 }
 
-.cart__list .cart__item.hidden,
+.cart__list .cart__items-list.hidden,
 .cart__list .total.hidden,
 .cart__list input{
     display: none;
 }
 
-.cart__list .cart__edit.hidden{
+.cart__list .cart__items-list.hidden{
     border-bottom: none;
 }
 
-.cart__list .cart__item{
+.cart__list .cart__items-list{
     display: flex;
     flex-wrap: wrap;
     gap: 1rem;
@@ -663,19 +667,19 @@ select {
     margin: 2rem 1rem;
 }
 
-.cart__list .cart__item img{
+.cart__list .cart__items-list img{
     height: 10rem;
     margin: 1rem 2rem 2rem 0;
 }
 
-.cart__list .cart__item .details h3{
+.cart__list .cart__items-list .details h3{
     color: var(--main-color);
     font-size: 2.5rem;
     padding-bottom: 5px;
     margin-bottom: 1rem;
 }
 
-.cart__list .cart__item .details .quantity select{
+.cart__list .cart__items-list .details .quantity select{
     font-size: 1.5rem;
     margin-right: 2rem;
     height: 5rem;
@@ -683,21 +687,21 @@ select {
     color: var(--main-color);
 }
 
-.cart__list .cart__item .details .quantity option{
+.cart__list .cart__items-list .details .quantity option{
     color: var(--main-color);
 }
 
-.cart__list .cart__item .details .quantity a{
+.cart__list .cart__items-list .details .quantity a{
     color: var(--main-color);
     font-size: 2rem;
 }
 
-.cart__list .cart__item .details .quantity a:hover{
+.cart__list .cart__items-list .details .quantity a:hover{
     color: var(--red);
     font-size: 2.5rem;
 }
 
-.cart__list .cart__item .item__price{
+.cart__list .cart__items-list .item__price{
     color: var(--main-color);
     margin-left: auto;
     font-size: 2rem;
@@ -721,7 +725,7 @@ select {
 
 }
 
-/* =============== payment =============== */
+/* =============== dleivery =============== */
 
 .address {
     border: 1px solid #D9D9D9;
@@ -752,6 +756,18 @@ select {
     color: #3B8419;
 }
 
+.address .delivery__edit .edit_delivery.hidden{
+    display: none;
+}
+.address .delivery__info .hidden{
+    display: none;
+}
+
+.address .delivery__edit.hidden{
+    border-bottom: none;
+    
+}
+
 .address .delivery__info .customer__address,
 .address .delivery__info .customer__contect{
     display: flex;
@@ -766,6 +782,8 @@ select {
     display: flex;
     flex-direction: column;
 }
+
+
 
 .address .delivery__info .customer__address .customer__info span{
     padding: 1rem;
@@ -835,6 +853,9 @@ select {
     color: #3B8419;
 }
 
+.payment form .edit__paymen.hidden{
+    display: none;
+}
 
 .payment form .row{
     display: flex;
@@ -1210,12 +1231,7 @@ select {
         margin-top: 2rem;
     }
 
-    .cart__list,
-    .billing form,
-    .payment form{
-        width: 100%;
-        margin: 3rem 0;
-    }
+    
 }
 
 
