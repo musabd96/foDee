@@ -723,6 +723,89 @@ select {
 
 /* =============== payment =============== */
 
+.address {
+    border: 1px solid #D9D9D9;
+    width: 70%;
+    padding: 2rem;
+    margin-left: 10rem;
+    margin-bottom: 3rem;
+    font-size: 60%;
+    color: var(--main-color);
+    font-size: 3rem;
+}
+
+.address .delivery__edit{
+    display: flex;
+    font-size: 3rem;
+    padding: 2rem;
+    border-bottom: 1px solid #dcd7d7;
+    color: var(--main-color);
+}
+
+.address .delivery__edit .edit_delivery{
+    margin-left: auto;
+    cursor: pointer;
+}
+
+.address .delivery__edit .edit_delivery:hover{
+    text-decoration: underline;
+    color: #3B8419;
+}
+
+.address .delivery__info .customer__address,
+.address .delivery__info .customer__contect{
+    display: flex;
+}
+
+
+.address .delivery__info .customer__address .icon{
+    padding: 3rem;
+}
+
+.address .delivery__info .customer__address .customer__info{
+    display: flex;
+    flex-direction: column;
+}
+
+.address .delivery__info .customer__address .customer__info span{
+    padding: 1rem;
+    margin-top: 2rem;
+}
+
+.address .delivery__info  .customer__address .customer__info .flex{
+    padding: 1rem 0;
+}
+
+.address .delivery__info  .customer__address .customer__info .flex .zip__code{
+    margin-right: 1rem;
+}
+
+.address .delivery__info .customer__info .email,
+.address .delivery__info .customer__info .number{
+    margin-top: 4rem;
+}
+
+.address .delivery__info .customer__contect{
+    display: flex;
+    flex-direction: column;
+    padding: 3rem;
+
+    
+}
+
+.address .delivery__info .customer__contect .email{
+    margin-bottom: 3rem;
+}
+
+.address .delivery__info .customer__contect .email span,
+.address .delivery__info .customer__contect .number span {
+    padding: 3rem;
+}
+
+
+
+
+/* =============== payment =============== */
 
 .payment form{
     border: 1px solid #D9D9D9;

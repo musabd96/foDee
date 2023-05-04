@@ -6,6 +6,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>FoDee</title>
 
+    <!--=============== REMIXICONS ===============-->
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css" rel="stylesheet">
+
     <!--=============== FONT ===============-->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     
@@ -281,6 +284,59 @@
                     <input type="submit" value="continue to address and payment" class="btn" id="payment__btn">
                 </div>  
                 
+                
+
+                <div class="address">
+                    <div class="delivery__edit">
+                
+                        <div class="delivery__text">Delivery</div>
+                        <div class="edit_delivery" >edit</div>
+                    </div>
+
+                    <div class="delivery__info">
+                        <div class="customer__address">
+
+                            <div class="icon">
+                                <i class="ri-map-pin-fill"></i>
+                            </div>
+                            <div class="customer__info">
+                                <span class="fullname">full Name</span>     
+                                <span class="street">street</span>   
+                                <span class="city">city</span>  
+                                <div class="flex">
+                                    <span class="zip__code">zip code</span>   
+                                    <span class="country">country</span>   
+                                </div> 
+                            </div>
+                        </div>
+                        <div class="customer__contect">
+
+                            <div class="email">
+                                <i class="ri-mail-fill"></i>
+                                <span class="email">email</span>     
+                            </div>
+                            <div class="number">
+                                <i class="ri-phone-fill"></i>
+                                <span class="number">number</span> 
+                            </div>  
+                            
+                        </div>
+                    </div>
+                    <div class="edit__form hidden" >
+                        <div for="fullname__input">Full Name</div>
+                        <input type="text" id="fullname__input">
+                    
+                        <div for="phone__input">Phone Number</div>
+                        <input type="text" id="phone__input">
+                        
+                        <div class="buttons">
+                            <button class="btn" id="save__personal-data-edit">Save</button>
+                            <button class="btn" id="cancel">Cancel</button>
+                        </div>
+                    </div>
+
+                </div>
+                
                 <div class="payment ">
                     
                     <form action="">
@@ -348,6 +404,7 @@
                         <input type="submit" value="buy" class="btn" id="buy__btn">
                     </form>
                 </div>
+                
                 
             </div>
             
