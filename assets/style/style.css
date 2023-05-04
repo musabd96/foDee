@@ -660,6 +660,26 @@ select {
     
 }
 
+.cart__list .emty__cart-items{
+    color: var(--green);
+    font-size: 3rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 4rem 0;
+    padding: 4rem;
+    border-bottom: var(--border);
+}
+
+.cart__list .emty__cart-items.hidden{
+    display: none;
+}
+
+.cart__list .emty__cart-items h3{
+    margin-top: 3rem;
+}
+
 .cart__list .cart__items-list{
     display: flex;
     flex-wrap: wrap;

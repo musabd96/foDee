@@ -11,18 +11,18 @@
 
     <!--=============== FONT ===============-->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
-    
+
     <!--=============== JS ===============-->
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10.16.0/dist/sweetalert2.all.min.js"></script>
 
 
     <!--=============== CSS ===============-->
     <link rel="stylesheet" href="assets/style/style.css">
-    
+
     <!--=============== JS ===============-->
     <script src="assets/js/script.js" defer></script>
     <script src="assets/js/app.js" defer></script>
-    
+
 </head>
 <body>
 
@@ -31,19 +31,19 @@
         <a href="#home" class="logo" id="logo__btn">
             <img src="assets/img/Logo1.png"  alt="">
         </a>
-        
+
         <nav class="navbar">
             <a href="#home" id="#home__btn" style="color: #3B8419;">home</a>
             <a href="#menu" id="#menu__btn">menu</a>
             <a href="#order" id="#order__btn">order</a>
         </nav>
-        
+
         <div class="icons">
             <a class="fas fa-user" id="user-btn" ></a>
             <div class="fas fa-shopping-cart" id="cart-btn"></div>
             <div class="fas fa-bars" id="menu-btn"></div>
         </div>
-        
+
         <div class="profile hidden">
             <div class="container">
                 <div class="initial">
@@ -51,16 +51,16 @@
                 </div>
                 <div class="name">
                     <h1>Hi, <span id="name"></span></h1>
-                    <h4>customer's number: <span id="customer-id">[customer_customer_id]</span></h4>   
+                    <h4>customer's number: <span id="customer-id">[customer_customer_id]</span></h4>
                 </div>
-                  
+
                 <a href="#order" class="order-btn" id="menu__btn">order</a>
                 <a href="#account" class="order-btn" id="edit">edit account</a>
                 <a href="#logout" class="logout-btn" id="logout">log out</a>
             </div>
         </div>
-        
-          
+
+
 
         <div class="cart__items-container hidden">
             <div class="cart__items">
@@ -74,7 +74,7 @@
                         </h3>
                         <div class="quantity">
                             <select>
-        
+
                                 <option value="1">1</option>
                                 <option value="2">2</option>
                                 <option value="3">3</option>
@@ -85,34 +85,34 @@
                                 <option value="8">8</option>
                                 <option value="9">9</option>
                                 <option value="10">10</option>
-                            </select>  
-                            <a href="#" class="fas fa-trash"></a>    
+                            </select>
+                            <a href="#" class="fas fa-trash"></a>
                         </div>
                         <div class="item__price">$12.99</div>
                     </div>
                 </div>
-                
+
 
             </div>
-            
+
             <div class="total">total: $0.00</div>
             <a href="#cart" class="btn" id="checkout-btn">Checkout</a>
         </div>
-        
-        
+
+
     </header>
-    
-    
-    
-    
-    
+
+
+
+
+
     <!--=============== SECTIONs ===============-->
-    
+
     <div class="container">
         <!--=============== LOGIN/REGISTER SECTION ===============-->
         <section class="login-register " id="login">
             <div class="wrapper ">
-                
+
                 <div class="form__box login">
                     <form action="" method="POST">
                         <h2>Login</h2>
@@ -144,13 +144,13 @@
                           </p>
                         </div>
                       </form>
-                      
+
                 </div>
-    
+
                 <div class="form__box register">
                     <form action="" method="POST">
                       <h2>Registration</h2>
-                      
+
                       <div class="input__box">
                         <span class="icon">
                           <i class="ri-mail-line"></i>
@@ -158,7 +158,7 @@
                         <input type="email" name="email" required>
                         <label>Email</label>
                       </div>
-                      
+
                       <div class="input__box">
                         <span class="icon">
                           <i class="ri-lock-line"></i>
@@ -181,14 +181,14 @@
                       <button type="submit" class="btn">Register</button>
                       <div class="login__register">
                         <p>
-                          Already have an account?      
+                          Already have an account?
                           <a class="login__link">Login</a>
                         </p>
                       </div>
                     </form>
                 </div>
-                  
-    
+
+
             </div>
         </section>
         <!--=============== HOME SECTION ===============-->
@@ -200,95 +200,105 @@
                     <h4>Let's start to order food now</h4>
                     <a href="#menu" class="btn" id="checkout__menu-btn">Check out menu</a>
                 </div>
-                
+
                 <div class="image-container">
                     <img src="assets/img/Header-2.jpg" alt="circle" class="image">
                 </div>
-            </div> 
+            </div>
         </section>
-        
+
         <!--=============== MENU SECTION ===============-->
         <section class="menu " id="menu">
             <div class="content">
                 <h1 class="heading">
-                    Our <span>menu</span> 
+                    Our <span>menu</span>
                 </h1>
-    
+
                 <div class="box-container">
-                    
+
                     <div class="box">
                         <img src="assets/img/hambugar.png" alt="">
-                        <h3>tasty and healty</h3>   
+                        <h3>tasty and healty</h3>
                         <div class="price"> $15.99</div>
                         <a href="#" class="btn">add to cart</a>
                     </div>
-                    
-                    
+
+
                     <div class="box">
                         <img src="assets/img/hambugar.png" alt="">
-                        <h3>tasty and healty</h3>   
+                        <h3>tasty and healty</h3>
                         <div class="price"> $15.99</div>
                         <a href="#" class="btn">add to cart</a>
                     </div>
-                    
-                    
+
+
                 </div>
             </div>
-            
-            
+
+
         </section>
 
         <!--=============== CART SECTION ===============-->
-        
+
         <section class="cart " id="cart">
             <h1 class="heading">checkout <span> Cart</span></h1>
             <div class="container">
+                
                 <div class="cart__list ">
                     <div class="cart__edit">
                         <div class="cart__text">cart</div>
                         <div class="edit__cart hidden" id="edit__cart-btn">edit</div>
                     </div>
-                    <div class="cart__items-list ">
-                        <img src="assets/img/hambugar.png" alt="">
-                        <div class="details">
-                            <h3>
-                                Items name
-                            </h3>
-                            <div class="quantity">
-                                <select>
-            
-                                    <option value="1">1</option>
-                                    <option value="2">2</option>
-                                    <option value="3">3</option>
-                                    <option value="4">4</option>
-                                    <option value="5">5</option>
-                                    <option value="6">6</option>
-                                    <option value="7">7</option>
-                                    <option value="8">8</option>
-                                    <option value="9">9</option>
-                                    <option value="10">10</option>
-                                </select>  
-                                <a href="#" class="fas fa-trash"></a>    
-                            </div>
-                            
-                        </div>
-                        
-                        <div class="item__price">$12.99</div>
+
+                    <div class="emty__cart-items hidden">
+                        <div class="fas fa-shopping-cart" id="cart-btn"></div>
+                        <h3>Your cart is empty</h3>
                     </div>
-                    
-                    
-                    <div class="total-price ">
-                        <div class="total__title">total: </div> 
-                        <div class="total__price">$0.00 </div>
+                    <div class="cart__items">
+
+
+                        <div class="cart__items-list ">
+                            <img src="assets/img/hambugar.png" alt="">
+                            <div class="details">
+                                <h3>
+                                    Items name
+                                </h3>
+                                <div class="quantity">
+                                    <select>
+
+                                        <option value="1">1</option>
+                                        <option value="2">2</option>
+                                        <option value="3">3</option>
+                                        <option value="4">4</option>
+                                        <option value="5">5</option>
+                                        <option value="6">6</option>
+                                        <option value="7">7</option>
+                                        <option value="8">8</option>
+                                        <option value="9">9</option>
+                                        <option value="10">10</option>
+                                    </select>
+                                    <a href="#" class="fas fa-trash"></a>
+                                </div>
+
+                            </div>
+
+                            <div class="item__price">$12.99</div>
+                        </div>
+
+
+                        <div class="total-price ">
+                            <div class="total__title">total: </div>
+                            <div class="total__price">$0.00 </div>
+                        </div>
                     </div>
                     <button class="btn cart" id="btn__cart">continue to address and payment</button>
-                </div>  
-                
-                
+                </div>
+
+
 
                 <div class="address">
                     <div class="delivery__edit hidden">
-                
+
                         <div class="delivery__text">Delivery</div>
                         <div class="edit_delivery hidden" id="edit_delivery-btn">edit</div>
                     </div>
@@ -300,35 +310,35 @@
                                 <i class="ri-map-pin-fill"></i>
                             </div>
                             <div class="customer__info">
-                                <span class="fullname">full Name</span>     
-                                <span class="street">street</span>   
-                                <span class="city">city</span>  
+                                <span class="fullname">full Name</span>
+                                <span class="street">street</span>
+                                <span class="city">city</span>
                                 <div class="flex">
-                                    <span class="zip__code">zip code</span>   
-                                    <span class="country">country</span>   
-                                </div> 
+                                    <span class="zip__code">zip code</span>
+                                    <span class="country">country</span>
+                                </div>
                             </div>
                         </div>
                         <div class="customer__contect">
 
                             <div class="email">
                                 <i class="ri-mail-fill"></i>
-                                <span class="email">email</span>     
+                                <span class="email">email</span>
                             </div>
                             <div class="number">
                                 <i class="ri-phone-fill"></i>
-                                <span class="number">number</span> 
-                            </div>  
-                            
+                                <span class="number">number</span>
+                            </div>
+
                         </div>
                         <button class="btn delivery" id="btn__address">continue to payment</button>
-                
+
                     </div>
-                  
+
                 </div>
-                
+
                 <div class="payment">
-                    
+
                     <form action="">
                         <div class="payment__edit hidden">
                             <div class="payment__text">payment</div>
@@ -336,7 +346,7 @@
                         <div class="row hidden">
                             <div class="col">
                                 <h3 class="title">payment</h3>
-                               
+
                                 <div class="inputbox">
                                     <span>cards accepted :</span>
                                     <img src="assets/img/payments-group.png" alt="">
@@ -353,7 +363,7 @@
                                     </i>
                                 </div>
 
-                                
+
                                 <div class="inputbox">
                                     <span>credit card number :</span>
                                     <input type="number" placeholder="1111-2222-3333-4444">
@@ -393,10 +403,10 @@
                         <button class="btn payment hidden" id="btn__payment">continue to payment</button>
                     </form>
                 </div>
-                
-                
+
+
             </div>
-            
+
         </section>
 
         <!--=============== order SECTION ===============-->
@@ -412,7 +422,7 @@
             <div class="container">
                 <div class="account__details">
                     <div class="account__edit">
-                
+
                         <div class="account__text">account</div>
                         <div class="edit__account">edit</div>
                     </div>
@@ -425,10 +435,10 @@
                     </div>
 
                 </div>
-                
+
                 <div class="personal-data__details">
                     <div class="personal-data__edit">
-                
+
                         <div class="personal-data__text">Personal data</div>
                         <div class="edit_personal-data" >edit</div>
                     </div>
@@ -442,10 +452,10 @@
                     <div class="edit__form hidden" >
                         <div for="fullname__input">Full Name</div>
                         <input type="text" id="fullname__input">
-                    
+
                         <div for="phone__input">Phone Number</div>
                         <input type="text" id="phone__input">
-                        
+
                         <div class="buttons">
                             <button class="btn" id="save__personal-data-edit">Save</button>
                             <button class="btn" id="cancel">Cancel</button>
@@ -453,10 +463,10 @@
                     </div>
 
                 </div>
-                
+
                 <div class="address__details">
                     <div class="address__edit">
-                
+
                         <div class="address__text">Address</div>
                         <div class="edit__address">edit</div>
                     </div>
@@ -474,25 +484,25 @@
                     <div class="edit__form hidden">
                         <div for="city__name">Street address</div>
                         <input type="text" id="address__input">
-                    
+
                         <div for="city__input">city</div>
                         <input type="text" id="city__input">
-                    
-                    
+
+
                         <div class="flex">
                             <div class="country">
                                 <div for="phone-input">country</div>
                                 <select name="countries" id="countries" placeholder="countries"></select>
                             </div>
-                            
+
                             <div class="zipcode">
 
-                                
+
                                 <div for="zip__code">zip code</div>
                                 <input type="text" id="zip__code">
                             </div>
                         </div>
-                    
+
                         <div class="buttons">
                             <button class="btn" id="save__address-edit">Save</button>
                             <button class="btn" id="cancel">Cancel</button>
@@ -503,10 +513,10 @@
 
             </div>
         </section>
-          
+
 
     </div>
 
-    
+
 </body>
 </html>
