@@ -244,9 +244,9 @@
             <h1 class="heading">checkout <span> Cart</span></h1>
             <div class="container">
                 <div class="cart__list ">
-                    <div class="cart__edit hidden">
+                    <div class="cart__edit">
                         <div class="cart__text">cart</div>
-                        <div class="edit__cart ">edit</div>
+                        <div class="edit__cart hidden">edit</div>
                     </div>
                     <div class="cart__items-list ">
                         <img src="assets/img/hambugar.png" alt="">
@@ -277,11 +277,11 @@
                     </div>
                     
                     
-                    <div class="total ">
+                    <div class="total-price ">
                         <div class="total__title">total: </div> 
                         <div class="total__price">$0.00 </div>
                     </div>
-                    <button class="btn " id="address__payment">continue to address and payment</button>
+                    <button class="btn cart" id="btn__cart">continue to address and payment</button>
                 </div>  
                 
                 
@@ -290,7 +290,7 @@
                     <div class="delivery__edit hidden">
                 
                         <div class="delivery__text">Delivery</div>
-                        <div class="edit_delivery " >edit</div>
+                        <div class="edit_delivery hidden" >edit</div>
                     </div>
 
                     <div class="delivery__info hidden">
@@ -321,18 +321,17 @@
                             </div>  
                             
                         </div>
-                        <button class="btn hidden" id="address__payment">continue to address and payment</button>
+                        <button class="btn delivery" id="btn__address">continue to payment</button>
                 
                     </div>
                   
                 </div>
                 
-                <div class="payment ">
+                <div class="payment">
                     
                     <form action="">
                         <div class="payment__edit hidden">
                             <div class="payment__text">payment</div>
-                            <div class="edit__paymen">edit</div>
                         </div>
                         <div class="row hidden">
                             <div class="col">
@@ -391,7 +390,7 @@
                             </div>
                         </div>
 
-                        <input type="submit" value="buy" class="btn" id="buy__btn">
+                        <button class="btn payment hidden" id="btn__payment">continue to payment</button>
                     </form>
                 </div>
                 

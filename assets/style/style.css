@@ -650,13 +650,14 @@ select {
 }
 
 .cart__list .cart__items-list.hidden,
-.cart__list .total.hidden,
+.cart__list .total-price.hidden,
 .cart__list input{
     display: none;
 }
 
-.cart__list .cart__items-list.hidden{
+.cart__list .cart__edit.hidden{
     border-bottom: none;
+    
 }
 
 .cart__list .cart__items-list{
@@ -708,14 +709,14 @@ select {
     margin-top: 1rem;
 }
 
-.cart__list .total {
+.cart__list .total-price {
     color: var(--main-color);
     font-size: 2.5rem;
     margin: 1rem 2rem 1rem 1rem;
     display: flex;
 }
 
-.cart__list .total .total__price{
+.cart__list .total-price .total__price{
     font-size: 3rem;
     margin-left: auto;
 }
@@ -820,7 +821,10 @@ select {
     padding: 3rem;
 }
 
+.address .btn.delivery{
+    width: 100%;
 
+}
 
 
 /* =============== payment =============== */
@@ -863,8 +867,7 @@ select {
     gap: 1rem;
 }
 
-.payment form .row.hidden,
-.payment form input{
+.payment form .row.hidden{
     display: none;
 }
 

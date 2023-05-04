@@ -237,21 +237,73 @@ navLinks.forEach(link => {
 
 
 
-/* =============== PAYMENT =============== */
+/* =============== CART SECTION =============== */
 
-const addressPaymentBtn = document.querySelector("#address__payment");
-const total = document.querySelector(".total");
+/* =============== CART =============== */
+
+const btn__cart = document.querySelector("#btn__cart");
+const total = document.querySelector(".total-price");
 const cartEdit = document.querySelector(".cart__edit");
 const cartItem = document.querySelector(".cart__items-list");
+const btnCart = document.querySelector(".btn.cart");
+const editCart = document.querySelector(".edit__cart");
 
-addressPaymentBtn.addEventListener("click", function() {
-  total.classList.add("hidden");
-  cartItem.classList.add("hidden");
-  cartEdit.classList.add("hidden");
-  console.log(cartEdit)
+
+btn__cart.addEventListener("click", function() {
+  total.classList.toggle("hidden");
+  cartItem.classList.toggle("hidden");
+  cartEdit.classList.toggle("hidden");
+  btnCart.classList.toggle("hidden");
+  editCart.classList.remove("hidden");
+
+
+  deliveryEdit.classList.toggle("hidden");
+  deliveryInfo.classList.toggle("hidden");
+  editDelivery.classList.remove("hidden");
+
 });
 
+/* =============== ADDRESS =============== */
 
+const btn__address = document.querySelector("#btn__address");
+const deliveryEdit = document.querySelector(".delivery__edit");
+const editDelivery = document.querySelector(".edit_delivery");
+const deliveryInfo = document.querySelector(".delivery__info");
+
+
+btn__address.addEventListener("click", function() {
+
+  deliveryEdit.classList.toggle("hidden");
+  editDelivery.classList.remove("hidden");
+  deliveryInfo.classList.toggle("hidden");
+  
+
+  row.classList.toggle("hidden");
+  btnPayment.classList.toggle("hidden");
+
+  console.log(btnDelivery); 
+});
+
+/* =============== Payment =============== */
+
+const btn__payment = document.querySelector("#btn__payment");
+const row = document.querySelector(".row");
+const btnPayment = document.querySelector(".btn.payment");
+
+ 
+btn__payment.addEventListener("click", function() {
+  
+  row.classList.toggle("hidden");
+  btnPayment.classList.toggle("hidden");
+
+  total.classList.toggle("hidden");
+  cartItem.classList.toggle("hidden");
+  cartEdit.classList.toggle("hidden");
+  btnCart.classList.toggle("hidden");
+  editCart.classList.remove("hidden");
+  
+
+})
 
 /* =============== Country opstion =============== */
 document.addEventListener('DOMContentLoaded', () => {
