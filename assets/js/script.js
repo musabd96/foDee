@@ -1370,6 +1370,7 @@ fetch('/cart')
 
 function renderCartItems(cartItems) {
   cartContainer.innerHTML = ''; // Clear the container first
+  let total = 0; // Initialize the total to zero
   cartItems.forEach(item => {
     const cartItem = `
       <div class="cart__item" data-name="${item.name}">
@@ -1396,7 +1397,12 @@ function renderCartItems(cartItems) {
       </div>
     `;
     cartContainer.insertAdjacentHTML('beforeend', cartItem);
+    total += item.price * item.quantity; // Add the price of the current item to the total
   });
+  const totalElement = document.createElement('div');
+  totalElement.classList.add('total');
+  totalElement.textContent = `total: $${total.toFixed(2)}`;
+  cartContainer.insertAdjacentElement('beforeend', totalElement);
 }
 
 

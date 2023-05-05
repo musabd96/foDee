@@ -16,5 +16,29 @@
     "price": 12.99,
     "image_url": "https://static.toiimg.com/thumb/53110049.cms?width=1200&height=900",
     "quantity": 2
+  },
+  {
+    "name": "Fish and Chips",
+    "price": 14.99,
+    "image_url": "https://img.koket.se/standard-mega/per-morbergs-fish-and-chips.jpg",
+    "quantity": 1
+  },
+  {
+    "name": "Pad Thai",
+    "price": 11.99,
+    "image_url": "https://plantbasedonabudget.com/wp-content/uploads/2013/03/Pad-Thai-Inspired-Stir-Fry-Plant-Based-on-a-Budget-1.jpg",
+    "quantity": 1
+  },
+  {
+    "name": "Philly Cheesesteak",
+    "price": 13.99,
+    "image_url": "https://www.honestfoodtalks.com/wp-content/uploads/2021/06/Philly-Cheesesteak-Recipe.jpeg",
+    "quantity": 4
+  },
+  {
+    "name": "Chicken Wings",
+    "price": 8.99,
+    "image_url": "https://preppykitchen.com/wp-content/uploads/2022/09/Chicken-Wings-Recipe-Card.jpg",
+    "quantity": 1
   }
 ]
