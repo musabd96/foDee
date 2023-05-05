@@ -1,10 +1,10 @@
-window.onload = function() {
-  if(window.location.href !== 'http://localhost:4000/#account'){
+// window.onload = function() {
+//   if(window.location.href !== 'http://localhost:4000/#account'){
 
-    window.location.href = "#cart";
-  }
+//     // window.location.href = "#home";
+//   }
 
-};
+// };
 
 // Get the initial URL
 var currentUrl = window.location.href;
@@ -247,20 +247,33 @@ const cartEdit = document.querySelector(".cart__edit");
 const cartItem = document.querySelector(".cart__items-list");
 const btnCart = document.querySelector(".btn.cart");
 const editCart = document.querySelector(".edit__cart");
+const loginRegister = document.querySelector(".login-register");
 
 
 btn__cart.addEventListener("click", function() {
-  total.classList.toggle("hidden");
-  cartItem.classList.toggle("hidden");
-  cartEdit.classList.toggle("hidden");
-  btnCart.classList.toggle("hidden");
-  editCart.classList.remove("hidden");
+
+  if(customerEmail){
+    console.log('login')
+    total.classList.toggle("hidden");
+    cartItem.classList.toggle("hidden");
+    cartEdit.classList.toggle("hidden");
+    btnCart.classList.toggle("hidden");
+    editCart.classList.remove("hidden");
 
 
-  deliveryEdit.classList.toggle("hidden");
-  deliveryInfo.classList.toggle("hidden");
-  editDelivery.classList.remove("hidden");
-  customer__contect.classList.remove("hidden");
+    deliveryEdit.classList.toggle("hidden");
+    deliveryInfo.classList.toggle("hidden");
+    editDelivery.classList.remove("hidden");
+    customer__contect.classList.remove("hidden");
+  } else{
+    console.log('logout')
+    
+    loginRegister.classList.remove("hidden");
+    
+    console.log(loginRegister)
+  }
+
+  
 
 });
 
@@ -490,6 +503,9 @@ const btnPayment = document.querySelector(".btn.payment");
  
 btn__payment.addEventListener("click", function() {
   
+  showLoading();
+  location.reload();
+  console.log('success payment');
   row.classList.toggle("hidden");
   btnPayment.classList.toggle("hidden");
 
@@ -498,8 +514,6 @@ btn__payment.addEventListener("click", function() {
   cartEdit.classList.toggle("hidden");
   btnCart.classList.toggle("hidden");
   editCart.classList.remove("hidden");
-  
-
 })
 
 /* =============== Country opstion =============== */
@@ -540,19 +554,18 @@ function showOrderReceivedAlert() {
     }
   }).then((result) => {
     if (result.isConfirmed) {
-      order.classList.remove('hidden');
+      
+      location.reload();
+      window.location.href = '/#order';
 
     } else {
 
-      home.classList.remove('hidden');
-      homeLink.style.color = '#3B8419';
+      location.reload();
     }
   }).finally(() => {
+    location.reload();
+    window.location.href = '/#order';
 
-    cartBtn.style.display = '';
-    payment.classList.add('hidden');
-    cart.classList.add('hidden');
-    cartList.classList.remove('hidden');
   });
 
 }
@@ -576,17 +589,19 @@ function showPaymentSuccess(){
 
 function showLoading(){
   let timerInterval
-Swal.fire({
-    title: ' Payment Processing!',
+  Swal.fire({
+    title: 'Payment Processing!',
     html: 'Thank you for your purchase! We are processing your payment',
     timer: 5000,
     timerProgressBar: true,
     didOpen: () => {
       Swal.showLoading()
       const b = Swal.getHtmlContainer().querySelector('b')
-      timerInterval = setInterval(() => {
-        b.textContent = Swal.getTimerLeft()
-      }, 100)
+      if (b) {
+        timerInterval = setInterval(() => {
+          b.textContent = Swal.getTimerLeft()
+        }, 100)
+      }
     },
     willClose: () => {
       clearInterval(timerInterval)
