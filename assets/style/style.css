@@ -13,6 +13,14 @@
     --background-color: linear-gradient(-35deg, #3B8419 30%, #1b74cdcc 20% , #111111 80%);
     --border: 2px solid rgba(255, 255, 255, .5);
     --border-radius: 20px;
+
+    --hint: #FAF8F8;
+    --turqoise: #17EAD9;
+    --cornflower-blue: #6078EA;
+    --tundora: #4B4848;
+    --electric-violet: #7C26F8;
+    --snappy:  cubic-bezier(0.694,  0.048, 0.335, 1.000);
+
 }
 
 *{
@@ -566,7 +574,7 @@ select {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(30rem, 1fr));
     gap: 3rem;
-    margin-top: 15rem;
+    margin-top: 25rem;
 }
 
 
@@ -597,7 +605,7 @@ select {
 
 .menu .box-container .box:hover{
     background: #D9D9D9;
-    width: 50rem;
+    width: 45rem;
     z-index: 1;
     max-height: 55rem;
 }
@@ -1278,11 +1286,71 @@ select {
 
 
 
+/* =============== SEARCH  =============== */
 
+.wrapper__search{
+  position: absolute;
+  top: 22%;
+  left: 50%;
+  transform: translate(-50%,-50%);
+}
 
+.searchbox{
+  position: relative;
+  margin-top: 10rem;
+  margin-bottom: 5rem;
+}
 
+.searchbox .input{
+  width: 0px;
+  border: 0px;
+  height: 40px;
+  padding: 0px 20px;
+  border-radius: 50px;
+  box-shadow: 0 0 15px 1px #b6bbc074;
+  outline: none;
+  color: #42be11;
+  font-weight: bold;
+  font-size: 24px;
+  transition: all 0.5s linear;
+}
 
+.searchbtn{
+  position: absolute;
+  top: 0;
+  right: -1px;
+  background: #fff;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: all 0.5s 0.6s linear;
+}
 
+.searchbtn .fas{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%,-50%);
+  color: #42be11;
+  font-size: 22px;
+  transition: all 0.5s 0.6s linear;
+}
+
+/* jquery class */
+.searchbtn.bg-green{
+  background: #42be11;
+  transition: all 0.2s linear;
+}
+
+.searchbtn .fas.color-white{
+  color: #fff;
+  transition: all 0.2s linear;
+}
+
+.searchbox .input.active-width{
+  width: 300px;
+}
 
 
 

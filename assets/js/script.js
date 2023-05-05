@@ -1294,3 +1294,10 @@ fetch('/assets/json/product.json')
   })
   .catch(error => console.error(error));
 
+
+
+  $(".searchbtn").click(function(){
+    $(this).toggleClass("bg-green");
+    $(".fas").toggleClass("color-white");
+    $(".input").focus().toggleClass("active-width").val('');
+  });
