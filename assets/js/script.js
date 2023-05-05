@@ -353,13 +353,13 @@ edit_deliveryBtn.addEventListener("click", function() {
     const zipCode = document.getElementById('zip_code').textContent;
     const country = document.getElementById('country').textContent;
 
-    console.log('zipCode: ', zipCode)
     document.getElementById('fullname__input').value = fullName;
     document.getElementById('street__input').value = street;
     document.getElementById('city__input').value = city;
     document.getElementById('zip-code__input').value = zipCode;
-    document.getElementById('countries').value = country;
-
+    document.getElementById('countries__cart').value = country;
+    
+    console.log('country: ', country)
 
     const email = document.getElementById('email').textContent;
     const phone = document.getElementById('phone').textContent;
@@ -408,7 +408,7 @@ btnCustomerInfoSave.addEventListener("click", function(event) {
   street = document.getElementById('street__input').value;
   city = document.getElementById('city__input').value;
   zipCode = document.getElementById('zip-code__input').value;
-  country = document.getElementById('countries').value;
+  country = document.getElementById('countries__cart').value;
 
   document.getElementById('customer_full-name').textContent = fullName;
   document.getElementById('street').textContent = street;
@@ -531,10 +531,12 @@ btn__payment.addEventListener("click", function() {
 
 /* =============== Country opstion =============== */
 document.addEventListener('DOMContentLoaded', () => {
-  const countries = document.querySelector('#countries');
+  var countriesAccount = document.querySelector('#countries');
+  var countriesCart = document.querySelector('#countries__cart');
 
   // Add a default "Select country" option
-  countries.innerHTML = '<option value="" selected>Select country</option>';
+  countriesAccount.innerHTML = '<option value="" selected>Select country</option>';
+  countriesCart.innerHTML = '<option value="" selected>Select country</option>';
 
   fetch('https://restcountries.com/v3.1/all')
     .then(res => res.json())
@@ -544,7 +546,8 @@ document.addEventListener('DOMContentLoaded', () => {
       data.forEach(country => {
         output += `<option>${country.name.common}</option>`;
       });
-      countries.innerHTML += output;
+      countriesAccount.innerHTML += output;
+      countriesCart.innerHTML += output;
     })
     .catch(err => {
       console.log(err);
