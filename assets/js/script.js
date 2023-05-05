@@ -996,6 +996,8 @@ registerForm.addEventListener('submit', (event) => {
 
 
 
+
+
 document.querySelector('form').addEventListener('submit', function(event) {
   event.preventDefault(); // prevent default form submit behavior
   register();
@@ -1315,13 +1317,85 @@ function renderProducts(products) {
   productContainer.innerHTML = ''; // Clear the container first
   products.forEach(product => {
     const productBox = `
-      <div class="box">
+      <div class="box" data-name="${product.name}">
         <img src="${product.image_url}" alt="${product.name}">
         <h3>${product.name}</h3>
         <div class="price">$${product.price.toFixed(2)}</div>
-        <a href="#" class="btn">add to cart</a>
+        <button class="btn add-to-cart-btn" data-name="${product.name}">Add to Cart</button>
       </div>
     `;
+    console.log('product: ', product.name)
     productContainer.insertAdjacentHTML('beforeend', productBox);
   });
 }
+
+productContainer.addEventListener('click', (event) => {
+  if (event.target.classList.contains('add-to-cart-btn')) {
+    const productName = event.target.getAttribute('data-name');
+    console.log(`Clicked on ${productName}`);
+    // Add your code to handle the button click here
+
+    const selectedProduct = products.find(product => product.name === productName);
+    
+    fetch('/cart', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(selectedProduct)
+    })
+    .then(response => response.json())
+    .then(data => console.log(data))
+    .catch(error => console.error(error));
+  }
+});
+
+
+
+
+/* =============== PRODUCT Cart =============== */  
+
+
+const cartContainer = document.getElementById('cartItemsContainer');
+
+fetch('/cart')
+  .then(response => response.json())
+  .then(cartItems => {
+    renderCartItems(cartItems);
+  })
+  .catch(error => {
+    console.log('Error fetching cart data:', error);
+  });
+
+function renderCartItems(cartItems) {
+  cartContainer.innerHTML = ''; // Clear the container first
+  cartItems.forEach(item => {
+    const cartItem = `
+      <div class="cart__item" data-name="${item.name}">
+        <img src="${item.image_url}" alt="${item.name}">
+        <div class="content">
+          <h3>${item.name}</h3>
+          <div class="quantity">
+            <select class="item-quantity" data-name="${item.name}">
+              <option value="1"${item.quantity === 1 ? ' selected' : ''}>1</option>
+              <option value="2"${item.quantity === 2 ? ' selected' : ''}>2</option>
+              <option value="3"${item.quantity === 3 ? ' selected' : ''}>3</option>
+              <option value="4"${item.quantity === 4 ? ' selected' : ''}>4</option>
+              <option value="5"${item.quantity === 5 ? ' selected' : ''}>5</option>
+              <option value="6"${item.quantity === 6 ? ' selected' : ''}>6</option>
+              <option value="7"${item.quantity === 7 ? ' selected' : ''}>7</option>
+              <option value="8"${item.quantity === 8 ? ' selected' : ''}>8</option>
+              <option value="9"${item.quantity === 9 ? ' selected' : ''}>9</option>
+              <option value="10"${item.quantity === 10 ? ' selected' : ''}>10</option>
+            </select>
+            <a href="#" class="fas fa-trash remove-item" data-name="${item.name}"></a>
+          </div>
+          <div class="item__price">$${(item.price * item.quantity).toFixed(2)}</div>
+        </div>
+      </div>
+    `;
+    cartContainer.insertAdjacentHTML('beforeend', cartItem);
+  });
+}
+
+

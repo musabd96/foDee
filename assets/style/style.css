@@ -582,6 +582,8 @@ select {
 }
 
 
+  
+
 .menu .box-container .box{
     width: 30rem;
     max-height: 35rem;
@@ -609,14 +611,8 @@ select {
 
 .menu .box-container .box:hover{
     background: #D9D9D9;
-    width: 45rem;
-    z-index: 1;
-    max-height: 55rem;
 }
 
-.menu .box-container .box:hover img{
-    height: 25rem;
-}
 
 .menu .box-container .box:hover > *{
     color: var(--black);

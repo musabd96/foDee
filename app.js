@@ -20,6 +20,13 @@ app.get('/', function(req, res) {
   res.sendFile(__dirname + '/index.html');
 });
 
+
+app.listen(4000, () => {
+  console.log('Server started on port 4000');
+});
+
+
+
 // handle login request
 
 
@@ -142,6 +149,10 @@ app.post('/register', encoder, function(req, res){
 });
 
 
+
+
+
+
 /* =============== account edit request =============== */
 
 
@@ -212,6 +223,7 @@ app.post('/saveEdit', encoder, function(req, res){
 /* =============== PRODUCT MENU =============== */
 
 
+
 app.get('/search', (req, res) => {
   const searchQuery = req.query.q.toLowerCase();
   const filteredProducts = products.filter(product => {
@@ -220,11 +232,32 @@ app.get('/search', (req, res) => {
   res.json(filteredProducts);
 });
 
+app.post('/cart', (req, res) => {
+  const selectedProduct = req.body;
+  const cart = JSON.parse(fs.readFileSync(path.join(folderPath,'cart.json')));
+  const index = cart.findIndex(product => product.name === selectedProduct.name);
 
+  if (index >= 0) {
+    // If the product is already in the cart, increment its quantity
+    cart[index].quantity++;
+  } else {
+    // Otherwise, add the product to the cart with a quantity of 1
+    cart.push({...selectedProduct, quantity: 1});
+  }
 
-
-app.listen(4000, () => {
-  console.log('Server started on port 4000');
+  fs.writeFileSync(path.join(folderPath,'cart.json'), JSON.stringify(cart, null, 2));
+  res.json(cart);
 });
 
 
+/* =============== PRODUCT Cart =============== */  
+
+
+app.get('/cart', (req, res) => {
+  const cartData = fs.readFileSync(path.join(folderPath,'cart.json'));
+
+  // parse the JSON data and send it as a response
+  const cartItems = JSON.parse(cartData);
+  console.log(cartItems)
+  res.json(cartItems);
+});
