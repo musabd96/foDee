@@ -1357,6 +1357,7 @@ productContainer.addEventListener('click', (event) => {
 
 
 const cartContainer = document.getElementById('cartItemsContainer');
+let cartItems = [];
 
 fetch('/cart')
   .then(response => response.json())
@@ -1388,7 +1389,7 @@ function renderCartItems(cartItems) {
               <option value="9"${item.quantity === 9 ? ' selected' : ''}>9</option>
               <option value="10"${item.quantity === 10 ? ' selected' : ''}>10</option>
             </select>
-            <a href="#" class="fas fa-trash remove-item" data-name="${item.name}"></a>
+            <a  class="fas fa-trash remove-item" data-name="${item.name}"></a>
           </div>
           <div class="item__price">$${(item.price * item.quantity).toFixed(2)}</div>
         </div>
@@ -1397,5 +1398,61 @@ function renderCartItems(cartItems) {
     cartContainer.insertAdjacentHTML('beforeend', cartItem);
   });
 }
+
+cartContainer.addEventListener('click', (event) => {
+  if (event.target.classList.contains('remove-item')) {
+    const productName = event.target.getAttribute('data-name');
+    console.log(`Clicked on ${productName}`);
+
+    
+    fetch('/delete', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({productName: productName})
+    })
+    .then(response => response.json())
+    .then(data => console.log(data))
+    .catch(error => console.error(error));
+
+  }
+})
+
+
+
+/* =============== PRODUCT Cart UPDATE ITEMS=============== */
+
+// Add an event listener to the quantity select element
+cartContainer.addEventListener('change', event => {
+  const target = event.target;
+
+  // Check if the event is triggered by a quantity select element
+  if (target.classList.contains('item-quantity')) {
+    const itemName = target.dataset.name;
+    const itemQuantity = parseInt(target.value);
+
+    // Send an HTTP PUT request to update the cart item quantity
+    fetch(`/api/cart/${itemName}`, {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({ quantity: itemQuantity })
+    })
+    .then(response => response.json())
+    .then(cartItems => {
+      // Update the cart items on the client-side
+      renderCartItems(cartItems);
+    })
+    .catch(error => {
+      console.error('Error updating cart item quantity:', error);
+    });
+  }
+});
+
+
+/* =============== PRODUCT Cart REMOVE ITEMS=============== */
+
 
 

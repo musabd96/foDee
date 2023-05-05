@@ -258,6 +258,56 @@ app.get('/cart', (req, res) => {
 
   // parse the JSON data and send it as a response
   const cartItems = JSON.parse(cartData);
-  console.log(cartItems)
   res.json(cartItems);
 });
+
+/* =============== PRODUCT Cart UPDATE ITEMS=============== */
+
+app.put('/api/cart/:itemName', (req, res) => {
+  const itemName = req.params.itemName;
+  const itemQuantity = req.body.quantity;
+
+  // Read the cart data from cart.json
+  const cartData = fs.readFileSync(path.join(folderPath, 'cart.json'), 'utf-8');
+  let cartItems = JSON.parse(cartData);
+
+  // Update the quantity of the cart item with the matching name
+  cartItems = cartItems.map(item => {
+    if (item.name === itemName) {
+      item.quantity = itemQuantity;
+    }
+    return item;
+  });
+
+  // Save the updated cart data to cart.json
+  fs.writeFileSync(path.join(folderPath, 'cart.json'), JSON.stringify(cartItems, null, 2));
+
+  // Send the updated cart items as a response
+  res.json(cartItems);
+});
+
+/* =============== PRODUCT Cart DELETE ITEMS=============== */
+
+
+
+app.post("/delete", (req, res) => {
+  const productName = req.body.productName;
+
+  console.log('productName to delete: ', productName);
+
+  fs.readFile(path.join(folderPath, 'cart.json'), (err, data) => {
+    if (err) throw err;
+
+    const cart = JSON.parse(data);
+
+    // Filter out the object(s) with a matching productName value
+    const updatedCart = cart.filter((item) => item.name !== productName);
+
+    fs.writeFile(path.join(folderPath, 'cart.json'), JSON.stringify(updatedCart, null, 2), (err) => {
+      if (err) throw err;
+
+      res.send({ success: true });
+    });
+  });
+});
+
