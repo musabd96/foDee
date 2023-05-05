@@ -1270,3 +1270,27 @@ saveAddressEdit.addEventListener('click', (event) =>{
   })
   .catch(error => console.error(error));
 })
+
+
+
+/* =============== PRODUCT MENU =============== */  
+
+// retrieve the products from the JSON file
+fetch('/assets/json/product.json')
+  .then(response => response.json())
+  .then(data => {
+    const productContainer = document.getElementById('product-container');
+    data.forEach(product => {
+      const productBox = `
+        <div class="box">
+          <img src="${product.image_url}" alt="${product.name}">
+          <h3>${product.name}</h3>
+          <div class="price">$${product.price.toFixed(2)}</div>
+          <a href="#" class="btn">add to cart</a>
+        </div>
+      `;
+      productContainer.insertAdjacentHTML('beforeend', productBox);
+    });
+  })
+  .catch(error => console.error(error));
+

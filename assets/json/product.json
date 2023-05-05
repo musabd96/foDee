@@ -1,0 +1,87 @@
+[  
+    {    
+        "name": "Pizza",    
+        "price": 12.99,    
+        "image_url": "https://static.toiimg.com/thumb/53110049.cms?width=1200&height=900"  
+    },  
+    
+    {    
+        "name": "Burger",    
+        "price": 8.99,    
+        "image_url": "https://www.foodandwine.com/thmb/pwFie7NRkq4SXMDJU6QKnUKlaoI=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/Ultimate-Veggie-Burgers-FT-Recipe-0821-5d7532c53a924a7298d2175cf1d4219f.jpg"  
+    },  
+    
+    {    
+        "name": "Salad",    
+        "price": 6.99,    
+        "image_url": "https://static01.nyt.com/images/2022/07/15/dining/MC-Chopped-Salad-15SALADREX/merlin_209652387_1b5eee4c-9da5-443c-90e0-db20ee51a246-master768.jpg"  
+    },  
+    
+    {    
+        "name": "Tacos",    
+        "price": 10.99,    
+        "image_url": "https://danosseasoning.com/wp-content/uploads/2022/03/Beef-Tacos.jpg"  
+    },  
+    
+    {    
+        "name": "Fish and Chips",    
+        "price": 14.99,    
+        "image_url": "https://img.koket.se/standard-mega/per-morbergs-fish-and-chips.jpg"  
+    },  
+    
+    {    
+        "name": "Pad Thai",    
+        "price": 11.99,    
+        "image_url": "https://plantbasedonabudget.com/wp-content/uploads/2013/03/Pad-Thai-Inspired-Stir-Fry-Plant-Based-on-a-Budget-1.jpg"  
+    },  
+    
+    {    
+        "name": "Sushi",    
+        "price": 16.99,    
+        "image_url": "https://receptfavoriter.se/sites/default/files/styles/recipe_4x3/public/sushi_maki_sushi_sushirullar_1200_1.jpg"  
+    },  
+    {   
+        "name": "Steak",    
+        "price": 22.99,    
+        "image_url": "https://www.foodandwine.com/thmb/MT-PmMm_-6BVcPl8tbcnybIf7Vk=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/reverse-sear-steak-FT-RECIPE0222-5c6f8d9a037a4ca2b170adea0529ba7a.jpg"  
+    },  
+    {    
+        "name": "Fajitas",    
+        "price": 12.99,    
+        "image_url": "https://www.foodiecrush.com/fajita-seasoning/chicken-fajitas-foodiecrush-com-008/"  
+    },  
+    
+    {    
+        "name": "Ramen",    
+        "price": 9.99,    
+        "image_url": "https://thecozycook.com/wp-content/uploads/2023/02/Homemade-Ramen-f.jpg"  
+    },  
+    
+    {    
+        "name": "Chicken Wings",    
+        "price": 8.99,    
+        "image_url": "https://preppykitchen.com/wp-content/uploads/2022/09/Chicken-Wings-Recipe-Card.jpg"  
+    },  
+    
+    {    
+        "name": "Philly Cheesesteak",    
+        "price": 13.99,    
+        "image_url": "https://www.honestfoodtalks.com/wp-content/uploads/2021/06/Philly-Cheesesteak-Recipe.jpeg"  
+    },  
+    {    
+        "name": "Gnocchi",    
+        "price": 12.99,    
+        "image_url": "https://cdn.apartmenttherapy.info/image/upload/f_jpg,q_auto:eco,c_fill,g_auto,w_1500,ar_4:3/k%2FPhoto%2FRecipes%2F2020-10-How-to-Make-the-Easiest-Gnocchi-from-Scratch%20%2FHT-Gnocchi-From-Scratch-479"  
+    },  
+    {    
+        "name": "Pasta Carbonara",    
+        "price": 11.99,    
+        "image_url": "https://www.thespruceeats.com/thmb/ovIQQQxQajADuIE2lqhgqq7ppyE=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/pasta-carbonara-recipe-5210168-hero-01-80090e56abc04ca19d88ebf7fad1d157.jpg"  
+    },  
+    
+    {    
+        "name": "Chicken Alfredo",    
+        "price": 12.99,    
+        "image_url": "https://www.budgetbytes.com/wp-content/uploads/2022/07/Chicken-Alfredo-bowl.jpg"  
+    }
+]

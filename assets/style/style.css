@@ -552,7 +552,6 @@ select {
 .home .content h1{
     font-size: 8rem;
     color: var(--main-color);
-    margin-bottom: 2rem;
 }
 
 /* =============== MENU SECTION =============== */
@@ -560,21 +559,24 @@ select {
 .menu{
     margin-left: 10rem;
     margin-right: 10rem;
+    margin-top: 3rem;
 }
 
 .menu .content .box-container{
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(30rem, 1fr));
-    gap: 1.5rem;
-    margin: 2rem;
+    gap: 3rem;
+    margin-top: 15rem;
 }
 
 
 .menu .box-container .box{
     width: 30rem;
+    max-height: 35rem;
     padding: 5rem;
     text-align: center;
     border: var(--border);
+    margin-top: 2rem;
 }
 
 .menu .box-container .box img{
@@ -595,6 +597,13 @@ select {
 
 .menu .box-container .box:hover{
     background: #D9D9D9;
+    width: 50rem;
+    z-index: 1;
+    max-height: 55rem;
+}
+
+.menu .box-container .box:hover img{
+    height: 25rem;
 }
 
 .menu .box-container .box:hover > *{
