@@ -1297,8 +1297,8 @@ select {
 
 .searchbox{
   position: relative;
-  margin-top: 10rem;
-  margin-bottom: 5rem;
+  margin-top: 5rem;
+  margin-bottom: 15rem;
 }
 
 .searchbox .input{

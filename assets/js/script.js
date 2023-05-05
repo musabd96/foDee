@@ -1276,28 +1276,70 @@ saveAddressEdit.addEventListener('click', (event) =>{
 /* =============== PRODUCT MENU =============== */  
 
 // retrieve the products from the JSON file
+// fetch('/assets/json/product.json')
+//   .then(response => response.json())
+//   .then(data => {
+//     const productContainer = document.getElementById('product-container');
+//     data.forEach(product => {
+//       const productBox = `
+//         <div class="box">
+//           <img src="${product.image_url}" alt="${product.name}">
+//           <h3>${product.name}</h3>
+//           <div class="price">$${product.price.toFixed(2)}</div>
+//           <a href="#" class="btn">add to cart</a>
+//         </div>
+//       `;
+//       productContainer.insertAdjacentHTML('beforeend', productBox);
+//     });
+//   })
+// .catch(error => console.error(error));
+
+
+
+/* =============== search =============== */  
+$(".searchbtn").click(function(){
+  $(this).toggleClass("bg-green");
+  $(".fas").toggleClass("color-white");
+  $(".input").focus().toggleClass("active-width").val('');
+});
+
+
+
+// Get the product data from the JSON file
+const productContainer = document.getElementById('product-container');
+let products = [];
+
+
 fetch('/assets/json/product.json')
   .then(response => response.json())
   .then(data => {
-    const productContainer = document.getElementById('product-container');
-    data.forEach(product => {
-      const productBox = `
-        <div class="box">
-          <img src="${product.image_url}" alt="${product.name}">
-          <h3>${product.name}</h3>
-          <div class="price">$${product.price.toFixed(2)}</div>
-          <a href="#" class="btn">add to cart</a>
-        </div>
-      `;
-      productContainer.insertAdjacentHTML('beforeend', productBox);
-    });
+    products = data;
+    renderProducts(products); // Render all products initially
   })
   .catch(error => console.error(error));
 
-
-
-  $(".searchbtn").click(function(){
-    $(this).toggleClass("bg-green");
-    $(".fas").toggleClass("color-white");
-    $(".input").focus().toggleClass("active-width").val('');
+// Add event listener to the search input field
+const searchInput = document.querySelector('.input');
+searchInput.addEventListener('input', event => {
+  const searchQuery = event.target.value.toLowerCase();
+  const filteredProducts = products.filter(product => {
+    return product.name.toLowerCase().includes(searchQuery);
   });
+  renderProducts(filteredProducts); // Render the filtered products
+});
+
+// Helper function to render the products
+function renderProducts(products) {
+  productContainer.innerHTML = ''; // Clear the container first
+  products.forEach(product => {
+    const productBox = `
+      <div class="box">
+        <img src="${product.image_url}" alt="${product.name}">
+        <h3>${product.name}</h3>
+        <div class="price">$${product.price.toFixed(2)}</div>
+        <a href="#" class="btn">add to cart</a>
+      </div>
+    `;
+    productContainer.insertAdjacentHTML('beforeend', productBox);
+  });
+}
