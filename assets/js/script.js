@@ -260,6 +260,7 @@ btn__cart.addEventListener("click", function() {
   deliveryEdit.classList.toggle("hidden");
   deliveryInfo.classList.toggle("hidden");
   editDelivery.classList.remove("hidden");
+  customer__contect.classList.remove("hidden");
 
 });
 
@@ -276,6 +277,16 @@ edit__cartBtn.addEventListener("click", function() {
   deliveryEdit.classList.add("hidden");
   editDelivery.classList.add("hidden");
   deliveryInfo.classList.add("hidden");
+  
+  customer__address.classList.remove("hidden");
+  customer__contect.classList.remove("hidden");
+  customer__formInfo.classList.add("hidden");
+  customer__formContact.classList.add("hidden");
+  save__cancelBtn.classList.add("hidden");
+  btn__address.classList.remove("hidden");
+
+
+  console.log('edit cart')
   
 
   row.classList.add("hidden");
@@ -302,22 +313,173 @@ btn__address.addEventListener("click", function() {
   row.classList.toggle("hidden");
   btnPayment.classList.toggle("hidden");
 
-  console.log(btnDelivery); 
 });
 
+/* =============== Edit address =============== */
 
 const edit_deliveryBtn= document.querySelector("#edit_delivery-btn");
+const customer__address= document.querySelector(".customer__address");
+const customer__contect= document.querySelector(".customer__contect");
+const customer__formInfo= document.querySelector(".customer__form-info");
+const customer__formContact= document.querySelector(".customer__form-contact");
+const save__cancelBtn= document.querySelector(".save__cancel-btn");
 
 edit_deliveryBtn.addEventListener("click", function() {
-  
-  deliveryEdit.classList.remove("hidden");
-  editDelivery.classList.remove("hidden");
-  deliveryInfo.classList.remove("hidden");
-  
+  if (deliveryInfo.classList.contains('hidden')) {
+    customer__address.classList.remove('hidden');
+    customer__contect.classList.remove('hidden');
+    deliveryEdit.classList.remove('hidden');
+    deliveryInfo.classList.remove('hidden');
 
+    
+  } else {
+    
+    const fullName = document.getElementById('customer_full-name').textContent;
+    const street = document.getElementById('street').textContent;
+    const city = document.getElementById('city').textContent;
+    const zipCode = document.getElementById('zip__code').textContent;
+    const country = document.getElementById('country').textContent;
+
+    document.getElementById('fullname__input').value = fullName;
+    document.getElementById('street__input').value = street;
+    document.getElementById('city__input').value = city;
+    document.getElementById('zip-code__input').value = zipCode;
+    document.getElementById('countries').value = country;
+
+
+    const email = document.getElementById('email').textContent;
+    const phone = document.getElementById('phone').textContent;
+
+  
+    const emailInput = document.getElementById('email__input');
+    emailInput.value = email;
+    emailInput.disabled = true;
+
+    document.getElementById('phone__input').value = phone;
+
+
+
+
+    customer__address.classList.add('hidden');
+    customer__contect.classList.add('hidden');
+    editDelivery.classList.add('hidden');
+    customer__formInfo.classList.remove('hidden');
+    customer__formContact.classList.remove('hidden');
+    save__cancelBtn.classList.remove('hidden');
+    btn__address.classList.add('hidden');
+
+
+  }
+  
   row.classList.add("hidden");
   btnPayment.classList.add("hidden");
 })
+
+
+const btnCustomerInfoSave= document.querySelector("#btn__customer__info-save");
+btnCustomerInfoSave.addEventListener("click", function() {
+
+  event.preventDefault();
+  console.log('save__personal')
+  const email = customerEmail;
+  const fullName = document.getElementById("fullname__input").value;
+  const phone = document.getElementById("phone__input").value;
+  const street = document.getElementById('street').textContent;
+  const city = document.getElementById('city').textContent;
+  const zipCode = document.getElementById('zip__code').textContent;
+  const country = document.getElementById('country').textContent;
+
+  fetch('/saveEdit', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/x-www-form-urlencoded'
+    },
+    body: new URLSearchParams({
+      email: email,
+      fullName: fullName,
+      phone: phone,
+      street: street,
+      city: city,
+      zipCode: zipCode,
+      country: country
+    })
+  })
+  .then(response => {
+    if(response.ok) {
+      response.json().then(data => {
+        if(data.isSaved){
+
+          localStorage.setItem('customer_fullname', data.customer_fullname);
+          localStorage.setItem('customer_phone', data.customer_phone);
+
+          console.log('data.customer_fullname: ', data.customer_fullname )
+
+          console.log('saved register successfull');
+          Swal.fire({
+            position: 'center',
+            icon: 'success',
+            title: 'account edit is successful',
+            showConfirmButton: false,
+            timer: 3000,
+            customClass: {
+              container: 'swal-container',
+              popup: 'swal-popup',
+              title: 'swal-title',
+              content: 'swal-text'
+            }
+          })
+
+          const fullName = document.getElementById('fullname__input').value;
+          const street = document.getElementById('street__input').value;
+          const city = document.getElementById('city__input').value;
+          const zipCode = document.getElementById('zip-code__input').value;
+          const country = document.getElementById('countries').value;
+
+          document.getElementById('customer_full-name').textContent = fullName;
+          document.getElementById('street').textContent = street;
+          document.getElementById('city').textContent = city;
+          document.getElementById('zip__code').textContent = zipCode;
+          document.getElementById('country').textContent = country;
+
+
+          const email = document.getElementById('email__input').value;
+          const phone = document.getElementById('phone__input').value;
+
+          document.getElementById('email').textContent = email;
+          document.getElementById('phone').textContent = phone;
+
+          
+          customer__address.classList.remove('hidden');
+          customer__contect.classList.remove('hidden');
+          editDelivery.classList.remove('hidden');
+          customer__formInfo.classList.add('hidden');
+          customer__formContact.classList.add('hidden');
+          save__cancelBtn.classList.add('hidden');
+          btn__address.classList.remove('hidden');
+        }
+      });
+    }else {
+      console.log('Error:', response.status);
+    }
+  })
+  .catch(error => console.error(error));
+
+})
+
+
+const btnCustomerInfoCancel= document.querySelector("#btn__customer__info-cancel");
+btnCustomerInfoCancel.addEventListener("click", function() {
+
+  customer__address.classList.remove('hidden');
+  customer__contect.classList.remove('hidden');
+  editDelivery.classList.remove('hidden');
+  customer__formInfo.classList.add('hidden');
+  customer__formContact.classList.add('hidden');
+  save__cancelBtn.classList.add('hidden');
+  btn__address.classList.remove('hidden');
+
+})
+
 
 /* =============== Payment =============== */
 
@@ -617,14 +779,21 @@ loginBtn.addEventListener('click', (event) => {
 
 
 const nameSpan = document.querySelector('#name');
-const fullnameSpan = document.querySelector('#customer_fullname');
+const fullnameAccountEdit = document.querySelector('#customer_fullname');
+const fullnameCart = document.querySelector('#customer_full-name');
 const iDSpan = document.querySelector('#customer-id');
 const phoneSpan = document.querySelector('#number');
+const phoneCart = document.querySelector('#phone');
 const emailSpan = document.querySelector('#customer_email');
+const emailCart = document.querySelector('#email');
 const streetAddressSpan = document.querySelector('#street__address');
+const streetAddressCart = document.querySelector('#street');
 const cityNameSpan = document.querySelector('#city__name');
+const cityNameCart = document.querySelector('#city');
 const countrySpan = document.querySelector('#state');
+const countryCart = document.querySelector('#country');
 const zipCodeSpan = document.querySelector('#zipCode');
+const zipCodeCart = document.querySelector('#zip__code');
 
 
 var customerEmail = localStorage.getItem('login_email');
@@ -642,6 +811,7 @@ var customerZipcode = localStorage.getItem('customer_zipcode');
 
 iDSpan.innerHTML = customerId;
 emailSpan.innerHTML = customerEmail;
+emailCart.innerHTML = customerEmail;
 
 console.log(customerFullname)
 
@@ -649,42 +819,54 @@ console.log(customerFullname)
 
 
 if(customerFullname != 'null' || customerFullname != '' ){
-  fullnameSpan.innerHTML = customerFullname;
+  fullnameAccountEdit.innerHTML = customerFullname;
+  fullnameCart.innerHTML = customerFullname;
   nameSpan.innerHTML = customerFullname;
   console.log('not ', customerFullname)
 } else {
-  fullnameSpan.innerHTML = "";
+  fullnameAccountEdit.innerHTML = "";
+  fullnameCart.innerHTML = "";
   nameSpan.innerHTML = '';
 }
 
 if(customerPhone != 'null'){
   phoneSpan.innerHTML = customerPhone;
+  phoneCart.innerHTML = customerPhone;
 } else {
   phoneSpan.innerHTML = "";
+  phoneCart.innerHTML = "";
 }
 
 if(customerAddress != 'null'){
   streetAddressSpan.innerHTML = customerAddress;
+  streetAddressCart.innerHTML = customerAddress;
 } else {
   streetAddressSpan.innerHTML = "";
+  streetAddressCart.innerHTML = "";
 }
 
 if(customerCity != 'null'){
   cityNameSpan.innerHTML = customerCity;
+  cityNameCart.innerHTML = customerCity;
 } else {
   cityNameSpan.innerHTML = "";
+  cityNameCart.innerHTML = "";
 }
 
 if(customerState != 'null'){
   countrySpan.innerHTML = customerState;
+  countryCart.innerHTML = customerState;
 } else {
   countrySpan.innerHTML = "";
+  countryCart.innerHTML = "";
 }
 
 if(customerZipcode != 'null'){
   zipCodeSpan.innerHTML = customerZipcode;
+  zipCodeCart.innerHTML = customerZipcode;
 } else {
   zipCodeSpan.innerHTML = "";
+  zipCodeCart.innerHTML = "";
 }
 
 
@@ -844,7 +1026,6 @@ function registerSuccessCallback(){
 
 
 /* =============== EDIT ACCOUNT =============== */
-// Get all the "edit" buttons
 const editPersonalData = document.querySelectorAll('.edit_personal-data');
 
 
@@ -866,6 +1047,7 @@ editPersonalData.forEach(editButton => {
     fullNameInput.value = personalData.querySelector('.name').textContent;
     phoneNumberInput.value = personalData.querySelector('.number').textContent;
 
+    console.log('fullNameInput: ', fullNameInput)
     
     
     const saveButton = editForm.querySelector('.btn:nth-of-type(1)');
@@ -998,7 +1180,6 @@ const saveAddressEdit = document.getElementById("save__address-edit");
 
 saveAddressEdit.addEventListener('click', (event) =>{
   event.preventDefault();
-  console.log('save__address')
   const email = customerEmail;
   const address = document.getElementById("address__input").value;
   const city = document.getElementById("city__input").value;

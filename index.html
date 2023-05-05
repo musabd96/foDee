@@ -304,33 +304,78 @@
                     </div>
 
                     <div class="delivery__info hidden">
-                        <div class="customer__address">
+                        <div class="customer__address ">
 
                             <div class="icon">
                                 <i class="ri-map-pin-fill"></i>
                             </div>
-                            <div class="customer__info">
-                                <span class="fullname">full Name</span>
-                                <span class="street">street</span>
-                                <span class="city">city</span>
+                            <div class="customer__info ">
+                                <span class="fullname" id="customer_full-name"></span>
+                                <span class="street" id="street"></span>
+                                <span class="city" id="city"></span>
                                 <div class="flex">
-                                    <span class="zip__code">zip code</span>
-                                    <span class="country">country</span>
+                                    <span class="zip__code" id="zip__code"></span>
+                                    <span class="country" id="country"></span>
                                 </div>
                             </div>
                         </div>
-                        <div class="customer__contect">
+
+                        <form action="">
+                            <div class="customer__form-info hidden">
+                                <span class="fullname">full Name</span>
+                                <input type="text" id="fullname__input">
+                                <span class="street">street</span>
+                                <input type="text" id="street__input">
+                                <span class="city">city</span>
+                                <input type="text" id="city__input">
+                                <div class="flex">
+                                    <div class="zipcode">
+                                        <span class="zip__code">zip code</span>
+                                        <input type="text" id="zip-code__input">
+                                    </div>
+
+                                    <div class="country">
+                                        <span class="zip__code">country</span>
+                                        <select name="countries" id="countries" placeholder="countries"></select>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+
+                        <div class="customer__contect hidden">
 
                             <div class="email">
                                 <i class="ri-mail-fill"></i>
-                                <span class="email">email</span>
+                                <span class="email" id="email">email</span>
                             </div>
                             <div class="number">
                                 <i class="ri-phone-fill"></i>
-                                <span class="number">number</span>
+                                <span class="number" id="phone">number</span>
                             </div>
+                    
 
                         </div>
+
+                        <form action="">
+                            <div class="customer__form-contact hidden">
+                                <div class="email">
+                                    <span class="email">email</span>
+                                    <input type="email" id="email__input">
+                                </div>
+                                <div class="number">
+                                    <span class="phone">phone</span>
+                                    <input type="number" id="phone__input">
+                                </div>
+                            </div>
+                        </form>
+
+                        <div class="save__cancel-btn hidden">
+                            <button class="btn customer__info-save" id="btn__customer__info-save">save</button>
+                            <button class="btn customer__info-cancel" id="btn__customer__info-cancel">cancel</button>
+
+
+                        </div>
+
                         <button class="btn delivery" id="btn__address">continue to payment</button>
 
                     </div>

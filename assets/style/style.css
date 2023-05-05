@@ -27,7 +27,7 @@
 }
 
 html{
-    font-size: 50%;
+    font-size: 40%;
 }
 
 html, body {
@@ -746,7 +746,7 @@ select {
 
 }
 
-/* =============== dleivery =============== */
+/* =============== delivery =============== */
 
 .address {
     border: 1px solid #D9D9D9;
@@ -754,7 +754,7 @@ select {
     padding: 2rem;
     margin-left: 10rem;
     margin-bottom: 3rem;
-    font-size: 60%;
+    font-size: 50%;
     color: var(--main-color);
     font-size: 3rem;
 }
@@ -804,7 +804,9 @@ select {
     flex-direction: column;
 }
 
-
+.address .delivery__info .customer__address.hidden{
+    display: none;
+}
 
 .address .delivery__info .customer__address .customer__info span{
     padding: 1rem;
@@ -819,6 +821,59 @@ select {
     margin-right: 1rem;
 }
 
+.address .delivery__info form .customer__form-info{
+    display: flex;
+    flex-direction: column;
+}
+
+.address .delivery__info form .customer__form-info.hidden{
+    display: none;
+}
+
+.address .delivery__info form .customer__form-info{
+    margin-top: 3rem;
+    margin-left: 2rem;
+}
+
+.address .delivery__info form .customer__form-info span{
+    margin: 2rem 0;
+}
+
+.address .delivery__info form .customer__form-info input{
+    padding: 1.5rem;
+    width: 50%;
+}
+
+.address .delivery__info form .customer__form-info .flex{
+    display: flex;
+    margin: 3rem 0;
+}
+.address .delivery__info form .customer__form-info .flex .zipcode,
+.address .delivery__info form .customer__form-info .flex .country{
+    display: flex;
+    flex-direction: column;
+}
+
+
+
+.address .delivery__info form .customer__form-info .flex input{
+    padding: 1.5rem;
+    width: 100%;
+}
+
+.address .delivery__info form .customer__form-info .flex .country span{
+    margin-left: 2rem;
+}
+
+.address .delivery__info form .customer__form-info .flex select{
+    padding: 1rem;
+    width: 44%;
+    height: 50%;
+    margin-left: 2rem;
+}
+
+
+
 .address .delivery__info .customer__info .email,
 .address .delivery__info .customer__info .number{
     margin-top: 4rem;
@@ -827,18 +882,72 @@ select {
 .address .delivery__info .customer__contect{
     display: flex;
     flex-direction: column;
-    padding: 3rem;
+    padding: 3rem;   
+}
 
-    
+.address .delivery__info .customer__contect.hidden{
+    display: none;
 }
 
 .address .delivery__info .customer__contect .email{
     margin-bottom: 3rem;
+    text-transform: none;
+    
 }
 
 .address .delivery__info .customer__contect .email span,
 .address .delivery__info .customer__contect .number span {
     padding: 3rem;
+}
+
+.address .delivery__info .customer__form-contact{
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 3rem;
+}
+
+.address .delivery__info .customer__form-contact.hidden{
+    display: none;
+}
+
+.address .delivery__info .customer__form-contact .email,
+.address .delivery__info .customer__form-contact .number{
+    display: flex;
+    flex-direction: column;
+}
+
+.address .delivery__info .customer__form-contact .email span,
+.address .delivery__info .customer__form-contact .number span{
+    padding: 2rem;
+}
+
+.address .delivery__info .customer__form-contact .email input,
+.address .delivery__info .customer__form-contact .number input{
+    padding: 1rem;
+    width: 50%;
+    margin-left: 2rem;
+}
+
+.address .delivery__info .save__cancel-btn{
+    margin-bottom: 3rem;
+    margin-left: 10%;
+
+}
+.address .delivery__info .save__cancel-btn .btn.customer__info-save{
+    width: 30%;
+}
+
+.address .delivery__info .save__cancel-btn .btn.customer__info-cancel{
+    margin-left: 4rem;
+    width: 30%;
+}
+
+.address .delivery__info .save__cancel-btn .btn.customer__info-cancel:hover{
+    background: rgba(255, 0, 0, 0.66);
+}
+
+.address .delivery__info .save__cancel-btn.hidden{
+    display: none;
 }
 
 .address .btn.delivery{
@@ -1063,6 +1172,10 @@ select {
      
 }
 
+.account .container .account__details .email{
+    text-transform: none;
+}
+
 .account .container .account__details .email,
 .account .container .account__details .password,
 .account .container .personal-data__details .name,
@@ -1070,7 +1183,8 @@ select {
 .account .container .personal-data__details .street__address,
 .account .container .personal-data__details .nacityTownme,
 .account .container .personal-data__details .zipCode {
-    margin-top: 1rem;    
+    margin-top: 1rem;  
+      
 }
 
 .account .container .account__details .pass__title,

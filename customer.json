@@ -2,12 +2,12 @@
   {
     "customer_id": "1",
     "customer_email": "nageyem@gmail.com",
-    "customer_fullname": "mus",
-    "customer_phone": "1",
+    "customer_fullname": "mustafa",
+    "customer_phone": "0712345678",
     "customer_address": "torget",
     "customer_city": "angered",
-    "customer_country": "France",
-    "customer_zipcode": "11"
+    "customer_country": "Egypt",
+    "customer_zipcode": "12345"
   },
   {
     "customer_id": "2",
