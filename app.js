@@ -212,22 +212,6 @@ app.post('/saveEdit', encoder, function(req, res){
 /* =============== PRODUCT MENU =============== */
 
 
-// app.get('/product', (req, res) => {
-//   fs.readFile(path.join(folderPath,'product.json'), (err, data) => {
-//     if (err) {
-//       console.error(err);
-//       res.status(500).send('Error reading product data');
-//       return;
-//     }
-
-//     const products = JSON.parse(data);
-//     res.json(products);
-//   });
-// });
-
-
-
-
 app.get('/search', (req, res) => {
   const searchQuery = req.query.q.toLowerCase();
   const filteredProducts = products.filter(product => {
@@ -235,13 +219,6 @@ app.get('/search', (req, res) => {
   });
   res.json(filteredProducts);
 });
-
-
-
-
-
-
-
 
 
 
