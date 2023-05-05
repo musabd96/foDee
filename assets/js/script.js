@@ -1324,7 +1324,7 @@ function renderProducts(products) {
         <button class="btn add-to-cart-btn" data-name="${product.name}">Add to Cart</button>
       </div>
     `;
-    console.log('product: ', product.name)
+    
     productContainer.insertAdjacentHTML('beforeend', productBox);
   });
 }
@@ -1366,7 +1366,7 @@ fetch('/cart')
   })
   .catch(error => {
     console.log('Error fetching cart data:', error);
-  });
+});
 
 function renderCartItems(cartItems) {
   cartContainer.innerHTML = ''; // Clear the container first
@@ -1399,25 +1399,6 @@ function renderCartItems(cartItems) {
   });
 }
 
-cartContainer.addEventListener('click', (event) => {
-  if (event.target.classList.contains('remove-item')) {
-    const productName = event.target.getAttribute('data-name');
-    console.log(`Clicked on ${productName}`);
-
-    
-    fetch('/delete', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({productName: productName})
-    })
-    .then(response => response.json())
-    .then(data => console.log(data))
-    .catch(error => console.error(error));
-
-  }
-})
 
 
 
@@ -1454,5 +1435,26 @@ cartContainer.addEventListener('change', event => {
 
 /* =============== PRODUCT Cart REMOVE ITEMS=============== */
 
+cartContainer.addEventListener('click', (event) => {
+  if (event.target.classList.contains('remove-item')) {
+    const productName = event.target.getAttribute('data-name');
+    console.log(`Clicked on ${productName}`);
+
+    
+    fetch('/delete', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({productName: productName})
+    })
+    .then(response => response.json())
+    .then(data => console.log(data))
+    .catch(error => console.error(error));
+
+  }
+})
 
 
+
+/* =============== PRODUCT Cart REMOVE ITEMS=============== */
