@@ -350,9 +350,10 @@ edit_deliveryBtn.addEventListener("click", function() {
     const fullName = document.getElementById('customer_full-name').textContent;
     const street = document.getElementById('street').textContent;
     const city = document.getElementById('city').textContent;
-    const zipCode = document.getElementById('zip__code').textContent;
+    const zipCode = document.getElementById('zip_code').textContent;
     const country = document.getElementById('country').textContent;
 
+    console.log('zipCode: ', zipCode)
     document.getElementById('fullname__input').value = fullName;
     document.getElementById('street__input').value = street;
     document.getElementById('city__input').value = city;
@@ -390,18 +391,47 @@ edit_deliveryBtn.addEventListener("click", function() {
 
 
 const btnCustomerInfoSave= document.querySelector("#btn__customer__info-save");
-btnCustomerInfoSave.addEventListener("click", function() {
+btnCustomerInfoSave.addEventListener("click", function(event) {
 
   event.preventDefault();
   console.log('save__personal')
-  const email = customerEmail;
-  const fullName = document.getElementById("fullname__input").value;
-  const phone = document.getElementById("phone__input").value;
-  const street = document.getElementById('street').textContent;
-  const city = document.getElementById('city').textContent;
-  const zipCode = document.getElementById('zip__code').textContent;
-  const country = document.getElementById('country').textContent;
 
+  var email = customerEmail;
+  var fullName = document.getElementById("fullname__input").value;
+  var phone = document.getElementById("phone__input").value;
+  var street = document.getElementById('street').textContent;
+  var city = document.getElementById('city').textContent;
+  var zipCode = document.getElementById('zip-code__input').textContent;
+  var country = document.getElementById('country').textContent;
+
+  fullName = document.getElementById('fullname__input').value;
+  street = document.getElementById('street__input').value;
+  city = document.getElementById('city__input').value;
+  zipCode = document.getElementById('zip-code__input').value;
+  country = document.getElementById('countries').value;
+
+  document.getElementById('customer_full-name').textContent = fullName;
+  document.getElementById('street').textContent = street;
+  document.getElementById('city').textContent = city;
+  document.getElementById('zip_code').textContent = zipCode;
+  document.getElementById('country').textContent = country;
+
+
+
+  var email = document.getElementById('email__input').value;
+  var phone = document.getElementById('phone__input').value;
+
+  document.getElementById('email').textContent = email;
+  document.getElementById('phone').textContent = phone;
+
+
+  localStorage.setItem('customer_fullname', fullName);
+  localStorage.setItem('customer_phone', phone);
+  localStorage.setItem('customer_address', street);
+  localStorage.setItem('customer_city', city);
+  localStorage.setItem('customer_country', country);
+  localStorage.setItem('customer_zipcode', zipCode);
+  
   fetch('/saveEdit', {
     method: 'POST',
     headers: {
@@ -442,24 +472,7 @@ btnCustomerInfoSave.addEventListener("click", function() {
             }
           })
 
-          const fullName = document.getElementById('fullname__input').value;
-          const street = document.getElementById('street__input').value;
-          const city = document.getElementById('city__input').value;
-          const zipCode = document.getElementById('zip-code__input').value;
-          const country = document.getElementById('countries').value;
-
-          document.getElementById('customer_full-name').textContent = fullName;
-          document.getElementById('street').textContent = street;
-          document.getElementById('city').textContent = city;
-          document.getElementById('zip__code').textContent = zipCode;
-          document.getElementById('country').textContent = country;
-
-
-          const email = document.getElementById('email__input').value;
-          const phone = document.getElementById('phone__input').value;
-
-          document.getElementById('email').textContent = email;
-          document.getElementById('phone').textContent = phone;
+          
 
           
           customer__address.classList.remove('hidden');
@@ -727,7 +740,7 @@ loginBtn.addEventListener('click', (event) => {
           localStorage.setItem('customer_city', data.customer_city);
           localStorage.setItem('customer_country', data.customer_country);
           localStorage.setItem('customer_zipcode', data.customer_zipcode);
-          console.log('data.customer_fullname: ', data.customer_fullname )
+          
           // Check if user is logging in for the first time
           if (data.customer_fullname === '') {
             Swal.fire({
@@ -793,22 +806,23 @@ loginBtn.addEventListener('click', (event) => {
 });
 
 
-const nameSpan = document.querySelector('#name');
-const fullnameAccountEdit = document.querySelector('#customer_fullname');
-const fullnameCart = document.querySelector('#customer_full-name');
-const iDSpan = document.querySelector('#customer-id');
-const phoneSpan = document.querySelector('#number');
-const phoneCart = document.querySelector('#phone');
-const emailSpan = document.querySelector('#customer_email');
-const emailCart = document.querySelector('#email');
-const streetAddressSpan = document.querySelector('#street__address');
-const streetAddressCart = document.querySelector('#street');
-const cityNameSpan = document.querySelector('#city__name');
-const cityNameCart = document.querySelector('#city');
-const countrySpan = document.querySelector('#state');
-const countryCart = document.querySelector('#country');
-const zipCodeSpan = document.querySelector('#zipCode');
-const zipCodeCart = document.querySelector('#zip__code');
+var nameSpan = document.querySelector('#name');
+var fullnameAccountEdit = document.querySelector('#customer_fullname');
+var fullnameCart = document.querySelector('#customer_full-name');
+var iDSpan = document.querySelector('#customer-id');
+var phoneSpan = document.querySelector('#number');
+var phoneCart = document.querySelector('#phone');
+var emailSpan = document.querySelector('#customer_email');
+var emailCart = document.querySelector('#email');
+var streetAddressSpan = document.querySelector('#street__address');
+var streetAddressCart = document.querySelector('#street');
+var cityNameSpan = document.querySelector('#city__name');
+var cityNameCart = document.querySelector('#city');
+var countrySpan = document.querySelector('#state');
+var countryCart = document.querySelector('#country');
+var zipCodeSpan = document.querySelector('#zipCode');
+var zipCodeCart = document.querySelector('#zip_code');
+
 
 
 var customerEmail = localStorage.getItem('login_email');
@@ -824,11 +838,12 @@ var customerZipcode = localStorage.getItem('customer_zipcode');
 
 
 
+
 iDSpan.innerHTML = customerId;
 emailSpan.innerHTML = customerEmail;
 emailCart.innerHTML = customerEmail;
 
-console.log(customerFullname)
+
 
 
 

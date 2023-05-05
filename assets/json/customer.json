@@ -1,0 +1,22 @@
+[
+  {
+    "customer_id": "1",
+    "customer_email": "nageyem@gmail.com",
+    "customer_fullname": "mus",
+    "customer_phone": "666666",
+    "customer_address": "torget 1b",
+    "customer_city": "angered",
+    "customer_country": "Egypt",
+    "customer_zipcode": "123456788888"
+  },
+  {
+    "customer_id": "2",
+    "customer_email": "faynageye@gmail.com",
+    "customer_fullname": "mustafa",
+    "customer_phone": "0712345678",
+    "customer_address": "torget",
+    "customer_city": "angered",
+    "customer_country": "",
+    "customer_zipcode": ""
+  }
+]

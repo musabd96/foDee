@@ -1,25 +1,20 @@
-const mysql = require('mysql');
+
 const express = require('express');
 const bodyParser = require('body-parser');
 const encoder = bodyParser.urlencoded({ extended: true });
 const fs = require('fs');
+const path = require('path');
 const app = express();
+
+const folderPath = path.join(__dirname, 'assets', 'json');
+
 // app.use(express.static('assets'));
 app.use(express.static(__dirname));
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
-const conn = mysql.createConnection({
-    host: 'localhost',
-    user: 'root',
-    password: '0909',
-    database: 'fodee'
-});
 
-conn.connect(function(error){
-    if (error) throw error;
-    else console.log('connected to the database successfully!');
-});
+
 
 app.get('/', function(req, res) {
   res.sendFile(__dirname + '/index.html');
@@ -35,7 +30,7 @@ app.post('/', encoder, function(req, res){
   var password = req.body.password;
 
 
-  fs.readFile('login.json', function(error, loginData){
+  fs.readFile(path.join(folderPath, 'login.json'), function(error, loginData){
     if (error) throw error;
     
     var loginResults = JSON.parse(loginData);
@@ -46,7 +41,7 @@ app.post('/', encoder, function(req, res){
     if(filteredLoginResults.length > 0){
       var customer_email = filteredLoginResults[0].email;
 
-      fs.readFile('customer.json', function(error, customerData){
+      fs.readFile(path.join(folderPath,'customer.json'), function(error, customerData){
         if (error) throw error;
         var customerResults = JSON.parse(customerData);
         var filteredCustomerResults = customerResults.filter(function(result) {
@@ -88,8 +83,8 @@ app.post('/register', encoder, function(req, res){
   var password = req.body.password;
 
   // Check if the email already exists in the JSON files
-  const loginData = JSON.parse(fs.readFileSync('login.json'));
-  const customerData = JSON.parse(fs.readFileSync('customer.json'));
+  const loginData = JSON.parse(fs.readFileSync(path.join(folderPath,'login.json')));
+  const customerData = JSON.parse(fs.readFileSync(path.join(folderPath,'customer.json')));
 
   
 
@@ -125,7 +120,7 @@ app.post('/register', encoder, function(req, res){
 
     // Append the login data to login.json file
     loginData.push(loginObject);
-    fs.writeFile('login.json', JSON.stringify(loginData, null, 2), {encoding:'utf8', flag:'w+'}, (err) => {
+    fs.writeFile(path.join(folderPath,'login.json'), JSON.stringify(loginData, null, 2), {encoding:'utf8', flag:'w+'}, (err) => {
       if (err) {
         console.error(err);
         return;
@@ -134,7 +129,7 @@ app.post('/register', encoder, function(req, res){
 
     // Append the customer data to customer.json file
     customerData.push(customerObject);
-    fs.writeFile('customer.json', JSON.stringify(customerData, null, 2), {encoding:'utf8', flag:'w+'}, (err) => {
+    fs.writeFile(path.join(folderPath,'customer.json'), JSON.stringify(customerData, null, 2), {encoding:'utf8', flag:'w+'}, (err) => {
       if (err) {
         console.error(err);
         return;
@@ -160,10 +155,12 @@ app.post('/saveEdit', encoder, function(req, res){
   var country = req.body.country;
   var zipCode = req.body.zipCode;
 
-  console.log('email: ', email, ' and name: ', fullName);
+
+
+  console.log('zipCode: ', zipCode, ' and phone: ', phone);
 
   // Read the existing customer data from the file
-  const rawData = fs.readFileSync('customer.json');
+  const rawData = fs.readFileSync(path.join(folderPath,'customer.json'));
   const customerData = JSON.parse(rawData);
 
   // Find the customer with the specified email
@@ -178,15 +175,17 @@ app.post('/saveEdit', encoder, function(req, res){
     customer.customer_country = country || customer.customer_country;
     customer.customer_zipcode = zipCode || customer.customer_zipcode;
 
+    // console.log('zip ', customer.customer_zipcode);
+
     // Write the updated customer data back to the file
-    fs.writeFile('customer.json', JSON.stringify(customerData, null, 2), {encoding:'utf8', flag:'w+'}, (err) => {
+    fs.writeFile(path.join(folderPath,'customer.json'), JSON.stringify(customerData, null, 2), {encoding:'utf8', flag:'w+'}, (err) => {
       if (err) {
         console.error(err);
         res.json({ isSaved: false, message: 'Error saving customer data' });
         return;
       }
       // Read the updated customer data from the file
-      const updatedRawData = fs.readFileSync('customer.json');
+      const updatedRawData = fs.readFileSync(path.join(folderPath,'customer.json'));
       const updatedCustomerData = JSON.parse(updatedRawData);
       const updatedCustomer = updatedCustomerData.find(c => c.customer_email === email);
 
