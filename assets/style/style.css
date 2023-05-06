@@ -712,14 +712,14 @@ select {
     margin: 1rem 2rem 2rem 0;
 }
 
-.cart__list .cart__items-list .details h3{
+.cart__list .cart__items-list .cart__items-details h3{
     color: var(--main-color);
     font-size: 2.5rem;
     padding-bottom: 5px;
     margin-bottom: 1rem;
 }
 
-.cart__list .cart__items-list .details .quantity select{
+.cart__list .cart__items-list .cart__items-details .cart__items-quantity select{
     font-size: 1.5rem;
     margin-right: 2rem;
     height: 5rem;
@@ -727,37 +727,41 @@ select {
     color: var(--main-color);
 }
 
-.cart__list .cart__items-list .details .quantity option{
+.cart__list .cart__items-list .cart__items-details .cart__items-quantity option{
     color: var(--main-color);
 }
 
-.cart__list .cart__items-list .details .quantity a{
+.cart__list .cart__items-list .cart__items-details .cart__items-quantity a{
     color: var(--main-color);
     font-size: 2rem;
 }
 
-.cart__list .cart__items-list .details .quantity a:hover{
+.cart__list .cart__items-list .cart__items-details .cart__items-quantity a:hover{
     color: var(--red);
     font-size: 2.5rem;
 }
 
-.cart__list .cart__items-list .item__price{
+.cart__list .cart__items-list .cart__items-price{
     color: var(--main-color);
     margin-left: auto;
     font-size: 2rem;
     margin-top: 1rem;
 }
 
-.cart__list .total-price {
+.cart__list .cart__items-total-price {
     color: var(--main-color);
     font-size: 2.5rem;
     margin: 1rem 2rem 1rem 1rem;
     display: flex;
 }
 
-.cart__list .total-price .total__price{
+.cart__list .cart__items-total-price .total__price{
     font-size: 3rem;
     margin-left: auto;
+}
+
+.cart__list .cart__items-total-price.hidden{
+    display: none;
 }
 
 .cart__list .btn{

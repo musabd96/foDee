@@ -261,6 +261,14 @@ app.get('/cart', (req, res) => {
   res.json(cartItems);
 });
 
+// app.get('/cart', (req, res) => {
+//   const cartData = fs.readFileSync(path.join(folderPath,'cart.json'));
+
+//   // parse the JSON data and send it as a response
+//   const cartItems = JSON.parse(cartData);
+//   res.json(cartItems);
+// });
+
 /* =============== PRODUCT Cart UPDATE ITEMS=============== */
 
 app.put('/api/cart/:itemName', (req, res) => {

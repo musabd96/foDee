@@ -242,7 +242,7 @@ navLinks.forEach(link => {
 /* =============== CART =============== */
 
 const btn__cart = document.querySelector("#btn__cart");
-const total = document.querySelector(".total-price");
+const total = document.querySelector(".cart__items-total-price");
 const cartEdit = document.querySelector(".cart__edit");
 const cartItem = document.querySelector(".cart__items-list");
 const btnCart = document.querySelector(".btn.cart");
@@ -1362,13 +1362,14 @@ let cartItems = [];
 fetch('/cart')
   .then(response => response.json())
   .then(cartItems => {
-    renderCartItems(cartItems);
+    renderCartItems(cartItems, cart);
   })
   .catch(error => {
     console.log('Error fetching cart data:', error);
 });
 
 function renderCartItems(cartItems) {
+  console.log('cartItems: ', cartItems)
   cartContainer.innerHTML = ''; // Clear the container first
   let total = 0; // Initialize the total to zero
   cartItems.forEach(item => {
@@ -1463,4 +1464,76 @@ cartContainer.addEventListener('click', (event) => {
 
 
 
-/* =============== PRODUCT Cart REMOVE ITEMS=============== */
+/* =============== CHECKOUT CART =============== */
+
+const cart__items = document.getElementById('cart__items-cards');
+
+let cart__products = [];
+
+fetch('/cart')
+  .then(response => response.json())
+  .then(cart__products => {
+    rendercartProducts(cart__products);
+  })
+  .catch(error => {
+    console.log('Error fetching cart data:', error);
+});
+
+function rendercartProducts(cart__products) {
+  cart__items.innerHTML = '';
+  let total = 0;
+  console.log('cart__product: ', cart__products)
+
+  cart__products.forEach(item => {
+    const cart__product = `
+    <div class="cart__items-list " data-name="${item.name}">
+      <img src="${item.image_url}" alt="{item.name}">
+      <div class="cart__items-details">
+        <h3>
+          ${item.name}
+        </h3>
+        <div class="cart__items-quantity" data-name="${item.name}">
+          <select>
+
+              <option value="1"${item.quantity === 1 ? ' selected' : ''}>1</option>
+              <option value="2"${item.quantity === 2 ? ' selected' : ''}>2</option>
+              <option value="3"${item.quantity === 3 ? ' selected' : ''}>3</option>
+              <option value="4"${item.quantity === 4 ? ' selected' : ''}>4</option>
+              <option value="5"${item.quantity === 5 ? ' selected' : ''}>5</option>
+              <option value="6"${item.quantity === 6 ? ' selected' : ''}>6</option>
+              <option value="7"${item.quantity === 7 ? ' selected' : ''}>7</option>
+              <option value="8"${item.quantity === 8 ? ' selected' : ''}>8</option>
+              <option value="9"${item.quantity === 9 ? ' selected' : ''}>9</option>
+              <option value="10"${item.quantity === 10 ? ' selected' : ''}>10</option>
+          </select>
+          <a  class="fas fa-trash remove-item" data-name="${item.name}"></a>
+        </div>
+      </div>
+
+      <div class="cart__items-price">$${(item.price * item.quantity).toFixed(2)}</div>
+    </div>
+    `;
+    console.log(item.price)
+    cart__items.insertAdjacentHTML('beforeend', cart__product);
+    total += item.price * item.quantity; // Add the price of the current item to the total
+  
+  });
+  const totalElement = document.createElement('div');
+  totalElement.classList.add('cart__items-total-price');
+
+  const titleDiv = document.createElement('div');
+  titleDiv.classList.add('total__title');
+  titleDiv.textContent = `total: `;
+  totalElement.appendChild(titleDiv);
+
+  const priceDiv = document.createElement('div');
+  priceDiv.classList.add('total__price');
+  totalElement.appendChild(priceDiv);
+  priceDiv.textContent = `$${total.toFixed(2)}`;
+  cart__items.insertAdjacentElement('beforeend', totalElement);
+
+}
+
+
+
+
