@@ -325,6 +325,7 @@ btn__address.addEventListener("click", function() {
   deliveryEdit.classList.toggle("hidden");
   editDelivery.classList.remove("hidden");
   deliveryInfo.classList.toggle("hidden");
+  paymentText.classList.toggle("hidden");
   
 
   row.classList.toggle("hidden");
@@ -513,9 +514,13 @@ btnCustomerInfoCancel.addEventListener("click", function() {
 
 /* =============== Payment =============== */
 
+
+
+
 const btn__payment = document.querySelector("#btn__payment");
 const row = document.querySelector(".row");
 const btnPayment = document.querySelector(".btn.payment");
+const paymentText = document.querySelector(".payment__text");
 
  
 btn__payment.addEventListener("click", function() {
@@ -525,6 +530,7 @@ btn__payment.addEventListener("click", function() {
   console.log('success payment');
   row.classList.toggle("hidden");
   btnPayment.classList.toggle("hidden");
+  paymentText.classList.toggle("hidden");
 
   total.classList.toggle("hidden");
   cartItem.classList.toggle("hidden");
@@ -1472,6 +1478,7 @@ cartContainer.addEventListener('click', (event) => {
 
 const cart__items = document.getElementById('cart__items-cards');
 
+
 let cart__products = [];
 
 fetch('/cart')
@@ -1537,8 +1544,11 @@ function rendercartProducts(cart__products) {
   priceDiv.textContent = `$${total.toFixed(2)}`;
   cart__items.insertAdjacentElement('beforeend', totalElement);
 
-
+  const totalPricePay = document.getElementById('totalPrice');
+  totalPricePay.textContent = `$ ${total.toFixed(2)}`;
+  console.log('totalPricePay: ', totalPricePay)
 }
+
 
 
 
