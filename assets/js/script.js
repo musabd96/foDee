@@ -244,16 +244,18 @@ navLinks.forEach(link => {
 const btn__cart = document.querySelector("#btn__cart");
 const total = document.querySelector(".cart__items-total-price");
 const cartEdit = document.querySelector(".cart__edit");
-const cartItem = document.querySelector(".cart__items-list");
+const cartItem = document.getElementById("cart__items-cards");
 const btnCart = document.querySelector(".btn.cart");
 const editCart = document.querySelector(".edit__cart");
 const loginRegister = document.querySelector(".login-register");
 
+console.log(cartItem)
 
 btn__cart.addEventListener("click", function() {
 
   if(customerEmail){
     console.log('login')
+    
     total.classList.toggle("hidden");
     cartItem.classList.toggle("hidden");
     cartEdit.classList.toggle("hidden");
@@ -265,6 +267,8 @@ btn__cart.addEventListener("click", function() {
     deliveryInfo.classList.toggle("hidden");
     editDelivery.classList.remove("hidden");
     customer__contect.classList.remove("hidden");
+
+
   } else{
     console.log('logout')
     
@@ -1486,7 +1490,7 @@ function rendercartProducts(cart__products) {
 
   cart__products.forEach(item => {
     const cart__product = `
-    <div class="cart__items-list " data-name="${item.name}">
+    <div class="cart__items-list " data-name="${item.name}" id='cart__items-lists'>
       <img src="${item.image_url}" alt="{item.name}">
       <div class="cart__items-details">
         <h3>
@@ -1515,6 +1519,7 @@ function rendercartProducts(cart__products) {
     `;
     console.log(item.price)
     cart__items.insertAdjacentHTML('beforeend', cart__product);
+
     total += item.price * item.quantity; // Add the price of the current item to the total
   
   });
@@ -1532,8 +1537,18 @@ function rendercartProducts(cart__products) {
   priceDiv.textContent = `$${total.toFixed(2)}`;
   cart__items.insertAdjacentElement('beforeend', totalElement);
 
+
 }
 
 
 
 
+const cartProducts = document.getElementById("cart__items-lists");
+
+if (cartProducts !== null) {
+  // Do something with cartProducts
+  console.log("Element with ID 'cart__items-lists' found.");
+  rendercartProducts(cart__products);
+} else {
+  console.log("Element with ID 'cart__items-lists' not found.");
+}

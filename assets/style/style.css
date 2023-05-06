@@ -668,7 +668,7 @@ select {
     margin: 2rem 1rem;
 }
 
-.cart__list .cart__items-list.hidden,
+.cart__list .cart__items.hidden,
 .cart__list .total-price.hidden,
 .cart__list input{
     display: none;

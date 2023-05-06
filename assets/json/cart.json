@@ -4,5 +4,11 @@
     "price": 14.99,
     "image_url": "https://img.koket.se/standard-mega/per-morbergs-fish-and-chips.jpg",
     "quantity": 3
+  },
+  {
+    "name": "Pizza",
+    "price": 12.99,
+    "image_url": "https://static.toiimg.com/thumb/53110049.cms?width=1200&height=900",
+    "quantity": 1
   }
 ]
