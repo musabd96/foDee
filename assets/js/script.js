@@ -1,10 +1,4 @@
-// window.onload = function() {
-//   if(window.location.href !== 'http://localhost:4000/#account'){
 
-//     // window.location.href = "#home";
-//   }
-
-// };
 
 // Get the initial URL
 var currentUrl = window.location.href;
@@ -254,27 +248,26 @@ console.log(cartItem)
 btn__cart.addEventListener("click", function() {
 
   if(customerEmail){
-    console.log('login')
+
+    if (emtpy__cart.classList.contains('hidden')) {
+      console.log('The emty__cart-items div contains the hidden class');
+
+      total.classList.toggle("hidden");
+      cartItem.classList.toggle("hidden");
+      cartEdit.classList.toggle("hidden");
+      btnCart.classList.toggle("hidden");
+      editCart.classList.remove("hidden");
+  
+      deliveryEdit.classList.toggle("hidden");
+      deliveryInfo.classList.toggle("hidden");
+      editDelivery.classList.remove("hidden");
+      customer__contect.classList.remove("hidden");
+    }
     
-    total.classList.toggle("hidden");
-    cartItem.classList.toggle("hidden");
-    cartEdit.classList.toggle("hidden");
-    btnCart.classList.toggle("hidden");
-    editCart.classList.remove("hidden");
-
-
-    deliveryEdit.classList.toggle("hidden");
-    deliveryInfo.classList.toggle("hidden");
-    editDelivery.classList.remove("hidden");
-    customer__contect.classList.remove("hidden");
-
-
   } else{
-    console.log('logout')
     
     loginRegister.classList.remove("hidden");
     
-    console.log(loginRegister)
   }
 
   
@@ -525,18 +518,32 @@ const paymentText = document.querySelector(".payment__text");
  
 btn__payment.addEventListener("click", function() {
   
-  showLoading();
-  location.reload();
-  console.log('success payment');
-  row.classList.toggle("hidden");
-  btnPayment.classList.toggle("hidden");
-  paymentText.classList.toggle("hidden");
+  let cartItems = [];
 
-  total.classList.toggle("hidden");
-  cartItem.classList.toggle("hidden");
-  cartEdit.classList.toggle("hidden");
-  btnCart.classList.toggle("hidden");
-  editCart.classList.remove("hidden");
+  fetch('/order')
+    .then(response => response.json())
+    .then(cartItems => {
+      renderCartItems(cartItems, cart);
+    })
+    .catch(error => {
+      console.log('Error fetching cart data:', error);
+  });
+
+  function renderCartItems(cartItems) {
+    console.log('cartItems in btn : ', cartItems)
+  }
+  
+
+  showLoading();
+  // row.classList.toggle("hidden");
+  // btnPayment.classList.toggle("hidden");
+  // paymentText.classList.toggle("hidden");
+
+  // total.classList.toggle("hidden");
+  // cartItem.classList.toggle("hidden");
+  // cartEdit.classList.toggle("hidden");
+  // btnCart.classList.toggle("hidden");
+  // editCart.classList.remove("hidden");
 })
 
 /* =============== Country opstion =============== */
@@ -582,7 +589,7 @@ function showOrderReceivedAlert() {
     if (result.isConfirmed) {
       
       location.reload();
-      window.location.href = '/#order';
+      window.location.href = '#order';
 
     } else {
 
@@ -590,7 +597,7 @@ function showOrderReceivedAlert() {
     }
   }).finally(() => {
     location.reload();
-    window.location.href = '/#order';
+    window.location.href = '#order';
 
   });
 
@@ -614,7 +621,7 @@ function showPaymentSuccess(){
 }
 
 function showLoading(){
-  let timerInterval
+  let timerInterval = 0;
   Swal.fire({
     title: 'Payment Processing!',
     html: 'Thank you for your purchase! We are processing your payment',
@@ -636,6 +643,7 @@ function showLoading(){
     if (result.dismiss === Swal.DismissReason.timer) {
       showPaymentSuccess();
       setTimeout(function() {
+        console.log('ok')
         showOrderReceivedAlert();
       }, 3000);
     }
@@ -1365,8 +1373,10 @@ productContainer.addEventListener('click', (event) => {
 
 /* =============== PRODUCT Cart =============== */  
 
-
+const emptyCart = document.querySelector('.empty__cart');
 const cartContainer = document.getElementById('cartItemsContainer');
+const checkout__btn = document.getElementById('checkout-btn');
+
 let cartItems = [];
 
 fetch('/cart')
@@ -1379,41 +1389,47 @@ fetch('/cart')
 });
 
 function renderCartItems(cartItems) {
-  console.log('cartItems: ', cartItems)
   cartContainer.innerHTML = ''; // Clear the container first
   let total = 0; // Initialize the total to zero
-  cartItems.forEach(item => {
-    const cartItem = `
-      <div class="cart__item" data-name="${item.name}">
-        <img src="${item.image_url}" alt="${item.name}">
-        <div class="content">
-          <h3>${item.name}</h3>
-          <div class="quantity">
-            <select class="item-quantity" data-name="${item.name}">
-              <option value="1"${item.quantity === 1 ? ' selected' : ''}>1</option>
-              <option value="2"${item.quantity === 2 ? ' selected' : ''}>2</option>
-              <option value="3"${item.quantity === 3 ? ' selected' : ''}>3</option>
-              <option value="4"${item.quantity === 4 ? ' selected' : ''}>4</option>
-              <option value="5"${item.quantity === 5 ? ' selected' : ''}>5</option>
-              <option value="6"${item.quantity === 6 ? ' selected' : ''}>6</option>
-              <option value="7"${item.quantity === 7 ? ' selected' : ''}>7</option>
-              <option value="8"${item.quantity === 8 ? ' selected' : ''}>8</option>
-              <option value="9"${item.quantity === 9 ? ' selected' : ''}>9</option>
-              <option value="10"${item.quantity === 10 ? ' selected' : ''}>10</option>
-            </select>
-            <a  class="fas fa-trash remove-item" data-name="${item.name}"></a>
+
+  if(cartItems.length === 0){
+    emptyCart.classList.toggle('hidden');
+    checkout__btn.style.display = 'none';
+  } else {
+    cartItems.forEach(item => {
+      const cartItem = `
+        <div class="cart__item" data-name="${item.name}">
+          <img src="${item.image_url}" alt="${item.name}">
+          <div class="content">
+            <h3>${item.name}</h3>
+            <div class="quantity">
+              <select class="item-quantity" data-name="${item.name}">
+                <option value="1"${item.quantity === 1 ? ' selected' : ''}>1</option>
+                <option value="2"${item.quantity === 2 ? ' selected' : ''}>2</option>
+                <option value="3"${item.quantity === 3 ? ' selected' : ''}>3</option>
+                <option value="4"${item.quantity === 4 ? ' selected' : ''}>4</option>
+                <option value="5"${item.quantity === 5 ? ' selected' : ''}>5</option>
+                <option value="6"${item.quantity === 6 ? ' selected' : ''}>6</option>
+                <option value="7"${item.quantity === 7 ? ' selected' : ''}>7</option>
+                <option value="8"${item.quantity === 8 ? ' selected' : ''}>8</option>
+                <option value="9"${item.quantity === 9 ? ' selected' : ''}>9</option>
+                <option value="10"${item.quantity === 10 ? ' selected' : ''}>10</option>
+              </select>
+              <a  class="fas fa-trash remove-item" data-name="${item.name}"></a>
+            </div>
+            <div class="item__price">$${(item.price * item.quantity).toFixed(2)}</div>
           </div>
-          <div class="item__price">$${(item.price * item.quantity).toFixed(2)}</div>
         </div>
-      </div>
-    `;
-    cartContainer.insertAdjacentHTML('beforeend', cartItem);
-    total += item.price * item.quantity; // Add the price of the current item to the total
-  });
-  const totalElement = document.createElement('div');
-  totalElement.classList.add('total');
-  totalElement.textContent = `total: $${total.toFixed(2)}`;
-  cartContainer.insertAdjacentElement('beforeend', totalElement);
+      `;
+      cartContainer.insertAdjacentHTML('beforeend', cartItem);
+      total += item.price * item.quantity; // Add the price of the current item to the total
+    });
+    const totalElement = document.createElement('div');
+    totalElement.classList.add('total');
+    totalElement.textContent = `total: $${total.toFixed(2)}`;
+    cartContainer.insertAdjacentElement('beforeend', totalElement);
+  }
+
 }
 
 
@@ -1477,7 +1493,8 @@ cartContainer.addEventListener('click', (event) => {
 /* =============== CHECKOUT CART =============== */
 
 const cart__items = document.getElementById('cart__items-cards');
-
+const emtpy__cart = document.querySelector('.emty__cart-items');
+    
 
 let cart__products = [];
 
@@ -1493,60 +1510,67 @@ fetch('/cart')
 function rendercartProducts(cart__products) {
   cart__items.innerHTML = '';
   let total = 0;
-  console.log('cart__product: ', cart__products)
-
-  cart__products.forEach(item => {
-    const cart__product = `
-    <div class="cart__items-list " data-name="${item.name}" id='cart__items-lists'>
-      <img src="${item.image_url}" alt="{item.name}">
-      <div class="cart__items-details">
-        <h3>
-          ${item.name}
-        </h3>
-        <div class="cart__items-quantity" data-name="${item.name}">
-          <select>
-
-              <option value="1"${item.quantity === 1 ? ' selected' : ''}>1</option>
-              <option value="2"${item.quantity === 2 ? ' selected' : ''}>2</option>
-              <option value="3"${item.quantity === 3 ? ' selected' : ''}>3</option>
-              <option value="4"${item.quantity === 4 ? ' selected' : ''}>4</option>
-              <option value="5"${item.quantity === 5 ? ' selected' : ''}>5</option>
-              <option value="6"${item.quantity === 6 ? ' selected' : ''}>6</option>
-              <option value="7"${item.quantity === 7 ? ' selected' : ''}>7</option>
-              <option value="8"${item.quantity === 8 ? ' selected' : ''}>8</option>
-              <option value="9"${item.quantity === 9 ? ' selected' : ''}>9</option>
-              <option value="10"${item.quantity === 10 ? ' selected' : ''}>10</option>
-          </select>
-          <a  class="fas fa-trash remove-item" data-name="${item.name}"></a>
-        </div>
-      </div>
-
-      <div class="cart__items-price">$${(item.price * item.quantity).toFixed(2)}</div>
-    </div>
-    `;
-    console.log(item.price)
-    cart__items.insertAdjacentHTML('beforeend', cart__product);
-
-    total += item.price * item.quantity; // Add the price of the current item to the total
+  if(cart__products.length === 0){
+    emtpy__cart.classList.toggle('hidden');
+  } else {
+    
+    emtpy__cart.classList.add('hidden');
+    cart__products.forEach(item => {
+      const cart__product = `
+      <div class="cart__items-list " data-name="${item.name}" id='cart__items-lists'>
+        <img src="${item.image_url}" alt="{item.name}">
+        <div class="cart__items-details">
+          <h3>
+            ${item.name}
+          </h3>
+          <div class="cart__items-quantity" data-name="${item.name}">
+            <select>
   
-  });
-  const totalElement = document.createElement('div');
-  totalElement.classList.add('cart__items-total-price');
+                <option value="1"${item.quantity === 1 ? ' selected' : ''}>1</option>
+                <option value="2"${item.quantity === 2 ? ' selected' : ''}>2</option>
+                <option value="3"${item.quantity === 3 ? ' selected' : ''}>3</option>
+                <option value="4"${item.quantity === 4 ? ' selected' : ''}>4</option>
+                <option value="5"${item.quantity === 5 ? ' selected' : ''}>5</option>
+                <option value="6"${item.quantity === 6 ? ' selected' : ''}>6</option>
+                <option value="7"${item.quantity === 7 ? ' selected' : ''}>7</option>
+                <option value="8"${item.quantity === 8 ? ' selected' : ''}>8</option>
+                <option value="9"${item.quantity === 9 ? ' selected' : ''}>9</option>
+                <option value="10"${item.quantity === 10 ? ' selected' : ''}>10</option>
+            </select>
+            <a  class="fas fa-trash remove-item" data-name="${item.name}"></a>
+          </div>
+        </div>
+  
+        <div class="cart__items-price">$${(item.price * item.quantity).toFixed(2)}</div>
+      </div>
+      `;
+      console.log(item.price)
+      cart__items.insertAdjacentHTML('beforeend', cart__product);
+  
+      total += item.price * item.quantity; // Add the price of the current item to the total
+    
+    });
+    const totalElement = document.createElement('div');
+    totalElement.classList.add('cart__items-total-price');
+  
+    const titleDiv = document.createElement('div');
+    titleDiv.classList.add('total__title');
+    titleDiv.textContent = `total: `;
+    totalElement.appendChild(titleDiv);
+  
+    const priceDiv = document.createElement('div');
+    priceDiv.classList.add('total__price');
+    totalElement.appendChild(priceDiv);
+    priceDiv.textContent = `$${total.toFixed(2)}`;
+    cart__items.insertAdjacentElement('beforeend', totalElement);
+  
+    const totalPricePay = document.getElementById('totalPrice');
+    totalPricePay.textContent = `$ ${total.toFixed(2)}`;
+    console.log('totalPricePay: ', totalPricePay)
 
-  const titleDiv = document.createElement('div');
-  titleDiv.classList.add('total__title');
-  titleDiv.textContent = `total: `;
-  totalElement.appendChild(titleDiv);
+  }
 
-  const priceDiv = document.createElement('div');
-  priceDiv.classList.add('total__price');
-  totalElement.appendChild(priceDiv);
-  priceDiv.textContent = `$${total.toFixed(2)}`;
-  cart__items.insertAdjacentElement('beforeend', totalElement);
-
-  const totalPricePay = document.getElementById('totalPrice');
-  totalPricePay.textContent = `$ ${total.toFixed(2)}`;
-  console.log('totalPricePay: ', totalPricePay)
+  
 }
 
 

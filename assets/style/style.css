@@ -430,6 +430,36 @@ select {
     overflow-y: scroll;
 }
 
+.cart__items-container .cart__title{
+    font-size: 5rem;
+    font-weight: bold;
+    color: black;
+    margin-top: 2rem;
+    margin: 2rem;
+}
+
+.cart__items-container .empty__cart{
+    color: var(--green);
+    font-size: 2rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 2rem 0;
+    padding: 5rem;
+    border-bottom: var(--border);
+}
+
+.cart__items-container .empty__cart .fa-shopping-cart{
+    margin-bottom: 2rem;
+    font-size: 5rem;
+    color: #3e464e9b;
+}
+
+.cart__items-container .empty__cart.hidden{
+    display: none;
+}
+
 .cart__items-container .cart__items{
     overflow-y: hidden;
 }
@@ -570,21 +600,24 @@ select {
     margin-top: 3rem;
 }
 
-.menu .content .heading__search{
+
+
+.menu .container .content{
     display: flex;
+    flex-direction: column;
 }
 
-.menu .content .box-container{
+.menu .container .box-container{
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(30rem, 1fr));
     gap: 3rem;
-    margin-top: 20rem;
+    margin-top: 10rem;
 }
 
 
-  
 
-.menu .box-container .box{
+
+.menu .container .box-container .box{
     width: 30rem;
     max-height: 35rem;
     padding: 5rem;
@@ -593,36 +626,36 @@ select {
     margin-top: 2rem;
 }
 
-.menu .box-container .box img{
+.menu .container .box-container .box img{
     height: 10rem;
 }
 
-.menu .box-container .box h3{
+.menu  .container .box-container .box h3{
     color: var(--main-color);
     font-size: 2rem;
     padding: 1rem 0;
 }
 
-.menu .box-container .box .price{
+.menu .container .box-container .box .price{
     color: var(--main-color);
     font-size: 2.5rem;
     padding: .5rem 0;
 }
 
-.menu .box-container .box:hover{
+.menu .container .box-container .box:hover{
     background: #D9D9D9;
 }
 
 
-.menu .box-container .box:hover > *{
+.menu .container .box-container .box:hover > *{
     color: var(--black);
 }
 
-.menu .box-container .box:hover .btn{
+.menu .container .box-container .box:hover .btn{
     color: var(--main-color);
 }
 
-.menu .box-container .box .btn{
+.menu .container .box-container .box .btn{
     font-size: 2rem;
 }
 /* =============== CART SECTION =============== */
@@ -1304,21 +1337,19 @@ select {
 
 
 /* =============== SEARCH  =============== */
-
+.menu .container .content .wrapper__search{
+    margin: auto;
+}
 .wrapper__search{
-  position: absolute;
-  top: 15%;
-  left: 80%;
-  transform: translate(-50%,-50%);
+    transform: translate(0%, 0%);
 }
 
-.searchbox{
+
+.wrapper__search .searchbox{
   position: relative;
-  margin-top: 5rem;
-  margin-bottom: 15rem;
 }
 
-.searchbox .input{
+.wrapper__search .searchbox .input{
   width: 0px;
   border: 0px;
   height: 40px;
@@ -1328,11 +1359,11 @@ select {
   outline: none;
   color: #42be11;
   font-weight: bold;
-  font-size: 24px;
+  font-size: 2rem;
   transition: all 0.5s linear;
 }
 
-.searchbtn{
+.wrapper__search .searchbtn{
   position: absolute;
   top: 0;
   right: -1px;
@@ -1344,7 +1375,7 @@ select {
   transition: all 0.5s 0.6s linear;
 }
 
-.searchbtn .fas{
+.wrapper__search .searchbtn .fas{
   position: absolute;
   top: 50%;
   left: 50%;
@@ -1355,19 +1386,19 @@ select {
 }
 
 /* jquery class */
-.searchbtn.bg-green{
+.wrapper__search .searchbtn.bg-green{
   background: #42be11;
   transition: all 0.2s linear;
 }
 
-.searchbtn .fas.color-white{
+.wrapper__search .searchbtn .fas.color-white{
   color: #fff;
   transition: all 0.2s linear;
 }
 
-.searchbox .input.active-width{
+.wrapper__search .searchbox .input.active-width{
   width: 300px;
-}
+} 
 
 
 
@@ -1390,9 +1421,7 @@ select {
 /* =============== DEVICE SIZE =============== */
 
 @media (max-width:991px){
-    html{
-        font-size: 55%;
-    }
+    
 
     .header{
         padding: 1.5rem 2rem;

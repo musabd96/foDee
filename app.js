@@ -255,19 +255,13 @@ app.post('/cart', (req, res) => {
 
 app.get('/cart', (req, res) => {
   const cartData = fs.readFileSync(path.join(folderPath,'cart.json'));
-
+  console.log('cart cart>>>>>>>>')
   // parse the JSON data and send it as a response
   const cartItems = JSON.parse(cartData);
   res.json(cartItems);
 });
 
-// app.get('/cart', (req, res) => {
-//   const cartData = fs.readFileSync(path.join(folderPath,'cart.json'));
 
-//   // parse the JSON data and send it as a response
-//   const cartItems = JSON.parse(cartData);
-//   res.json(cartItems);
-// });
 
 /* =============== PRODUCT Cart UPDATE ITEMS=============== */
 
@@ -319,3 +313,36 @@ app.post("/delete", (req, res) => {
   });
 });
 
+
+/* =============== PAYMENT CART -> ORDER =============== */
+
+
+
+app.get('/order', (req, res) => {
+  
+  const cartFilePath = path.join(path.join(folderPath,'cart.json'));
+  const orderFilePath = path.join(path.join(folderPath,'order.json'));
+
+  // read the cart data from cart.json
+  const cartData = fs.readFileSync(cartFilePath);
+  const cartItems = JSON.parse(cartData);
+
+  // read the existing order data from order.json, or create an empty array if the file does not exist
+  let orderData = [];
+  if (fs.existsSync(orderFilePath)) {
+    const orderFileData = fs.readFileSync(orderFilePath);
+    orderData = JSON.parse(orderFileData);
+  }
+
+  // append the cart data to the order data
+  orderData.push(...cartItems);
+
+  // write the combined data to order.json
+  fs.writeFileSync(orderFilePath, JSON.stringify(orderData, null, 2));
+
+  // clear the cart data by writing an empty array to cart.json
+  fs.writeFileSync(cartFilePath, JSON.stringify([]));
+
+  // send the cart data as a response
+  res.json(cartItems);
+});
