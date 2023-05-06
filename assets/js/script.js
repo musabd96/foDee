@@ -572,15 +572,6 @@ btn__payment.addEventListener("click", function() {
 
 
   showLoading();
-  // row.classList.toggle("hidden");
-  // btnPayment.classList.toggle("hidden");
-  // paymentText.classList.toggle("hidden");
-
-  // total.classList.toggle("hidden");
-  // cartItem.classList.toggle("hidden");
-  // cartEdit.classList.toggle("hidden");
-  // btnCart.classList.toggle("hidden");
-  // editCart.classList.remove("hidden");
 })
 
 /* =============== Country opstion =============== */
@@ -1428,7 +1419,6 @@ fetch('/cart')
 function renderCartItems(cartItems) {
   cartContainer.innerHTML = ''; // Clear the container first
   let total = 0; // Initialize the total to zero
-  console.log(cartItems)
   if(cartItems.length === 0){
     emptyCart.classList.remove('hidden');
     checkout__btn.style.display = 'none';
@@ -1504,6 +1494,33 @@ cartContainer.addEventListener('change', event => {
   }
 });
 
+// cart__items.addEventListener('change', event => {
+//   const target = event.target;
+
+//   // Check if the event is triggered by a quantity select element
+//   if (target.classList.contains('cart__items-quantity')) {
+//     const itemName = target.dataset.name;
+//     const itemQuantity = parseInt(target.value);
+
+//     // Send an HTTP PUT request to update the cart item quantity
+//     fetch(`/api/cart/${itemName}`, {
+//       method: 'PUT',
+//       headers: {
+//         'Content-Type': 'application/json'
+//       },
+//       body: JSON.stringify({ quantity: itemQuantity })
+//     })
+//     .then(response => response.json())
+//     .then(cartItems => {
+//       // Update the cart items on the client-side
+//       renderCartItems(cartItems);
+//     })
+//     .catch(error => {
+//       console.error('Error updating cart item quantity:', error);
+//     });
+//   }
+// });
+
 
 /* =============== PRODUCT Cart REMOVE ITEMS=============== */
 
@@ -1562,19 +1579,19 @@ function rendercartProducts(cart__products) {
           <h3>
             ${item.name}
           </h3>
-          <div class="cart__items-quantity" data-name="${item.name}">
-            <select>
+          <div >
+            <select class="cart__items-quantity" data-name="${item.name}">
   
-                <option value="1"${item.quantity === 1 ? ' selected' : ''}>1</option>
-                <option value="2"${item.quantity === 2 ? ' selected' : ''}>2</option>
-                <option value="3"${item.quantity === 3 ? ' selected' : ''}>3</option>
-                <option value="4"${item.quantity === 4 ? ' selected' : ''}>4</option>
-                <option value="5"${item.quantity === 5 ? ' selected' : ''}>5</option>
-                <option value="6"${item.quantity === 6 ? ' selected' : ''}>6</option>
-                <option value="7"${item.quantity === 7 ? ' selected' : ''}>7</option>
-                <option value="8"${item.quantity === 8 ? ' selected' : ''}>8</option>
-                <option value="9"${item.quantity === 9 ? ' selected' : ''}>9</option>
-                <option value="10"${item.quantity === 10 ? ' selected' : ''}>10</option>
+              <option value="1"${item.quantity === 1 ? ' selected' : ''}>1</option>
+              <option value="2"${item.quantity === 2 ? ' selected' : ''}>2</option>
+              <option value="3"${item.quantity === 3 ? ' selected' : ''}>3</option>
+              <option value="4"${item.quantity === 4 ? ' selected' : ''}>4</option>
+              <option value="5"${item.quantity === 5 ? ' selected' : ''}>5</option>
+              <option value="6"${item.quantity === 6 ? ' selected' : ''}>6</option>
+              <option value="7"${item.quantity === 7 ? ' selected' : ''}>7</option>
+              <option value="8"${item.quantity === 8 ? ' selected' : ''}>8</option>
+              <option value="9"${item.quantity === 9 ? ' selected' : ''}>9</option>
+              <option value="10"${item.quantity === 10 ? ' selected' : ''}>10</option>
             </select>
             <a  class="fas fa-trash remove-item" data-name="${item.name}"></a>
           </div>
@@ -1605,7 +1622,6 @@ function rendercartProducts(cart__products) {
   
     const totalPricePay = document.getElementById('totalPrice');
     totalPricePay.textContent = `$ ${total.toFixed(2)}`;
-    console.log('totalPricePay: ', totalPricePay)
 
   }
 
