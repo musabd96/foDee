@@ -49,18 +49,41 @@ loginLink.addEventListener('click', () =>{
 
 /* =============== CART BAR =============== */
 
+
+// update cart//
+
+function updateCart() {
+  fetch('/cart')
+    .then(response => response.json())
+    .then(cartItems => {
+      renderCartItems(cartItems);
+    })
+    .catch(error => {
+      console.log('Error fetching cart data:', error);
+    });
+}
+
 const cartPopup = document.querySelector('.cart__items-container');
 const cartBtn = document.getElementById('cart-btn');
 
 // Open cart popup on click
 document.querySelector('#cart-btn').onclick = () => {
-  cartPopup.classList.toggle('hidden');
-  if (cartPopup.classList.contains('hidden')) {
-    cartBtn.style.color = '';
-  } else {
-    cartBtn.style.color = '#3B8419';
-  }
+  fetch('/cart')
+    .then(response => response.json())
+    .then(cartItems => {
+      renderCartItems(cartItems);
+      cartPopup.classList.toggle('hidden');
+      if (cartPopup.classList.contains('hidden')) {
+        cartBtn.style.color = '';
+      } else {
+        cartBtn.style.color = '#3B8419';
+      }
+    })
+    .catch(error => {
+      console.log('Error fetching cart data:', error);
+    });
 };
+
 
 // Close cart popup on outside click
 document.addEventListener('click', function(event) {
@@ -533,6 +556,7 @@ btn__payment.addEventListener("click", function() {
     console.log('cartItems in btn : ', cartItems)
   }
   
+
 
   showLoading();
   // row.classList.toggle("hidden");
@@ -1374,8 +1398,8 @@ productContainer.addEventListener('click', (event) => {
 /* =============== PRODUCT Cart =============== */  
 
 const emptyCart = document.querySelector('.empty__cart');
-const cartContainer = document.getElementById('cartItemsContainer');
 const checkout__btn = document.getElementById('checkout-btn');
+const cartContainer = document.getElementById('cartItemsContainer');
 
 let cartItems = [];
 
@@ -1391,11 +1415,13 @@ fetch('/cart')
 function renderCartItems(cartItems) {
   cartContainer.innerHTML = ''; // Clear the container first
   let total = 0; // Initialize the total to zero
-
+  console.log(cartItems)
   if(cartItems.length === 0){
-    emptyCart.classList.toggle('hidden');
+    emptyCart.classList.remove('hidden');
     checkout__btn.style.display = 'none';
   } else {
+    checkout__btn.style.display = '';
+    emptyCart.classList.add('hidden');
     cartItems.forEach(item => {
       const cartItem = `
         <div class="cart__item" data-name="${item.name}">
