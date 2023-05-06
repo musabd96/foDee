@@ -127,7 +127,7 @@ document.addEventListener('click', function(event) {
 
 /* =============== NAV =============== */
 const navLinks = document.querySelectorAll('.navbar a');
-// const sections = document.querySelectorAll('section');
+const sections = document.querySelectorAll('section');
 const checkoutBtn = document.querySelector('#checkout-btn');
 const logoBtn = document.querySelector('#logo__btn');
 const homeLink = document.getElementById('#home__btn');
