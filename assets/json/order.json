@@ -148,5 +148,35 @@
     "price": 12.99,
     "image_url": "https://static.toiimg.com/thumb/53110049.cms?width=1200&height=900",
     "quantity": 1
+  },
+  {
+    "name": "Burger",
+    "price": 8.99,
+    "image_url": "https://www.foodandwine.com/thmb/pwFie7NRkq4SXMDJU6QKnUKlaoI=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/Ultimate-Veggie-Burgers-FT-Recipe-0821-5d7532c53a924a7298d2175cf1d4219f.jpg",
+    "quantity": 1
+  },
+  {
+    "name": "Salad",
+    "price": 6.99,
+    "image_url": "https://static01.nyt.com/images/2022/07/15/dining/MC-Chopped-Salad-15SALADREX/merlin_209652387_1b5eee4c-9da5-443c-90e0-db20ee51a246-master768.jpg",
+    "quantity": 1
+  },
+  {
+    "name": "Tacos",
+    "price": 10.99,
+    "image_url": "https://danosseasoning.com/wp-content/uploads/2022/03/Beef-Tacos.jpg",
+    "quantity": 1
+  },
+  {
+    "name": "Steak",
+    "price": 22.99,
+    "image_url": "https://www.foodandwine.com/thmb/MT-PmMm_-6BVcPl8tbcnybIf7Vk=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/reverse-sear-steak-FT-RECIPE0222-5c6f8d9a037a4ca2b170adea0529ba7a.jpg",
+    "quantity": 1
+  },
+  {
+    "name": "Philly Cheesesteak",
+    "price": 13.99,
+    "image_url": "https://www.honestfoodtalks.com/wp-content/uploads/2021/06/Philly-Cheesesteak-Recipe.jpeg",
+    "quantity": 1
   }
 ]

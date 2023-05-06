@@ -224,9 +224,20 @@ navLinks.forEach(link => {
     this.classList.add('active');
     this.style.color = '#3B8419';
   });
-
+  
   // Add event listener to Checkout button
   checkoutBtn.addEventListener('click', function() {
+    
+    // Fetch cart data and render products
+    fetch('/cart')
+    .then(response => response.json())
+    .then(cart__products => {
+      rendercartProducts(cart__products);
+    })
+    .catch(error => {
+      console.log('Error fetching cart data:', error);
+    });
+
     // Show the cart section and hide all other sections
     const cartSection = document.querySelector(this.hash);
     cartSection.classList.remove('hidden');
@@ -238,7 +249,7 @@ navLinks.forEach(link => {
         cartBtn.style.display = 'none'
       }
     });
-
+    
     // Highlight the Checkout button
     navLinks.forEach(link => {
       if (link !== checkoutBtn) {
@@ -248,6 +259,8 @@ navLinks.forEach(link => {
     });
     checkoutBtn.classList.add('active');
     userBtn.style.color = '';
+
+    
   });
 });
 
