@@ -148,11 +148,6 @@ app.post('/register', encoder, function(req, res){
   }
 });
 
-
-
-
-
-
 /* =============== account edit request =============== */
 
 
@@ -255,7 +250,6 @@ app.post('/cart', (req, res) => {
 
 app.get('/cart', (req, res) => {
   const cartData = fs.readFileSync(path.join(folderPath,'cart.json'));
-  console.log('cart cart>>>>>>>>')
   // parse the JSON data and send it as a response
   const cartItems = JSON.parse(cartData);
   res.json(cartItems);
@@ -320,31 +314,74 @@ app.post("/delete", (req, res) => {
 
 
 
+
 app.get('/order', (req, res) => {
+  const orderNumber = Math.floor(Math.random() * 9000000) + 1000000; // generate a random 7-digit number
+  const currentDate = new Date().toISOString().slice(0, 10); // get the current date in the format of YYYY-MM-DD
   
+
   const cartFilePath = path.join(path.join(folderPath,'cart.json'));
   const orderFilePath = path.join(path.join(folderPath,'order.json'));
 
-  // read the cart data from cart.json
   const cartData = fs.readFileSync(cartFilePath);
   const cartItems = JSON.parse(cartData);
 
-  // read the existing order data from order.json, or create an empty array if the file does not exist
-  let orderData = [];
+   let orderData = [];
   if (fs.existsSync(orderFilePath)) {
     const orderFileData = fs.readFileSync(orderFilePath);
     orderData = JSON.parse(orderFileData);
   }
 
-  // append the cart data to the order data
-  orderData.push(...cartItems);
+ const updatedCartItems = cartItems.map((item) => {
+    return {
+      ...item,
+      date: currentDate,
+      orderNumber: orderNumber
+    };
+  });
 
-  // write the combined data to order.json
+  const groupedOrderData = updatedCartItems.reduce((acc, item) => {
+    const key = `${item.date}_${item.orderNumber}`;
+    if (!acc[key]) {
+      acc[key] = {
+        date: item.date,
+        orderNumber: item.orderNumber,
+        quantity: 0,
+        total: 0,
+        items: []
+      };
+    }
+    acc[key].quantity += item.quantity;
+    acc[key].total += item.price;
+    acc[key].items.push({
+      name: item.name,
+      price: item.price,
+      image_url: item.image_url,
+      quantity: item.quantity
+    });
+    return acc;
+  }, {});
+
+  const sortedOrderData = Object.values(groupedOrderData).sort((a, b) => {
+    if (a.date !== b.date) {
+      return a.date.localeCompare(b.date);
+    } else {
+      return a.orderNumber.localeCompare(b.orderNumber);
+    }
+  });
+
+  orderData.push(...sortedOrderData);
+
   fs.writeFileSync(orderFilePath, JSON.stringify(orderData, null, 2));
 
-  // clear the cart data by writing an empty array to cart.json
   fs.writeFileSync(cartFilePath, JSON.stringify([]));
 
-  // send the cart data as a response
-  res.json(cartItems);
+  res.json(sortedOrderData);
+});
+
+
+app.get('/orders', (req, res) => {
+  const orderData = fs.readFileSync(path.join(folderPath,'order.json'));
+  const orderProducts = JSON.parse(orderData);
+  res.json(orderProducts);
 });

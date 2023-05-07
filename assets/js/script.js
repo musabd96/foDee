@@ -554,19 +554,19 @@ const paymentText = document.querySelector(".payment__text");
  
 btn__payment.addEventListener("click", function() {
   
-  let cartItems = [];
+  let OrderItems = [];
 
   fetch('/order')
     .then(response => response.json())
-    .then(cartItems => {
-      renderCartItems(cartItems, cart);
+    .then(OrderItems => {
+      renderCartItems(OrderItems, cart);
     })
     .catch(error => {
       console.log('Error fetching cart data:', error);
   });
 
-  function renderCartItems(cartItems) {
-    console.log('cartItems in btn : ', cartItems)
+  function renderCartItems(OrderItems) {
+    console.log('cartItems in btn : ', OrderItems)
   }
   
 
@@ -1087,8 +1087,6 @@ function register() {
   .then(data => {
     if (data.success) {
       alert('Registration successful!');
-      // redirect to login page
-      // window.location.href = '#menu';
     } else {
       alert(data.message);
     }
@@ -1600,7 +1598,6 @@ function rendercartProducts(cart__products) {
         <div class="cart__items-price">$${(item.price * item.quantity).toFixed(2)}</div>
       </div>
       `;
-      console.log(item.price)
       cart__items.insertAdjacentHTML('beforeend', cart__product);
   
       total += item.price * item.quantity; // Add the price of the current item to the total
@@ -1641,3 +1638,88 @@ if (cartProducts !== null) {
 } else {
   console.log("Element with ID 'cart__items-lists' not found.");
 }
+
+
+
+
+/* =============== ORDER SECTION =============== */
+
+
+
+
+const order__list = document.getElementById('order__list');
+
+
+let orderProducts = [];
+
+fetch('/orders')
+  .then(response => response.json())
+  .then(orderProducts => {
+    renderOrderProducts(orderProducts);
+    console.log('order client')
+  })
+  .catch(error => {
+    console.log('Error fetching order data:', error);
+});
+
+function renderOrderProducts(orderProducts) {
+}
+
+
+
+
+function renderOrderProducts(orderProducts) {
+  console.log('order products: ', orderProducts)
+  order__list.innerHTML = '';
+  orderProducts.forEach(order => {
+    const orderItems = order.items.map(item => `
+    
+      <div class="order__info " >
+        <div class="order__cards-info hidden" id="order__cards-info" >
+          <div class="image__title">
+            <img src="${item.image_url}" alt="">
+            <h3>${item.name}</h3>
+          </div>
+          <div class="quantity__price">
+            <div class="quantity">
+              <div class="quantity__title">quantity</div>
+              <div class="quantity">${item.quantity}</div>
+            </div>
+            <div class="price">
+              <div class="price__title">price</div>
+              <div class="price">$${item.price}</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    `).join('');
+
+    const orderProduct = `
+      
+      <div class="order__cards" data-name="${order.orderNumber}">
+        <div class="order">
+          <div class="date">
+            <div>date</div>
+            <div class="title">${order.date}</div>
+          </div>
+          <div class="order__nr">
+            <div>Order</div>
+            <div class="title">${order.orderNumber}</div>
+          </div>
+          <div class="quantity">
+            <div>quantity</div>
+            <div class="title">${order.quantity}</div>
+          </div>
+          <div class="amount">
+            <div>amount</div>
+            <div class="title">$${order.total}</div>
+          </div>
+         </div>
+        ${orderItems}
+      </div>
+    `;
+  
+    document.getElementById('order__list').insertAdjacentHTML('beforeend', orderProduct);
+  });
+}
+

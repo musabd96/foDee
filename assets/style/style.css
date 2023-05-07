@@ -1335,6 +1335,118 @@ select {
 
 
 
+/* =============== ORDER SECTION =============== */
+
+.order .container{
+    border: 1px solid #D9D9D9;
+    margin: 4rem 5%;;
+    margin-bottom: 3rem;
+}
+
+
+.order .container .content {
+    padding: 4rem;
+}
+
+.order .container .content .order__cards{
+    margin-bottom: 3rem;
+    border: 1px solid #D9D9D9;
+}
+
+.order .container .content .order__list .order__cards .order{
+    display: flex;
+    background: #212325;
+    padding: 1rem;
+}
+
+.order .container .content .order__list .order__cards .order .date,
+.order .container .content .order__list .order__cards .order .order__nr,
+.order .container .content .order__list .order__cards .order .quantity,
+.order .container .content .order__list .order__cards .order .amount{
+    margin: auto;
+    text-align: center;
+    color: #d9d5d5;
+    font-size: 2rem;
+}
+
+.order .container .content .order__list .order__cards .order .date .title,
+.order .container .content .order__list .order__cards .order .order__nr .title,
+.order .container .content .order__list .order__cards .order .quantity .title,
+.order .container .content .order__list .order__cards .order .amount .title{
+    color: var(--main-color);
+    font-size: 3rem;
+    margin: .5rem;
+}
+
+.order .container .content .order__list .order__cards .order .fa-angle-down,
+.order .container .content .order__list .order__cards .order .fa-angle-up{
+    font-size: 4rem;
+    margin: 2.5rem;
+    color: var(--main-color);
+    background: #6c6868;
+    border-radius: 50%;
+    padding: 1rem;
+    cursor: pointer;
+}
+
+
+
+.order .container .content .order__list .order__cards .order__info .order__cards-info{
+    display: flex;
+    text-align: left;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #d9d5d5;
+}
+
+
+.order .container .content .order__list .order__cards .order__info .order__cards-info .image__title{
+    display: flex;
+    
+}
+
+.order .container .content .order__list .order__cards .order__info .order__cards-info .image__title img{
+    width: 15rem;
+    margin: 2rem;
+    margin-right: auto;
+}
+
+.order .container .content .order__list .order__cards .order__info .order__cards-info .image__title h3{
+    font-size: 3rem;
+    margin: 4rem;
+    color: var(--main-color);
+    margin-right: auto;
+}
+
+.order .container .content .order__list .order__cards .order__info .order__cards-info .quantity__price {
+    display: flex;
+    text-align: center;
+}
+
+
+.order .container .content .order__list .order__cards .order__info .order__cards-info .quantity__price .quantity,
+.order .container .content .order__list .order__cards .order__info .order__cards-info .quantity__price .price{
+    color: var(--main-color);
+    font-size: 2.5rem;
+    margin-left: auto;
+    margin-right: 5rem;
+}
+
+.order .container .content .order__list .order__cards .order__info .order__cards-info .quantity__price .quantity .quantity__title,
+.order .container .content .order__list .order__cards .order__info .order__cards-info .quantity__price .price .price__title{
+    color: var(--main-color);
+    font-size: 2rem;
+    margin-left: auto;
+    margin-right: 5rem;
+}
+
+
+
+
+
+
+
+
 
 
 
