@@ -828,8 +828,9 @@ loginBtn.addEventListener('click', (event) => {
                 title: 'swal-title',
                 content: 'swal-text'
               }
+              
             });
-
+            addStoredProductsToCart();
             // Reload the page after timeout
             setTimeout(function() {
               window.location.href = '/#home';
@@ -1373,16 +1374,76 @@ function renderProducts(products) {
   });
 }
 
+// productContainer.addEventListener('click', (event) => {
+//   if (event.target.classList.contains('add-to-cart-btn')) {
+//     const productName = event.target.getAttribute('data-name');
+//     console.log(`Clicked on ${productName}`);
+
+//     // Get the customer's email from an input field
+    
+//     const selectedProduct = products.find(product => product.name === productName);
+
+//     // Add the customer's email to the data being sent in the fetch request
+//     const data = {
+//       product: selectedProduct,
+//       customerEmail: customerEmail
+//     };
+
+//     fetch('/cart', {
+//       method: 'POST',
+//       headers: {
+//         'Content-Type': 'application/json'
+//       },
+//       body: JSON.stringify(data)
+//     })
+//     .then(response => response.json())
+//     .then(data => console.log(data))
+//     .catch(error => console.error(error));
+//   }
+// });
+
+
 productContainer.addEventListener('click', (event) => {
   if (event.target.classList.contains('add-to-cart-btn')) {
     const productName = event.target.getAttribute('data-name');
     console.log(`Clicked on ${productName}`);
 
-    // Get the customer's email from an input field
-    
     const selectedProduct = products.find(product => product.name === productName);
 
-    // Add the customer's email to the data being sent in the fetch request
+    // Check if the customer is signed in
+    // const customerEmail = getCustomerEmail(); // implement your own function to get the customer's email
+
+    if (customerEmail) {
+      // If the customer is signed in, send the product data along with their email to the server
+      const data = {
+        product: selectedProduct,
+        customerEmail: customerEmail
+      };
+
+      fetch('/cart', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(data)
+      })
+      .then(response => response.json())
+      .then(data => console.log(data))
+      .catch(error => console.error(error));
+    } else {
+      // If the customer is not signed in, store the product data in local storage
+      let storedProducts = JSON.parse(localStorage.getItem('storedProducts')) || [];
+      storedProducts.push(selectedProduct);
+      localStorage.setItem('storedProducts', JSON.stringify(storedProducts));
+    }
+  }
+});
+
+// This function should be called when the user signs in
+function addStoredProductsToCart(customerEmail) {
+  var customerEmail = localStorage.getItem('login_email');
+  const storedProducts = JSON.parse(localStorage.getItem('storedProducts')) || [];
+  storedProducts.forEach(selectedProduct => {
     const data = {
       product: selectedProduct,
       customerEmail: customerEmail
@@ -1398,9 +1459,10 @@ productContainer.addEventListener('click', (event) => {
     .then(response => response.json())
     .then(data => console.log(data))
     .catch(error => console.error(error));
-  }
-});
+  });
 
+  localStorage.removeItem('storedProducts');
+}
 
 
 
@@ -1413,16 +1475,29 @@ const cartContainer = document.getElementById('cartItemsContainer');
 
 let cartItems = [];
 
+// fetch(`/cart?email=${customerEmail}`)
+//   .then(response => response.json())
+//   .then(data => {
+//     cartItems = data.cart;
+//     console.log('cartItems:', cartItems); 
+//     renderCartItems(cartItems);
+//   })
+//   .catch(error => {
+//     console.log('Error fetching cart data:', error);
+//   });
+
 fetch(`/cart?email=${customerEmail}`)
   .then(response => response.json())
-  .then(data => {
-    cartItems = data.cart;
+  .then(cartItems => {
+    
     console.log('cartItems:', cartItems); 
     renderCartItems(cartItems);
   })
   .catch(error => {
     console.log('Error fetching cart data:', error);
   });
+
+
 
 function renderCartItems(cartItems) {
   cartContainer.innerHTML = ''; // Clear the container first
@@ -1432,6 +1507,7 @@ function renderCartItems(cartItems) {
     emptyCart.classList.remove('hidden');
     checkout__btn.style.display = 'none';
   } else {
+    console.log('cartItems:', cartItems); 
     checkout__btn.style.display = '';
     emptyCart.classList.add('hidden');
     cartItems.forEach(item => {
@@ -1459,6 +1535,7 @@ function renderCartItems(cartItems) {
           </div>
         </div>
       `;
+      console.log('cartItems html:', item.name); 
       cartContainer.insertAdjacentHTML('beforeend', cartItem);
       total += item.price * item.quantity; // Add the price of the current item to the total
     });
@@ -1563,10 +1640,11 @@ const emtpy__cart = document.querySelector('.emty__cart-items');
 
 let cart__products = [];
 
-fetch('/cart')
+fetch(`/cart?email=${customerEmail}`)
   .then(response => response.json())
   .then(cart__products => {
     rendercartProducts(cart__products);
+    console.log('cart__products:', cart__products); 
   })
   .catch(error => {
     console.log('Error fetching cart data:', error);

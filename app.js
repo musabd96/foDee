@@ -61,6 +61,7 @@ app.post('/', encoder, function(req, res){
             
           }
           console.log('login success')
+          
           res.json({ isLoggedIn: true, 
                                 
             customer_id: customerInfo.customer_id,
@@ -288,20 +289,35 @@ app.post('/cart', (req, res) => {
 /* =============== PRODUCT Cart =============== */  
 
 
+// app.get('/cart', (req, res) => {
+//   const email = req.query.email;
+//   const cartData = fs.readFileSync(path.join(folderPath,'cart.json'));
+//   const cartItems = JSON.parse(cartData);
+//   let allCartItems = [];
+//   console.log('email: ', email)
+//    cartItems.forEach((user) => {
+//     allCartItems = allCartItems.concat(user.cart);
+//   });
+
+//   res.json(allCartItems);
+// });
+
 app.get('/cart', (req, res) => {
   const email = req.query.email;
   const cartData = fs.readFileSync(path.join(folderPath,'cart.json'));
   const cartItems = JSON.parse(cartData);
-  let allCartItems = [];
+  let userCartItems = [];
+
   console.log('email: ', email)
-  // Loop through each user's cart and add their items to the allCartItems array
   cartItems.forEach((user) => {
-    allCartItems = allCartItems.concat(user.cart);
+    if (user.email === email) {
+      userCartItems = user.cart;
+    }
   });
-
-  res.json(allCartItems);
+  
+  console.log('email: ', userCartItems)
+  res.json(userCartItems);
 });
-
 
 
 
