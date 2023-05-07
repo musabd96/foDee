@@ -227,27 +227,62 @@ app.get('/search', (req, res) => {
   res.json(filteredProducts);
 });
 
+// app.post('/cart', (req, res) => {
+//   const selectedProduct = req.body;
+//   const customerEmail = selectedProduct.customerEmail;
+//   const cart = JSON.parse(fs.readFileSync(path.join(folderPath,'cart.json')));
+//   const index = cart.findIndex(product => product.name === selectedProduct.product.name);
+
+//   if (index >= 0) {
+//     // If the product is already in the cart, increment its quantity
+//     cart[index].quantity++;
+//   } else {
+//     // Otherwise, add the product to the cart with a quantity of 1
+//     cart.push({...selectedProduct.product, quantity: 1});
+//   }
+
+//   // Add the customer's email to the cart item
+//   const cartItem = cart.find(item => item.name === selectedProduct.product.name);
+//   cartItem.customerEmail = customerEmail;
+
+//   fs.writeFileSync(path.join(folderPath,'cart.json'), JSON.stringify(cart, null, 2));
+//   res.json(cart);
+// });
+
+
 app.post('/cart', (req, res) => {
   const selectedProduct = req.body;
   const customerEmail = selectedProduct.customerEmail;
-  const cart = JSON.parse(fs.readFileSync(path.join(folderPath,'cart.json')));
-  const index = cart.findIndex(product => product.name === selectedProduct.product.name);
+  const cart = JSON.parse(fs.readFileSync(path.join(folderPath, 'cart.json')));
+  const customerIndex = cart.findIndex(customer => customer.email === customerEmail);
 
-  if (index >= 0) {
-    // If the product is already in the cart, increment its quantity
-    cart[index].quantity++;
+  if (customerIndex >= 0) {
+    // If the customer already has a cart, add the product to their existing cart
+    const existingCart = cart[customerIndex].cart;
+    const productIndex = existingCart.findIndex(product => product.name === selectedProduct.product.name);
+
+    if (productIndex >= 0) {
+      // If the product is already in the cart, increment its quantity
+      existingCart[productIndex].quantity++;
+    } else {
+      // Otherwise, add the product to the cart with a quantity of 1
+      existingCart.push({...selectedProduct.product, quantity: 1, customerEmail: customerEmail});
+    }
   } else {
-    // Otherwise, add the product to the cart with a quantity of 1
-    cart.push({...selectedProduct.product, quantity: 1});
+    // Otherwise, create a new cart for the customer and add the product to it
+    const newCart = {
+      email: customerEmail,
+      cart: [{...selectedProduct.product, quantity: 1, customerEmail: customerEmail}]
+    };
+    cart.push(newCart);
   }
 
-  // Add the customer's email to the cart item
-  const cartItem = cart.find(item => item.name === selectedProduct.product.name);
-  cartItem.customerEmail = customerEmail;
-
-  fs.writeFileSync(path.join(folderPath,'cart.json'), JSON.stringify(cart, null, 2));
+  fs.writeFileSync(path.join(folderPath, 'cart.json'), JSON.stringify(cart, null, 2));
   res.json(cart);
 });
+
+
+
 
 
 /* =============== PRODUCT Cart =============== */  
