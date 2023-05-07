@@ -1377,22 +1377,30 @@ productContainer.addEventListener('click', (event) => {
   if (event.target.classList.contains('add-to-cart-btn')) {
     const productName = event.target.getAttribute('data-name');
     console.log(`Clicked on ${productName}`);
-    // Add your code to handle the button click here
 
-    const selectedProduct = products.find(product => product.name === productName);
+    // Get the customer's email from an input field
     
+    const selectedProduct = products.find(product => product.name === productName);
+
+    // Add the customer's email to the data being sent in the fetch request
+    const data = {
+      product: selectedProduct,
+      customerEmail: customerEmail
+    };
+
     fetch('/cart', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
       },
-      body: JSON.stringify(selectedProduct)
+      body: JSON.stringify(data)
     })
     .then(response => response.json())
     .then(data => console.log(data))
     .catch(error => console.error(error));
   }
 });
+
 
 
 

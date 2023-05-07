@@ -229,20 +229,26 @@ app.get('/search', (req, res) => {
 
 app.post('/cart', (req, res) => {
   const selectedProduct = req.body;
+  const customerEmail = selectedProduct.customerEmail;
   const cart = JSON.parse(fs.readFileSync(path.join(folderPath,'cart.json')));
-  const index = cart.findIndex(product => product.name === selectedProduct.name);
+  const index = cart.findIndex(product => product.name === selectedProduct.product.name);
 
   if (index >= 0) {
     // If the product is already in the cart, increment its quantity
     cart[index].quantity++;
   } else {
     // Otherwise, add the product to the cart with a quantity of 1
-    cart.push({...selectedProduct, quantity: 1});
+    cart.push({...selectedProduct.product, quantity: 1});
   }
+
+  // Add the customer's email to the cart item
+  const cartItem = cart.find(item => item.name === selectedProduct.product.name);
+  cartItem.customerEmail = customerEmail;
 
   fs.writeFileSync(path.join(folderPath,'cart.json'), JSON.stringify(cart, null, 2));
   res.json(cart);
 });
+
 
 
 /* =============== PRODUCT Cart =============== */  
