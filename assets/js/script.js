@@ -1413,19 +1413,22 @@ const cartContainer = document.getElementById('cartItemsContainer');
 
 let cartItems = [];
 
-fetch('/cart')
+fetch(`/cart?email=${customerEmail}`)
   .then(response => response.json())
-  .then(cartItems => {
-    renderCartItems(cartItems, cart);
+  .then(data => {
+    cartItems = data.cart;
+    console.log('cartItems:', cartItems); 
+    renderCartItems(cartItems);
   })
   .catch(error => {
     console.log('Error fetching cart data:', error);
-});
+  });
 
 function renderCartItems(cartItems) {
   cartContainer.innerHTML = ''; // Clear the container first
   let total = 0; // Initialize the total to zero
-  if(cartItems.length === 0){
+  console.log(cartItems.length)
+  if (cartItems.length === 0) {
     emptyCart.classList.remove('hidden');
     checkout__btn.style.display = 'none';
   } else {
@@ -1464,8 +1467,8 @@ function renderCartItems(cartItems) {
     totalElement.textContent = `total: $${total.toFixed(2)}`;
     cartContainer.insertAdjacentElement('beforeend', totalElement);
   }
-
 }
+
 
 
 

@@ -289,11 +289,20 @@ app.post('/cart', (req, res) => {
 
 
 app.get('/cart', (req, res) => {
+  const email = req.query.email;
   const cartData = fs.readFileSync(path.join(folderPath,'cart.json'));
-  // parse the JSON data and send it as a response
   const cartItems = JSON.parse(cartData);
-  res.json(cartItems);
+  let allCartItems = [];
+  console.log('email: ', email)
+  // Loop through each user's cart and add their items to the allCartItems array
+  cartItems.forEach((user) => {
+    allCartItems = allCartItems.concat(user.cart);
+  });
+
+  res.json(allCartItems);
 });
+
+
 
 
 

@@ -1,30 +1,5 @@
 [
-  {
-    "email": "nageyem@gmail.com",
-    "cart": [
-      {
-        "name": "Pizza",
-        "price": 12.99,
-        "image_url": "https://static.toiimg.com/thumb/53110049.cms?width=1200&height=900",
-        "quantity": 2,
-        "customerEmail": "nageyem@gmail.com"
-      },
-      {
-        "name": "Burger",
-        "price": 8.99,
-        "image_url": "https://www.foodandwine.com/thmb/pwFie7NRkq4SXMDJU6QKnUKlaoI=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/Ultimate-Veggie-Burgers-FT-Recipe-0821-5d7532c53a924a7298d2175cf1d4219f.jpg",
-        "quantity": 2,
-        "customerEmail": "nageyem@gmail.com"
-      },
-      {
-        "name": "Salad",
-        "price": 6.99,
-        "image_url": "https://static01.nyt.com/images/2022/07/15/dining/MC-Chopped-Salad-15SALADREX/merlin_209652387_1b5eee4c-9da5-443c-90e0-db20ee51a246-master768.jpg",
-        "quantity": 1,
-        "customerEmail": "nageyem@gmail.com"
-      }
-    ]
-  },
+  
   {
     "email": null,
     "cart": [
