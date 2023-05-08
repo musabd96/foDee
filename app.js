@@ -289,18 +289,6 @@ app.post('/cart', (req, res) => {
 /* =============== PRODUCT Cart =============== */  
 
 
-// app.get('/cart', (req, res) => {
-//   const email = req.query.email;
-//   const cartData = fs.readFileSync(path.join(folderPath,'cart.json'));
-//   const cartItems = JSON.parse(cartData);
-//   let allCartItems = [];
-//   console.log('email: ', email)
-//    cartItems.forEach((user) => {
-//     allCartItems = allCartItems.concat(user.cart);
-//   });
-
-//   res.json(allCartItems);
-// });
 
 app.get('/cart', (req, res) => {
   const email = req.query.email;
@@ -308,43 +296,42 @@ app.get('/cart', (req, res) => {
   const cartItems = JSON.parse(cartData);
   let userCartItems = [];
 
-  console.log('email: ', email)
   cartItems.forEach((user) => {
     if (user.email === email) {
       userCartItems = user.cart;
     }
   });
   
-  console.log('email: ', userCartItems)
   res.json(userCartItems);
 });
 
 
 
-
 /* =============== PRODUCT Cart UPDATE ITEMS=============== */
+
+
 
 app.put('/api/cart/:itemName', (req, res) => {
   const itemName = req.params.itemName;
   const itemQuantity = req.body.quantity;
 
+  console.log(itemName, itemQuantity)
   // Read the cart data from cart.json
-  const cartData = fs.readFileSync(path.join(folderPath, 'cart.json'), 'utf-8');
-  let cartItems = JSON.parse(cartData);
-
-  // Update the quantity of the cart item with the matching name
-  cartItems = cartItems.map(item => {
-    if (item.name === itemName) {
+  const cartData = JSON.parse(fs.readFileSync(path.join(folderPath, 'cart.json'), 'utf-8'));
+  let cartItems = cartData[0].cart;
+  // Find the item with the matching name and update its quantity
+  const updatedCartItems = cartItems.map(item => {
+    if (item.name === itemName) {      
+      console.log(item)
       item.quantity = itemQuantity;
     }
     return item;
   });
-
   // Save the updated cart data to cart.json
-  fs.writeFileSync(path.join(folderPath, 'cart.json'), JSON.stringify(cartItems, null, 2));
+  fs.writeFileSync(path.join(folderPath, 'cart.json'), JSON.stringify(cartData, null, 2));
 
   // Send the updated cart items as a response
-  res.json(cartItems);
+  res.json(updatedCartItems);
 });
 
 
@@ -356,7 +343,6 @@ app.put('/api/cart/:itemName', (req, res) => {
 app.post("/delete", (req, res) => {
   const productName = req.body.productName;
 
-  console.log('productName to delete: ', productName);
 
   fs.readFile(path.join(folderPath, 'cart.json'), (err, data) => {
     if (err) throw err;

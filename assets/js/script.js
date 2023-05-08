@@ -53,7 +53,7 @@ loginLink.addEventListener('click', () =>{
 // update cart//
 
 function updateCart() {
-  fetch('/cart')
+  fetch(`/cart?email=${customerEmail}`)
     .then(response => response.json())
     .then(cartItems => {
       renderCartItems(cartItems);
@@ -68,7 +68,7 @@ const cartBtn = document.getElementById('cart-btn');
 
 // Open cart popup on click
 document.querySelector('#cart-btn').onclick = () => {
-  fetch('/cart')
+  fetch(`/cart?email=${customerEmail}`)
     .then(response => response.json())
     .then(cartItems => {
       renderCartItems(cartItems);
@@ -229,7 +229,7 @@ navLinks.forEach(link => {
   checkoutBtn.addEventListener('click', function() {
     
     // Fetch cart data and render products
-    fetch('/cart')
+    fetch(`/cart?email=${customerEmail}`)
     .then(response => response.json())
     .then(cart__products => {
       rendercartProducts(cart__products);
@@ -1475,16 +1475,7 @@ const cartContainer = document.getElementById('cartItemsContainer');
 
 let cartItems = [];
 
-// fetch(`/cart?email=${customerEmail}`)
-//   .then(response => response.json())
-//   .then(data => {
-//     cartItems = data.cart;
-//     console.log('cartItems:', cartItems); 
-//     renderCartItems(cartItems);
-//   })
-//   .catch(error => {
-//     console.log('Error fetching cart data:', error);
-//   });
+
 
 fetch(`/cart?email=${customerEmail}`)
   .then(response => response.json())
@@ -1555,12 +1546,12 @@ function renderCartItems(cartItems) {
 // Add an event listener to the quantity select element
 cartContainer.addEventListener('change', event => {
   const target = event.target;
-
+  console.log('update cart popup')
   // Check if the event is triggered by a quantity select element
   if (target.classList.contains('item-quantity')) {
     const itemName = target.dataset.name;
     const itemQuantity = parseInt(target.value);
-
+    console.log(itemName, itemQuantity)
     // Send an HTTP PUT request to update the cart item quantity
     fetch(`/api/cart/${itemName}`, {
       method: 'PUT',
@@ -1580,32 +1571,6 @@ cartContainer.addEventListener('change', event => {
   }
 });
 
-// cart__items.addEventListener('change', event => {
-//   const target = event.target;
-
-//   // Check if the event is triggered by a quantity select element
-//   if (target.classList.contains('cart__items-quantity')) {
-//     const itemName = target.dataset.name;
-//     const itemQuantity = parseInt(target.value);
-
-//     // Send an HTTP PUT request to update the cart item quantity
-//     fetch(`/api/cart/${itemName}`, {
-//       method: 'PUT',
-//       headers: {
-//         'Content-Type': 'application/json'
-//       },
-//       body: JSON.stringify({ quantity: itemQuantity })
-//     })
-//     .then(response => response.json())
-//     .then(cartItems => {
-//       // Update the cart items on the client-side
-//       renderCartItems(cartItems);
-//     })
-//     .catch(error => {
-//       console.error('Error updating cart item quantity:', error);
-//     });
-//   }
-// });
 
 
 /* =============== PRODUCT Cart REMOVE ITEMS=============== */
