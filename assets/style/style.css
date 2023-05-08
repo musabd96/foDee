@@ -1343,6 +1343,41 @@ select {
     margin-bottom: 3rem;
 }
 
+.order .container .login__order{
+    font-size: 3rem;
+    text-align: center;
+    padding: 3rem;
+    color: var(--main-color);
+}
+
+
+
+.order .container .login__order .login__button{
+    margin: 2rem;
+}
+.order .container .login__order .login__button:hover{
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+.order .container .empty__order{
+    font-size: 3rem;
+    text-align: center;
+    padding: 3rem;
+    color: var(--main-color);
+}
+
+
+
+.order .container .empty__order .login__button{
+    margin: 2rem;
+}
+.order .container .empty__order .login__button:hover{
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+
 
 .order .container .content {
     padding: 4rem;

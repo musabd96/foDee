@@ -1686,6 +1686,8 @@ cart__items.addEventListener('change', event => {
 
 
 
+const login__order = document.querySelector(".login__order");
+const empty__order = document.querySelector(".empty__order");
 const cartProducts = document.getElementById("cart__items-lists");
 
 if (cartProducts !== null) {
@@ -1697,11 +1699,7 @@ if (cartProducts !== null) {
 }
 
 
-
-
 /* =============== ORDER SECTION =============== */
-
-
 
 
 const order__list = document.getElementById('order__list');
@@ -1726,57 +1724,78 @@ fetch(`/orders?email=${customerEmail}`)
 
 
 function renderOrderProducts(orderProducts) {
-  console.log('order products: ', orderProducts)
-  order__list.innerHTML = '';
-  orderProducts.forEach(order => {
-    const orderItems = order.items.map(item => `
-    
-      <div class="order__info " >
-        <div class="order__cards-info hidden" id="order__cards-info" >
-          <div class="image__title">
-            <img src="${item.image_url}" alt="">
-            <h3>${item.name}</h3>
-          </div>
-          <div class="quantity__price">
-            <div class="quantity">
-              <div class="quantity__title">quantity</div>
-              <div class="quantity">${item.quantity}</div>
-            </div>
-            <div class="price">
-              <div class="price__title">price</div>
-              <div class="price">$${item.price}</div>
-            </div>
-          </div>
-        </div>
-      </div>
-    `).join('');
 
-    const orderProduct = `
+  console.log('customerEmail: ', customerEmail)
+  if(!customerEmail){
+    console.log('yes email')
+    login__order.classList.remove('hidden');
+    empty__order.classList.add('hidden');
+    
+  }else{
+    login__order.classList.add('hidden');
+    if(orderProducts.length === 0){
+      console.log('no order')
+    
+      empty__order.classList.remove('hidden');
+    }else{
+      empty__order.classList.toggle('hidden');
+      order__list.innerHTML = '';
+      orderProducts.forEach(order => {
+        const orderItems = order.items.map(item => `
+        
+          <div class="order__info " >
+            <div class="order__cards-info hidden" id="order__cards-info" >
+              <div class="image__title">
+                <img src="${item.image_url}" alt="">
+                <h3>${item.name}</h3>
+              </div>
+              <div class="quantity__price">
+                <div class="quantity">
+                  <div class="quantity__title">quantity</div>
+                  <div class="quantity">${item.quantity}</div>
+                </div>
+                <div class="price">
+                  <div class="price__title">price</div>
+                  <div class="price">$${item.price}</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        `).join('');
+    
+        const orderProduct = `
+          
+          <div class="order__cards" data-name="${order.orderNumber}">
+            <div class="order">
+              <div class="date">
+                <div>date</div>
+                <div class="title">${order.date}</div>
+              </div>
+              <div class="order__nr">
+                <div>Order</div>
+                <div class="title">${order.orderNumber}</div>
+              </div>
+              <div class="quantity">
+                <div>quantity</div>
+                <div class="title">${order.quantity}</div>
+              </div>
+              <div class="amount">
+                <div>amount</div>
+                <div class="title">$${order.total}</div>
+              </div>
+             </div>
+            ${orderItems}
+          </div>
+        `;
       
-      <div class="order__cards" data-name="${order.orderNumber}">
-        <div class="order">
-          <div class="date">
-            <div>date</div>
-            <div class="title">${order.date}</div>
-          </div>
-          <div class="order__nr">
-            <div>Order</div>
-            <div class="title">${order.orderNumber}</div>
-          </div>
-          <div class="quantity">
-            <div>quantity</div>
-            <div class="title">${order.quantity}</div>
-          </div>
-          <div class="amount">
-            <div>amount</div>
-            <div class="title">$${order.total}</div>
-          </div>
-         </div>
-        ${orderItems}
-      </div>
-    `;
-  
-    document.getElementById('order__list').insertAdjacentHTML('beforeend', orderProduct);
-  });
+        document.getElementById('order__list').insertAdjacentHTML('beforeend', orderProduct);
+      });
+    }
+  }
+
+ 
+
 }
+
+/* =============== EMAIL TO CUSTOMER =============== */
 
