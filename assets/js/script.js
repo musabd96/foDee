@@ -1713,8 +1713,8 @@ fetch(`/orders?email=${customerEmail}`)
   .then(response => response.json())
   .then(orderProducts => {
     renderOrderProducts(orderProducts);
-    console.log('order client')
   })
+  console.log('order client')
   .catch(error => {
     console.log('Error fetching order data:', error);
 });

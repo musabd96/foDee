@@ -419,5 +419,10 @@ app.get('/orders', (req, res) => {
   console.log(email)
   const orderData = fs.readFileSync(path.join(folderPath,'order.json'));
   const orderProducts = JSON.parse(orderData);
-  res.json(orderProducts);
+  let orderItems = orderProducts.filter((order) => {
+    return order.email === email;
+  });
+
+  res.json(orderItems);
 });
+
