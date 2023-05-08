@@ -347,7 +347,9 @@ app.post("/delete", (req, res) => {
 app.get('/order', (req, res) => {
   const orderNumber = Math.floor(Math.random() * 9000000) + 1000000; // generate a random 7-digit number
   const currentDate = new Date().toISOString().slice(0, 10); // get the current date in the format of YYYY-MM-DD
-  
+  const email = req.query.email;
+
+  console.log('email to order: ',email)
   console.log('order')
 
   const cartFilePath = path.join(path.join(folderPath,'cart.json'));
@@ -366,7 +368,8 @@ app.get('/order', (req, res) => {
     return {
       ...item,
       date: currentDate,
-      orderNumber: orderNumber
+      orderNumber: orderNumber,
+      email: email
     };
   });
 
@@ -376,6 +379,7 @@ app.get('/order', (req, res) => {
       acc[key] = {
         date: item.date,
         orderNumber: item.orderNumber,
+        email: email,
         quantity: 0,
         total: 0,
         items: []
@@ -411,6 +415,8 @@ app.get('/order', (req, res) => {
 
 
 app.get('/orders', (req, res) => {
+  const email = req.query.email;
+  console.log(email)
   const orderData = fs.readFileSync(path.join(folderPath,'order.json'));
   const orderProducts = JSON.parse(orderData);
   res.json(orderProducts);

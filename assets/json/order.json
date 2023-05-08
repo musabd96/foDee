@@ -1,40 +1,15 @@
 [
   {
     "date": "2023-05-08",
-    "orderNumber": 5885900,
-    "quantity": 6,
-    "total": 39.97,
-    "items": [
-      {
-        "name": "Pizza",
-        "price": 12.99,
-        "image_url": "https://static.toiimg.com/thumb/53110049.cms?width=1200&height=900",
-        "quantity": 4
-      },
-      {
-        "name": "Fish and Chips",
-        "price": 14.99,
-        "image_url": "https://img.koket.se/standard-mega/per-morbergs-fish-and-chips.jpg",
-        "quantity": 1
-      },
-      {
-        "name": "Pad Thai",
-        "price": 11.99,
-        "image_url": "https://plantbasedonabudget.com/wp-content/uploads/2013/03/Pad-Thai-Inspired-Stir-Fry-Plant-Based-on-a-Budget-1.jpg",
-        "quantity": 1
-      }
-    ]
-  },
-  {
-    "date": "2023-05-08",
-    "orderNumber": 2947623,
+    "orderNumber": 7959402,
+    "email": "faynageye@gmail.com",
     "quantity": 1,
-    "total": 14.99,
+    "total": 8.99,
     "items": [
       {
-        "name": "Fish and Chips",
-        "price": 14.99,
-        "image_url": "https://img.koket.se/standard-mega/per-morbergs-fish-and-chips.jpg",
+        "name": "Burger",
+        "price": 8.99,
+        "image_url": "https://www.foodandwine.com/thmb/pwFie7NRkq4SXMDJU6QKnUKlaoI=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/Ultimate-Veggie-Burgers-FT-Recipe-0821-5d7532c53a924a7298d2175cf1d4219f.jpg",
         "quantity": 1
       }
     ]

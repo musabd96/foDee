@@ -556,7 +556,7 @@ btn__payment.addEventListener("click", function() {
   
   let OrderItems = [];
 
-  fetch('/order')
+  fetch(`/order?email=${customerEmail}`)
     .then(response => response.json())
     .then(OrderItems => {
       renderCartItems(OrderItems, cart);
@@ -1709,7 +1709,7 @@ const order__list = document.getElementById('order__list');
 
 let orderProducts = [];
 
-fetch('/orders')
+fetch(`/orders?email=${customerEmail}`)
   .then(response => response.json())
   .then(orderProducts => {
     renderOrderProducts(orderProducts);
