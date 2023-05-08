@@ -6,7 +6,7 @@
         "name": "Salad",
         "price": 6.99,
         "image_url": "https://static01.nyt.com/images/2022/07/15/dining/MC-Chopped-Salad-15SALADREX/merlin_209652387_1b5eee4c-9da5-443c-90e0-db20ee51a246-master768.jpg",
-        "quantity": 5,
+        "quantity": 9,
         "customerEmail": "faynageye@gmail.com"
       }
     ]

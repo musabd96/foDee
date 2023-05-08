@@ -1500,9 +1500,9 @@ function renderCartItems(cartItems) {
           </div>
         </div>
       `;
-      console.log('cartItems html:', item.name); 
       cartContainer.insertAdjacentHTML('beforeend', cartItem);
       total += item.price * item.quantity; // Add the price of the current item to the total
+      console.log('nowprice: ', total)
     });
     const totalElement = document.createElement('div');
     totalElement.classList.add('total');
@@ -1543,6 +1543,7 @@ cartContainer.addEventListener('change', event => {
     });
   }
 });
+
 
 
 
@@ -1630,7 +1631,7 @@ function rendercartProducts(cart__products) {
       cart__items.insertAdjacentHTML('beforeend', cart__product);
   
       total += item.price * item.quantity; // Add the price of the current item to the total
-    
+      console.log('nowprice: ', total)
     });
     const totalElement = document.createElement('div');
     totalElement.classList.add('cart__items-total-price');
@@ -1654,6 +1655,33 @@ function rendercartProducts(cart__products) {
   
 }
 
+
+// Add an event listener to the quantity select element
+cart__items.addEventListener('change', event => {
+  const target = event.target;
+  // Check if the event is triggered by a quantity select element
+  if (target.classList.contains('cart__items-quantity')) {
+    const itemName = target.dataset.name;
+    const itemQuantity = parseInt(target.value);
+    console.log('ccccc',itemName, itemQuantity)
+    // Send an HTTP PUT request to update the cart item quantity
+    fetch(`/api/cart/${itemName}`, {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({ quantity: itemQuantity })
+    })
+    .then(response => response.json())
+    .then(cart__products => {
+      // Update the cart items on the client-side
+      rendercartProducts(cart__products);
+    })
+    .catch(error => {
+      console.error('Error updating cart item quantity:', error);
+    });
+  }
+});
 
 
 
@@ -1691,8 +1719,8 @@ fetch('/orders')
     console.log('Error fetching order data:', error);
 });
 
-function renderOrderProducts(orderProducts) {
-}
+
+
 
 
 
