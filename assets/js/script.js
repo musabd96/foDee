@@ -127,7 +127,7 @@ document.addEventListener('click', function(event) {
 
 /* =============== NAV =============== */
 const navLinks = document.querySelectorAll('.navbar a');
-const sections = document.querySelectorAll('section');
+// const sections = document.querySelectorAll('section');
 const checkoutBtn = document.querySelector('#checkout-btn');
 const logoBtn = document.querySelector('#logo__btn');
 const homeLink = document.getElementById('#home__btn');
@@ -1374,39 +1374,13 @@ function renderProducts(products) {
   });
 }
 
-// productContainer.addEventListener('click', (event) => {
-//   if (event.target.classList.contains('add-to-cart-btn')) {
-//     const productName = event.target.getAttribute('data-name');
-//     console.log(`Clicked on ${productName}`);
 
-//     // Get the customer's email from an input field
-    
-//     const selectedProduct = products.find(product => product.name === productName);
-
-//     // Add the customer's email to the data being sent in the fetch request
-//     const data = {
-//       product: selectedProduct,
-//       customerEmail: customerEmail
-//     };
-
-//     fetch('/cart', {
-//       method: 'POST',
-//       headers: {
-//         'Content-Type': 'application/json'
-//       },
-//       body: JSON.stringify(data)
-//     })
-//     .then(response => response.json())
-//     .then(data => console.log(data))
-//     .catch(error => console.error(error));
-//   }
-// });
 
 
 productContainer.addEventListener('click', (event) => {
   if (event.target.classList.contains('add-to-cart-btn')) {
     const productName = event.target.getAttribute('data-name');
-    console.log(`Clicked on ${productName}`);
+    console.log(`Clicked zzzzon ${productName}`);
 
     const selectedProduct = products.find(product => product.name === productName);
 
@@ -1546,12 +1520,11 @@ function renderCartItems(cartItems) {
 // Add an event listener to the quantity select element
 cartContainer.addEventListener('change', event => {
   const target = event.target;
-  console.log('update cart popup')
   // Check if the event is triggered by a quantity select element
   if (target.classList.contains('item-quantity')) {
     const itemName = target.dataset.name;
     const itemQuantity = parseInt(target.value);
-    console.log(itemName, itemQuantity)
+    console.log('ccccc',itemName, itemQuantity)
     // Send an HTTP PUT request to update the cart item quantity
     fetch(`/api/cart/${itemName}`, {
       method: 'PUT',
@@ -1570,6 +1543,8 @@ cartContainer.addEventListener('change', event => {
     });
   }
 });
+
+
 
 
 
