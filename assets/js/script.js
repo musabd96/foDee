@@ -551,11 +551,30 @@ const row = document.querySelector(".row");
 const btnPayment = document.querySelector(".btn.payment");
 const paymentText = document.querySelector(".payment__text");
 
- 
+
 btn__payment.addEventListener("click", function() {
   
-  let OrderItems = [];
+  const inputFields = document.querySelectorAll('.inputbox input');
+  let allFieldsAreFilled = true;
+  
+  inputFields.forEach(input => {
+    const errorIcon = input.parentElement.querySelector('.fa-exclamation-circle');
+    
+    if (input.value.trim() === '') {
+      errorIcon.classList.remove('hidden');
+      allFieldsAreFilled = false;
+    } else {
+      errorIcon.classList.add('hidden');
+    }
+  });
+ 
 
+  
+  
+  if (!allFieldsAreFilled) {
+    return; // exit early if any field is empty
+  }
+  
   fetch(`/order?email=${customerEmail}`)
     .then(response => response.json())
     .then(OrderItems => {
@@ -569,10 +588,10 @@ btn__payment.addEventListener("click", function() {
     console.log('cartItems in btn : ', OrderItems)
   }
   
-
-
   showLoading();
-})
+  
+});
+
 
 /* =============== Country opstion =============== */
 document.addEventListener('DOMContentLoaded', () => {
@@ -765,6 +784,8 @@ loginBtn.addEventListener('click', (event) => {
 
   const email = document.querySelector('#login__email').value;
   const password = document.querySelector('#password').value;
+
+  
 
   fetch('/', {
     method: 'POST',
@@ -983,62 +1004,73 @@ registerForm.addEventListener('submit', (event) => {
 
   const email = registerForm.querySelector('input[name="email"]').value;
   const password = registerForm.querySelector('input[name="password"]').value;
-  console.log('registration form: ', 'email: ' , email , 'password: ', password);
-  
-  fetch('/register', {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json'
-    },
-    body: JSON.stringify({
-      email: email,
-      password: password
-    })
-  })
-  .then(response => {
-    if (response.ok) {
-      console.log('Registration successful');
-      Swal.fire({
-        position: 'center',
-        icon: 'success',
-        title: 'Registration successful',
-        showConfirmButton: false,
-        timer: 3000,
-        customClass: {
-          container: 'swal-container',
-          popup: 'swal-popup',
-          title: 'swal-title',
-          content: 'swal-text'
-        }
+  const confirmPassword = registerForm.querySelector('input[name="confirm__password"]').value;
+  if(password === confirmPassword){
+
+    fetch('/register', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        email: email,
+        password: password
       })
-      setTimeout(function() {
-        registerSuccessCallback();
-      }, 3000);
-    } else if (response.status === 409) {
-      console.log('Registration failed:', response.statusText);
-      Swal.fire({
-        position: 'center',
-        icon: 'error',
-        title: 'Registration failed',
-        text: 'Email already exists',
-        showConfirmButton: false,
-        timer: 2000
-      });
-    } else {
-      console.log('Registration failed:', response.statusText);
-      response.json().then(data => {
+    })
+    .then(response => {
+      if (response.ok) {
+        console.log('Registration successful');
+        Swal.fire({
+          position: 'center',
+          icon: 'success',
+          title: 'Registration successful',
+          showConfirmButton: false,
+          timer: 3000,
+          customClass: {
+            container: 'swal-container',
+            popup: 'swal-popup',
+            title: 'swal-title',
+            content: 'swal-text'
+          }
+        })
+        setTimeout(function() {
+          registerSuccessCallback();
+        }, 3000);
+      } else if (response.status === 409) {
+        console.log('Registration failed:', response.statusText);
         Swal.fire({
           position: 'center',
           icon: 'error',
           title: 'Registration failed',
-          text: data.message || response.statusText,
+          text: 'Email already exists',
           showConfirmButton: false,
           timer: 2000
         });
-      });
-    }
-  })
-  .catch(error => console.error(error));
+      } else {
+        console.log('Registration failed:', response.statusText);
+        response.json().then(data => {
+          Swal.fire({
+            position: 'center',
+            icon: 'error',
+            title: 'Registration failed',
+            text: data.message || response.statusText,
+            showConfirmButton: false,
+            timer: 2000
+          });
+        });
+      }
+    })
+    .catch(error => console.error(error));
+  } else{
+    Swal.fire({
+      position: 'center',
+      icon: 'error',
+      title: 'password is not matchs',
+      showConfirmButton: false,
+      timer: 2000
+    });
+  }
+  
 });
 
 

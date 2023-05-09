@@ -226,6 +226,8 @@ select {
     transform: translateX(0);
 }
 
+
+
 .wrapper.register .form__box.login{
     transition: none;
     transform: translateX(500px);
@@ -255,6 +257,10 @@ select {
     border-bottom: 2px solid #3B8419;
     margin: 50px 0;
     
+}
+
+.form__box form .icon{
+    font-size: 2.5rem;
 }
 
 .input__box label{
@@ -1072,7 +1078,7 @@ select {
 }
 
 .payment form .row .col .inputbox{
-    margin: 1rem 0; 
+    margin: 2rem 0; 
     text-align: left;
 }
 
@@ -1102,11 +1108,20 @@ select {
 }
 
 .payment form .row .col .flex .inputbox{
-    margin-top: 5px;
+    margin-top: 2rem;
+    width: 100%;
+    
+}
+.payment form .row .col .flex .inputbox input,
+.payment form .row .col .flex .inputbox select{
     width: 100%;
 }
-.payment form .row .col .flex .inputbox input{
+.payment form .row .col .flex .inputbox select{
     width: 100%;
+    padding: 10px 1rem;
+    font-size: 2rem;
+    text-transform: none;
+    background: var(--main-color);
 }
 
 .payment form .row .col img{
@@ -1126,20 +1141,20 @@ select {
  width: 100%;
 }
 
-.fa-exclamation-circle{
+.fa-exclamation-circle.hidden{
     display: none;
     margin-top: 5px;
 }
 .fa-exclamation-circle h4{
     margin-top: 5px;
-    font-size: 1rem;
+    font-size: 2rem;
     margin-left: 3px;
 }
-.error__icon{
-    color: red;
-    display: flex;
+.error-icon{
+    color: rgba(232, 67, 67, 0.876);
     font-size: 1.5rem;
 }
+
 
 .billing form .row .col .inputbox input.error{
     border: 1px solid #c60606
