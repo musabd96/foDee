@@ -164,7 +164,7 @@ app.post('/saveEdit', encoder, function(req, res){
 
 
 
-  console.log('zipCode: ', zipCode, ' and phone: ', phone);
+  console.log('zipCode: ', fullName, ' and phone: ', phone);
 
   // Read the existing customer data from the file
   const rawData = fs.readFileSync(path.join(folderPath,'customer.json'));

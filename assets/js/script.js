@@ -387,9 +387,9 @@ edit_deliveryBtn.addEventListener("click", function() {
     const zipCode = document.getElementById('zip_code').textContent;
     const country = document.getElementById('country').textContent;
 
-    document.getElementById('fullname__input').value = fullName;
+    document.getElementById('fullname__input-account').value = fullName;
     document.getElementById('street__input').value = street;
-    document.getElementById('city__input').value = city;
+    document.getElementById('city__input-account').value = city;
     document.getElementById('zip-code__input').value = zipCode;
     document.getElementById('countries__cart').value = country;
     
@@ -403,7 +403,7 @@ edit_deliveryBtn.addEventListener("click", function() {
     emailInput.value = email;
     emailInput.disabled = true;
 
-    document.getElementById('phone__input').value = phone;
+    document.getElementById('phone__input-account').value = phone;
 
 
 
@@ -1147,19 +1147,15 @@ editPersonalData.forEach(editButton => {
     
     const editForm = editButton.parentNode.parentNode.querySelector('.edit__form');
     const personalData = editButton.parentNode.parentNode.querySelector('.personal-data__info');
-
     
     editForm.classList.remove('hidden');
     personalData.classList.add('hidden');
-
     
-    const fullNameInput = editForm.querySelector('#fullname__input');
-    const phoneNumberInput = editForm.querySelector('#phone__input');
+    const fullNameInput = editForm.querySelector('#fullname__input-account');
+    const phoneNumberInput = editForm.querySelector('#phone__input-account');
 
-    fullNameInput.value = personalData.querySelector('.name').textContent;
+    fullNameInput.value = personalData.querySelector('.customer_fullname').textContent;
     phoneNumberInput.value = personalData.querySelector('.number').textContent;
-
-    console.log('fullNameInput: ', fullNameInput)
     
     
     const saveButton = editForm.querySelector('.btn:nth-of-type(1)');
@@ -1196,7 +1192,7 @@ editAddress.forEach(editButton => {
     addressInfo.classList.add('hidden');
 
     const addressInput = editForm.querySelector('#address__input');
-    const cityInput = editForm.querySelector('#city__input');
+    const cityInput = editForm.querySelector('#city__input-account');
     const stateInput = editForm.querySelector('#countries');
     const stateElement = addressInfo.querySelector('.state');
     const zipCodeInput = editForm.querySelector('#zip__code');
@@ -1238,8 +1234,11 @@ savePersonalDataEdit.addEventListener('click', (event) =>{
   event.preventDefault();
   console.log('save__personal')
   const email = customerEmail;
-  const fullName = document.getElementById("fullname__input").value;
-  const phone = document.getElementById("phone__input").value;
+  const fullName = document.getElementById("fullname__input-account").value;
+  const phone = document.getElementById("phone__input-account").value;
+
+
+  console.log('save__personal: ',fullName, phone)
 
   fetch('/saveEdit', {
     method: 'POST',
@@ -1294,11 +1293,11 @@ saveAddressEdit.addEventListener('click', (event) =>{
   event.preventDefault();
   const email = customerEmail;
   const address = document.getElementById("address__input").value;
-  const city = document.getElementById("city__input").value;
+  const city = document.getElementById("city__input-account").value;
   const country = document.getElementById("countries").value;
   const zipCode = document.getElementById("zip__code").value;
 
-  console.log(address)
+  console.log('city: ', city)
 
   fetch('/saveEdit', {
     method: 'POST',
